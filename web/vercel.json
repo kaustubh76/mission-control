@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://mission-control-api.onrender.com/api/:path*"
+      "destination": "https://mission-control-api-iez5.onrender.com/api/:path*"
     }
   ]
 }
