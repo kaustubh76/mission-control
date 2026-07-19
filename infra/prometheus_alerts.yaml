@@ -1,0 +1,84 @@
+# Phase D — Prometheus alerting rules for ictbot.
+#
+# Load via Alertmanager / Prometheus `rule_files:` directive. Names + label
+# keys are stable; routing (severity → receiver) is your Alertmanager's
+# job, not ours. Adjust thresholds per your risk appetite.
+#
+# Metric source: src/ictbot/runtime/metrics.py (scraped on :9100/metrics).
+groups:
+  - name: ictbot.live_trading
+    rules:
+      - alert: ICTBotLiveTradeCapHit
+        expr: increase(ictbot_cap_rejections_total{cap="max_live_trades_per_day"}[1h]) > 0
+        for: 1m
+        labels:
+          severity: warning
+          component: ictbot
+        annotations:
+          summary: "Live-trades-per-day cap rejected at least one signal in the last hour."
+          description: |
+            MaxLiveTradesPerDay rejected one or more signals in the last hour.
+            Either the bot is firing more than MAX_LIVE_TRADES_PER_DAY allows,
+            or the cap is set too low for the strategy's hit rate. Inspect
+            data/journal/signals.json and adjust MAX_LIVE_TRADES_PER_DAY if
+            the rate is intentional.
+
+      - alert: ICTBotKillSwitchEngaged
+        expr: ictbot_kill_switch_engaged > 0
+        for: 5m
+        labels:
+          severity: warning
+          component: ictbot
+        annotations:
+          summary: "ICT bot kill switch has been engaged for 5+ minutes."
+          description: |
+            data/KILL_SWITCH_ENGAGED is present and the scanner is skipping
+            evaluation. If the engage was intentional, ignore. Otherwise the
+            operator should `/resume yes` from Telegram (with TG_COMMANDS_MODE=true)
+            or `rm data/KILL_SWITCH_ENGAGED` and restart.
+
+      - alert: ICTBotNoLiveFillsToday
+        expr: |
+          sum(increase(ictbot_live_trades_total[24h])) == 0
+          and on() hour() > 12
+        for: 1h
+        labels:
+          severity: info
+          component: ictbot
+        annotations:
+          summary: "No live fills today — verify live mode is intended."
+          description: |
+            ictbot_live_trades_total has not incremented in the last 24 h and
+            it is past noon UTC. Possible causes: ENABLE_LIVE_TRADING=false,
+            kill switch engaged, EXCHANGE misconfigured (e.g. Bybit retCode
+            10024), or the strategy genuinely had no high-confidence setups.
+
+  - name: ictbot.shadow_quality
+    rules:
+      - alert: ICTBotShadowDivergenceHigh
+        expr: rate(ictbot_shadow_diverged_total[1h]) > 0.05
+        for: 15m
+        labels:
+          severity: warning
+          component: ictbot
+        annotations:
+          summary: "Shadow router divergence rate > 5%/h."
+          description: |
+            The live and shadow legs disagreed on more than 5 % of signals
+            in the last hour. Likely cause: cap-state drift between legs
+            (one rejected, one placed). Review shadow_report output and
+            check Account/CapGate isolation in scanner._build_router.
+
+      - alert: ICTBotEvaluationStalled
+        expr: rate(ictbot_evaluations_total[10m]) == 0
+        for: 10m
+        labels:
+          severity: critical
+          component: ictbot
+        annotations:
+          summary: "ICT bot evaluation loop appears stalled."
+          description: |
+            ictbot_evaluations_total has not incremented for 10 minutes.
+            Scanner thread may be wedged on a market-data fetch, kill switch
+            engaged for too long, or the process is dead. Check the
+            data/HEARTBEAT timestamp and process logs.

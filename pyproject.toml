@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ictbot"
+version = "0.1.0"
+description = "Mission Control — a regime-adaptive, long-only spot momentum allocator on free, keyless market data, with TWAK self-custody execution (gasless via MegaFuel), an ERC-8004 on-chain agent identity, and vlayer-verified data provenance for the sold ERC-8183 report."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "ccxt>=4.2.0",
+    "pandas>=2.0.0",
+    "requests>=2.31.0",
+    "pytz>=2024.1",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "pyarrow>=14.0.0",
+    "prometheus_client>=0.20.0",
+    "websockets>=12.0",
+]
+# streamlit/plotly are the LEGACY local UI (src/ictbot/ui/app.py) only — moved OUT
+# of core so the Render dashboard-API image stays lean. The shipped UI is the React
+# SPA (web/) on Vercel; Render hosts only the read-only API. Install the old UI with
+# `pip install -e ".[ui]"` if you still want `streamlit run src/ictbot/ui/app.py`.
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "hypothesis>=6.0",
+]
+# Phase C — TG inline-button confirm-then-fire (docs/autotrade_plan.md).
+# Only required when TG_CONFIRM_MODE=true. Install via:
+#   pip install -e ".[tg]"
+# The default paper-trading flow doesn't pull this in.
+tg = [
+    "python-telegram-bot>=21.0",
+]
+# LIVE BSC EXECUTION is handled by the `twak` CLI (npm, NOT a pip
+# dep): `npm i -g @trustwallet/cli` (Node >= 22.14), then `twak setup`. It covers
+# swaps, balances, gasless gas-sponsorship, and `twak compete register`.
+bsc = []
+# On-chain agent SDK (bnbagent) — the agent's ERC-8004 on-chain
+# IDENTITY (gas-free via MegaFuel). Python SDK, so it installs into the venv:
+#   python -m pip install -e ".[bnb]"   (use `python -m pip`, NOT `.venv/bin/pip`)
+bnb = [
+    "bnbagent==0.3.5",   # ERC8004Agent identity + EVMWalletProvider (BNB Chain); pinned — don't switch SDK versions
+    "web3>=6.15.0",      # direct import in data/x402_cmc.py (matches bnbagent's floor; venv runs 7.x)
+]
+# React "Mission Control" dashboard backend — a thin READ-ONLY FastAPI layer that
+# wraps the existing allocator-journal / identity / regime readers and serves the
+# built Vite SPA from web/dist. The trading core never imports these unless you opt
+# in:  python -m pip install -e ".[api]"   then  make api  (uvicorn on :8000).
+api = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "web3>=6.15.0",   # api/onchain.py wallet card (Multicall3 + Chainlink reads; pulls eth-abi)
+]
+# Horizontal read-scaling (multi-instance) ONLY — keeps the default [api] image lean. Opt in to
+# share the pushed snapshot across replicas (SNAPSHOT_STORE=redis) and/or the cross-host allocator
+# lease (ALLOCATOR_LOCK=redis). The single-instance deploy does NOT need this. See
+# SCALABILITY.md §5/§6:  python -m pip install -e ".[api,scale]"
+scale = [
+    "redis>=5.0",
+]
+# Legacy local Streamlit UI (src/ictbot/ui/app.py) — NOT shipped; the React SPA
+# (web/, on Vercel) replaced it. Opt in only to run the old dashboard locally:
+#   pip install -e ".[ui]"   then  streamlit run src/ictbot/ui/app.py
+ui = [
+    "streamlit>=1.30.0",
+    "streamlit-autorefresh>=1.0.1",
+    "plotly>=5.18.0",
+]
+
+[project.scripts]
+# `ictbot-api` (and `make api`) launch the dashboard backend. run() chdirs to the
+# repo root first so kill_switch's relative data/.env paths resolve correctly.
+ictbot-api = "ictbot.api.app:run"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# E501: line length is handled by ruff format, not lint.
+# E701/E702: short-form `if x: return y` style is intentional in the
+#            tight indicator code we inherited.
+# E731:     `rt = lambda p: round_to_tick(...)` is a deliberate local
+#            shortcut in strategy.ict_pro_max; rewriting to def hurts
+#            readability for a 1-line helper.
+# E741:     `l` (low), `O` etc. are conventional in OHLCV code.
+ignore = ["E501", "E701", "E702", "E731", "E741"]
+
+[tool.ruff.lint.per-file-ignores]
+# UI module runs Streamlit at import time so imports interleave with
+# top-level statements; that's expected.
+"src/ictbot/ui/app.py" = ["E402"]
+# Tests are allowed unused fixture vars / loop counters.
+"tests/*.py" = ["B007", "F841"]

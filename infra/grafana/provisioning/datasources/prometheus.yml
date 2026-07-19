@@ -1,0 +1,12 @@
+# D2 — auto-provision the Prometheus datasource so Grafana picks it
+# up on first boot without a manual click-through.
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true

@@ -1,0 +1,197 @@
+# BNB Hack — Strategy Validation Campaign (process + guardian)
+
+**Status: ACTIVE.** The MVP is built and **live on mainnet**; the multi-strategy platform is
+shipped (registry of 10 arms + 9 `BNB_STRATEGY_0X` aliases, the shared 25%-DD gate,
+`validate_strategy` + `forward_promote`, verdict persistence, the SIM-only selector). This document
+is the **map of how we test, validate, and finalize every strategy** so nothing is missed on the way
+to choosing the contest arm — and the **guardian** (§5) that tracks where each arm stands.
+
+> **The one-sentence premise.** There is **no proven long-only TA edge** on the 8-token universe
+> (proven five ways — [bnb_strategy_decision.md](bnb_strategy_decision.md) §1). Every non-default arm
+> is therefore a **capability + risk-diversification + craft** play, ranked **risk-first** (lowest
+> worst-week drawdown), never by alpha. The campaign's job is to gather full comparative knowledge so
+> we pick the **safest, most contest-robust** arm — not a mythical edge.
+
+---
+
+## 1. Context & premise
+
+- **Locked default:** `momentum_adaptive` is the bit-for-bit contest strategy. The campaign never
+  changes it; it only gathers knowledge about the challengers.
+- **No shorting:** TWAK signs spot only (perps score zero). "Short spot" = short-*horizon* long spot.
+- **Hard rail:** worst-week drawdown **< 25%** (inside the 30% contest DQ line; 15% is the stretch
+  target). This is the pass/fail line for the survival gate — see
+  [acceptance.py](../src/ictbot/engine/acceptance.py).
+- **Capability arms (10 real):** `momentum`, `momentum_adaptive`, `momentum_fast`, `dual_momentum`,
+  `rotation`, `breakout`, `mean_reversion`, `momentum_voltarget`, `momentum_mafilter`, `grid`. The 9
+  `BNB_STRATEGY_0X` aliases delegate bit-for-bit to these, so validating the target covers the alias.
+
+## 2. The pipeline — five stages every arm flows through
+
+| Stage | Meaning | Source of truth | Auto / Human |
+|---|---|---|---|
+| **1. Registered** | arm is in `registry.available()` | registry | auto |
+| **2. Backtest-survival** | clears the 25%-DD survival gate in backtest (DQ-safe **and** ≥7 t/wk) | `survival` verdict | auto (`make campaign`) |
+| **3. Forward-started** | has SIM journal rows under its `strategy` field | SIM journal | auto |
+| **4. Forward-eligible** | clears the forward check: worst-7d DD <25% · ≥7 t/wk · median weekly return ≥0 | `forward` verdict | auto |
+| **5. Operator sign-off** | chosen for the LIVE/contest path | `STRATEGY_NAME` + `ENABLE_LIVE_TRADING` | **human only** |
+
+**Uniform promotion policy (Part 7).** The locked `momentum_adaptive` is the only default. An arm
+becomes **live-eligible** only after ALL of: (1) it clears the survival gate in backtest;
+(2) it clears the forward check on unseen SIM data; (3) explicit operator sign-off. **No arm
+auto-promotes** — the campaign writes verdicts, it does not change the live strategy.
+`mean_reversion` is eligible under the same rule but carries an **adverse mechanism prior** (reversal
+inverts to momentum on majors) — treat a forward PASS for it with extra skepticism.
+
+## 3. The one-shot command
+
+```bash
+make campaign                              # validate + forward-promote + save, every arm, one shot
+make campaign ARGS="--no-save"             # dry run: print the table, don't persist or rewrite docs
+make campaign ARGS="--forward-min-days 14" # use the rigorous 14-day forward window
+```
+
+For each real arm, [`scripts/strategy_campaign.py`](../scripts/strategy_campaign.py):
+
+1. runs the **backtest-survival** gate (`validate_strategy.survival_for` → `portfolio_replay.evaluate`
+   at the binding 0.70% friction + `acceptance.evaluate_portfolio`) and persists the `survival` verdict;
+2. reads the **SIM journal** and evaluates the **forward** check (`forward_promote._verdict_for`),
+   persisting the `forward` verdict;
+3. regenerates the **guardian matrix** (§5, between the markers below) and the detailed comparison
+   report at [`data/reports/strategy_campaign.md`](../data/reports/strategy_campaign.md).
+
+Verdicts persist to [`data/reports/strategy_gates.json`](../data/reports/strategy_gates.json) — the
+same file the dashboard selector badges from, written with the same payloads as
+`validate_strategy --save-verdict` and `forward_promote --save` (no drift; one shared code path).
+
+## 4. Reading the comparison report
+
+- **Ranking is risk-first:** survival passers first, then ascending worst-week DD. There is no return
+  edge to chase — lowest drawdown / cleanest turnover wins.
+- **`wkDD`** = worst rolling-7-day drawdown in backtest at 0.70% friction. **< 25% = survives.**
+- **`t/wk`** = trades/week; must be **≥ 7** (the contest min-trade floor).
+- **`Forward`** = `✅ eligible` / `❌ not yet` (evaluated, failed a condition) / `⏳ insufficient`
+  (not enough forward history yet — the honest common state in the contest window).
+
+## 5. The guardian status matrix
+
+The block between the markers below is **auto-regenerated by `make campaign`** from
+`strategy_gates.json` — never hand-edit it. One glance shows which arms have been tested, which gate
+each cleared, and what stage each is at, so no arm is silently skipped.
+
+<!-- GUARDIAN:START -->
+
+_Auto-generated by `make campaign` — do not hand-edit between the markers. Forward window **5d** (contest-compressed; the rigorous default is 14d). Last run **2026-06-16T06:59:03+00:00**._
+
+| # | Arm | Alias | Stage | Backtest-survival | t/wk | Forward |
+|--:|---|---|:--:|---|--:|---|
+| 1 | `breakout` | BNB_STRATEGY_05 | 2 | ✅ 10.7% DD | 22.1 | ⏳ insufficient |
+| 2 | `rotation` | BNB_STRATEGY_04 | 2 | ✅ 12.2% DD | 21.4 | ⏳ insufficient |
+| 3 | `mean_reversion` | BNB_STRATEGY_08 | 2 | ✅ 13.2% DD | 26.2 | ⏳ insufficient |
+| 4 | `momentum_voltarget` | BNB_STRATEGY_02 | 2 | ✅ 13.4% DD | 15.7 | ⏳ insufficient |
+| 5 | `momentum_fast` | BNB_STRATEGY_06 | 2 | ✅ 14.3% DD | 13.3 | ⏳ insufficient |
+| 6 | `momentum` | — | 2 | ✅ 14.6% DD | 10.5 | ⏳ insufficient |
+| 7 | `momentum_adaptive` | BNB_STRATEGY_01 | 5 | ✅ 14.6% DD | 10.5 | ⏳ insufficient |
+| 8 | `momentum_cmc` | — | 3 | ✅ 14.6% DD | 10.5 | ⏳ insufficient |
+| 9 | `dual_momentum` | BNB_STRATEGY_03 | 2 | ✅ 14.6% DD | 7.8 | ⏳ insufficient |
+| 10 | `momentum_mafilter` | BNB_STRATEGY_07 | 2 | ✅ 16.9% DD | 8.4 | ⏳ insufficient |
+| 11 | `grid` | BNB_STRATEGY_09 | 2 | ✅ 21.1% DD | 50.5 | ⏳ insufficient |
+
+Stages: **1** registered · **2** backtest-survival · **3** forward-started · **4** forward-eligible · **5** operator sign-off (the live default, set manually — requires survival but not forward; live promotion is a manual decision, Part 7). Only `momentum_adaptive` is at Stage 5, and only while it still clears survival.
+
+<!-- GUARDIAN:END -->
+
+## 6. Contest-safety invariant
+
+The campaign is **read-only against the live world**: it runs backtests, **reads** the SIM journal,
+and **writes** verdict JSON + these docs. It never ticks the ledger, never changes the selected SIM
+arm, and never touches the LIVE/contest path. The dashboard strategy selector is **SIM-only**
+(server-enforced — LIVE ignores the file). The locked `momentum_adaptive` stays the bit-for-bit
+default; the registry-equivalence test + an unchanged `make validate_allocator` guard it.
+
+## 7. Forward-track reality (why forward is best-effort)
+
+Today (2026-06-13) is ~8 days from the 2026-06-21 submission. A rigorous **14-day** forward track
+can't exist for 8 arms in that window — even the locked allocator (running forward since ~06-08)
+isn't there yet. So:
+
+- **Backtest is the decision-grade comparator** for picking the contest arm — it's complete now.
+- The campaign judges forward on a **contest-compressed window** (default **5d**, labelled as such in
+  the guardian footer + report). Run `make campaign ARGS="--forward-min-days 14"` for the rigorous view.
+- Forward data **only accrues for the currently-selected SIM arm** — the per-mode ledger holds one
+  arm's `hwm`/`halted`/`cumulative_swaps` (Risk #2 in the platform plan), so arms don't run forward in
+  parallel. To gather forward evidence for a challenger, select it in SIM, run daily ticks, then re-run
+  `make campaign`.
+
+### 7.1 Real forward-accrual runbook (ISOLATED per-arm track)
+
+`run_allocator` stamps each journal row with the real wall-clock `datetime.now()` — there is **no
+backdating / replay**, so a forward verdict matures only over calendar days. The SIM ledger holds
+exactly one arm's state, so a challenger runs in its **own data tree** (`ALLOCATOR_DATA_DIR`) and never
+touches the production `data/journal/` track the dashboard displays:
+
+```bash
+# seed + tick a challenger in its OWN tree (data/forward/dual_momentum/) — production untouched
+make forward_track ARM=dual_momentum                 # one isolated SIM tick (strategy=dual_momentum)
+#   ...cron this every 12h for ~1–2 weeks to accrue span (mirror forward_tick.sh):
+#   40 5,17 * * *  cd <repo> && make forward_track ARM=dual_momentum >> data/logs/forward_dual.log 2>&1
+make forward_track_report ARM=dual_momentum          # read the isolated forward verdict
+make forward_track_report ARM=dual_momentum ARGS="--min-days 14 --save"   # rigorous, persisted (isolated)
+```
+
+`make forward_track` redirects ALL data (journal/state/verdicts) under `data/forward/$(ARM)/`, so the
+production momentum_adaptive paper track + the dashboard are unaffected, and several arms accrue in
+parallel (one tree each). Tick **all** the challengers at once with `make forward_track_all`.
+
+**Durable wall-clock accrual (installed).** [`scripts/forward_tracks.sh`](../scripts/forward_tracks.sh)
+is the cron-safe wrapper (cd + venv + flock + per-arm `ALLOCATOR_DATA_DIR`/`STRATEGY_NAME`, logs to
+`data/logs/forward_tracks.log`). It's installed in the crontab every 12h alongside the production tick:
+
+```cron
+40 5,17 * * *  scripts/forward_tick.sh      # bnb-campaign-tick   — production momentum_adaptive track
+43 6,18 * * *  scripts/forward_tracks.sh    # bnb-forward-tracks  — challengers (dual_momentum breakout)
+```
+
+So the challenger forward evidence accrues every 12h, machine-level, independent of any session. Until
+~`min-days` of ticks span exists the arm reads **"insufficient forward data"** — the honest state; the
+contest-compressed 5d verdict matures ~5 days after the first tick, the rigorous 14d during the contest
+week. Read it with `make forward_track_report ARM=<arm>` or `make readiness`.
+
+### 7.2 Contest-readiness rollup
+
+`make readiness` fuses the three automated signals into ONE verdict per arm — **stability** (`make
+stability`) + **survival** (`make campaign`) + **forward** (the isolated track if present, else the
+campaign verdict) — and writes `data/reports/contest_readiness.md`:
+
+- `✅ READY (sign-off)` — survival ✅ + stability ∈ {ROBUST, FRAGILE} + forward eligible.
+- `⏳ IN PROGRESS` — survival + stability ok, forward still accruing (the common state until the cron
+  has run a couple of weeks).
+- `❌ NOT READY` — survival ❌ or stability UNSTABLE (the blocking gate is named).
+- `🔒 INCUMBENT` — `momentum_adaptive` (the locked default, for reference).
+
+It is **read-only and never auto-promotes** — READY just means every automated gate is cleared; the
+operator still chooses the contest arm (`STRATEGY_NAME` + `ENABLE_LIVE_TRADING`).
+A switch of the live arm mid-campaign resets the profit-lock anchor (§8.4). Use **`make stability`**
+first to pick *which* challenger is worth spending the forward window on — the stability grade
+(robust/fragile/unstable) is available instantly and is the cheapest way to shortlist.
+
+## 8. Finalization protocol (knowledge → decision)
+
+1. **Gather:** `make campaign` → review the comparison report + guardian matrix.
+2. **Validate (human):** confirm the top-ranked challenger's survival numbers and any forward
+   evidence make sense; sanity-check against [findings.md](findings.md) and the decision record.
+3. **Decide:** pick the contest arm. If keeping `momentum_adaptive`, do nothing (it stays default).
+   To promote a challenger, **repoint the contest alias** in `registry.CONTEST_ALIASES` and/or set
+   `STRATEGY_NAME=<arm>` in `.env`.
+4. **Sign off (operator):** the live promotion is manual — `STRATEGY_NAME` + `ENABLE_LIVE_TRADING`.
+   Switching the live arm mid-campaign resets the profit-lock anchor (treat as a campaign reset).
+
+## 9. Acceptance (how to verify this loop is healthy)
+
+- `make campaign` runs clean; `strategy_gates.json` has `survival` + `forward` for all 9 arms; the
+  guardian block + comparison report regenerate.
+- Re-running `make campaign` yields an identical matrix (idempotent) modulo the timestamp footer.
+- `make validate_strategy ARGS="--strategy dual_momentum"` prints the **same** survival verdict as the
+  campaign row (shared `survival_for`).
+- **Contest-safety:** `make validate_allocator` is unchanged PASS and the registry bit-for-bit
+  equivalence test stays green (the locked default is untouched).

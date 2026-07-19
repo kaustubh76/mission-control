@@ -1,0 +1,21 @@
+name: lint
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      # Pin ruff so CI is deterministic (unpinned `pip install ruff` silently changed behavior
+      # across releases — 0.4.8 and 0.15 disagree on ~100 lints). Matches the dev workflow.
+      - run: pip install ruff==0.15.17
+      - run: ruff check src tests
+      # Formatter adoption complete (one-time `ruff format src tests` pass; locked allocator
+      # verified bit-for-bit via validate_allocator). Now ENFORCED so style can't drift back.
+      - run: ruff format --check src tests

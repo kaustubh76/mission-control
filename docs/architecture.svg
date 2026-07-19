@@ -1,0 +1,758 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 -6 2692 2942" width="2692" height="2942">
+<rect x="14" y="-6" width="2692" height="2942" fill="#ffffff"/>
+<rect x="56.0" y="138.0" width="15.0" height="15.0" rx="14" fill="#f8f9fa" stroke="#495057" stroke-width="2"/>
+<rect x="131.7" y="138.0" width="15.0" height="15.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<rect x="228.7" y="138.0" width="15.0" height="15.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="311.5" y="138.0" width="15.0" height="15.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="394.3" y="138.0" width="15.0" height="15.0" rx="14" fill="#edf2ff" stroke="#3b5bdb" stroke-width="2"/>
+<rect x="484.2" y="138.0" width="15.0" height="15.0" rx="14" fill="#f3f0ff" stroke="#6741d9" stroke-width="2"/>
+<rect x="666.4" y="138.0" width="15.0" height="15.0" rx="14" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2"/>
+<rect x="848.6" y="138.0" width="15.0" height="15.0" rx="14" fill="#e3fafc" stroke="#0c8599" stroke-width="2"/>
+<rect x="966.9" y="138.0" width="15.0" height="15.0" rx="14" fill="#f1f3f5" stroke="#868e96" stroke-width="2"/>
+<rect x="50.0" y="250.0" width="2620.0" height="350.0" rx="14" fill="#f3f9ff" stroke="#1971c2" stroke-width="1.5"/>
+<rect x="110.0" y="294.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="596.0" y="294.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="1082.0" y="294.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="1568.0" y="294.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="110.0" y="448.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="596.0" y="448.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="1082.0" y="448.0" width="432.0" height="100.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="1568.0" y="454.0" width="432.0" height="78.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2.5"/>
+<rect x="50.0" y="650.0" width="2620.0" height="330.0" rx="14" fill="#f4fdf6" stroke="#2b8a3e" stroke-width="1.5"/>
+<rect x="110.0" y="694.0" width="432.0" height="100.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="596.0" y="694.0" width="432.0" height="100.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="1082.0" y="694.0" width="432.0" height="100.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="1568.0" y="694.0" width="432.0" height="100.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2"/>
+<rect x="110.0" y="848.0" width="632.0" height="100.0" rx="14" fill="#f1f3f5" stroke="#868e96" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1168.0" y="848.0" width="632.0" height="100.0" rx="14" fill="#f1f3f5" stroke="#868e96" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="50.0" y="1010.0" width="2620.0" height="620.0" rx="14" fill="#f5f7ff" stroke="#3b5bdb" stroke-width="1.5"/>
+<rect x="110.0" y="1056.0" width="432.0" height="100.0" rx="14" fill="#f8f9fa" stroke="#495057" stroke-width="2"/>
+<rect x="596.0" y="1056.0" width="432.0" height="100.0" rx="14" fill="#f8f9fa" stroke="#495057" stroke-width="2"/>
+<rect x="1082.0" y="1056.0" width="432.0" height="100.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<rect x="1568.0" y="1056.0" width="432.0" height="100.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<polygon points="2270.0,1058.0 2420.0,1106.0 2270.0,1154.0 2120.0,1106.0" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2"/>
+<rect x="2074.0" y="1188.0" width="392.0" height="50.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2.5"/>
+<rect x="2114.0" y="1266.0" width="312.0" height="46.0" rx="14" fill="#ffc9c9" stroke="#c92a2a" stroke-width="2.5"/>
+<rect x="110.0" y="1310.0" width="432.0" height="100.0" rx="14" fill="#edf2ff" stroke="#3b5bdb" stroke-width="2"/>
+<rect x="596.0" y="1310.0" width="432.0" height="100.0" rx="14" fill="#edf2ff" stroke="#3b5bdb" stroke-width="2"/>
+<rect x="1082.0" y="1310.0" width="432.0" height="100.0" rx="14" fill="#edf2ff" stroke="#3b5bdb" stroke-width="2"/>
+<rect x="1568.0" y="1310.0" width="432.0" height="100.0" rx="14" fill="#edf2ff" stroke="#3b5bdb" stroke-width="2"/>
+<polygon points="2270.0,1312.0 2420.0,1360.0 2270.0,1408.0 2120.0,1360.0" fill="#edf2ff" stroke="#3b5bdb" stroke-width="2"/>
+<ellipse cx="2270.0" cy="1191.0" rx="17.0" ry="17.0" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5"/>
+<ellipse cx="326.0" cy="1273.0" rx="17.0" ry="17.0" fill="#dbe4ff" stroke="#3b5bdb" stroke-width="2.5"/>
+<rect x="2074.0" y="1442.0" width="392.0" height="46.0" rx="14" fill="#f1f3f5" stroke="#868e96" stroke-width="2.5"/>
+<rect x="110.0" y="1480.0" width="432.0" height="92.0" rx="14" fill="#e3fafc" stroke="#0c8599" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="596.0" y="1480.0" width="432.0" height="92.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1082.0" y="1480.0" width="432.0" height="92.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1568.0" y="1480.0" width="432.0" height="92.0" rx="14" fill="#ebfbee" stroke="#2b8a3e" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="50.0" y="1670.0" width="2620.0" height="470.0" rx="14" fill="#f8f6ff" stroke="#6741d9" stroke-width="1.5"/>
+<rect x="1110.0" y="1732.0" width="432.0" height="118.0" rx="14" fill="#f3f0ff" stroke="#6741d9" stroke-width="3"/>
+<rect x="110.0" y="1732.0" width="432.0" height="118.0" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="2"/>
+<rect x="2054.0" y="1732.0" width="432.0" height="118.0" rx="14" fill="#f3f0ff" stroke="#6741d9" stroke-width="2"/>
+<rect x="2094.0" y="1862.0" width="352.0" height="48.0" rx="14" fill="#e3fafc" stroke="#0c8599" stroke-width="2"/>
+<rect x="110.0" y="1950.0" width="432.0" height="118.0" rx="14" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="596.0" y="1950.0" width="432.0" height="118.0" rx="14" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1082.0" y="1950.0" width="432.0" height="118.0" rx="14" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1568.0" y="1950.0" width="432.0" height="118.0" rx="14" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="2054.0" y="1950.0" width="432.0" height="118.0" rx="14" fill="#f8f0fc" stroke="#9c36b5" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="50.0" y="2180.0" width="2620.0" height="350.0" rx="14" fill="#f2fcfd" stroke="#0c8599" stroke-width="1.5"/>
+<rect x="110.0" y="2224.0" width="432.0" height="100.0" rx="14" fill="#f3f0ff" stroke="#6741d9" stroke-width="2"/>
+<rect x="596.0" y="2224.0" width="432.0" height="100.0" rx="14" fill="#f8f9fa" stroke="#495057" stroke-width="2"/>
+<rect x="1082.0" y="2224.0" width="432.0" height="100.0" rx="14" fill="#e3fafc" stroke="#0c8599" stroke-width="2"/>
+<rect x="1568.0" y="2224.0" width="432.0" height="100.0" rx="14" fill="#e3fafc" stroke="#0c8599" stroke-width="2"/>
+<rect x="110.0" y="2378.0" width="632.0" height="100.0" rx="14" fill="#f8f9fa" stroke="#495057" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="1168.0" y="2378.0" width="632.0" height="100.0" rx="14" fill="#ffe3e3" stroke="#c92a2a" stroke-width="2" stroke-dasharray="8 6"/>
+<rect x="50.0" y="2570.0" width="2620.0" height="330.0" rx="14" fill="#fbfcfd" stroke="#495057" stroke-width="1.5"/>
+<line x1="542.0" y1="344.0" x2="596.0" y2="344.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="596.0,344.0 583.0,350.0 583.0,338.0" fill="#495057"/>
+<line x1="1028.0" y1="344.0" x2="1082.0" y2="344.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1082.0,344.0 1069.0,350.0 1069.0,338.0" fill="#495057"/>
+<line x1="1514.0" y1="344.0" x2="1568.0" y2="344.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1568.0,344.0 1555.0,350.0 1555.0,338.0" fill="#495057"/>
+<line x1="542.0" y1="744.0" x2="596.0" y2="744.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="596.0,744.0 583.0,750.0 583.0,738.0" fill="#495057"/>
+<line x1="1028.0" y1="744.0" x2="1082.0" y2="744.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1082.0,744.0 1069.0,750.0 1069.0,738.0" fill="#495057"/>
+<line x1="1514.0" y1="744.0" x2="1568.0" y2="744.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1568.0,744.0 1555.0,750.0 1555.0,738.0" fill="#495057"/>
+<line x1="542.0" y1="1106.0" x2="596.0" y2="1106.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="596.0,1106.0 583.0,1112.0 583.0,1100.0" fill="#495057"/>
+<line x1="1028.0" y1="1106.0" x2="1082.0" y2="1106.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1082.0,1106.0 1069.0,1112.0 1069.0,1100.0" fill="#495057"/>
+<line x1="1514.0" y1="1106.0" x2="1568.0" y2="1106.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1568.0,1106.0 1555.0,1112.0 1555.0,1100.0" fill="#495057"/>
+<line x1="2000.0" y1="1106.0" x2="2120.0" y2="1106.0" stroke="#c92a2a" stroke-width="2.5"/>
+<polygon points="2120.0,1106.0 2107.0,1112.0 2107.0,1100.0" fill="#c92a2a"/>
+<line x1="2270.0" y1="1156.0" x2="2270.0" y2="1188.0" stroke="#c92a2a" stroke-width="2.5"/>
+<polygon points="2270.0,1188.0 2264.0,1175.0 2276.0,1175.0" fill="#c92a2a"/>
+<line x1="2270.0" y1="1238.0" x2="2270.0" y2="1266.0" stroke="#c92a2a" stroke-width="2.5"/>
+<polygon points="2270.0,1266.0 2264.0,1253.0 2276.0,1253.0" fill="#c92a2a"/>
+<line x1="2270.0" y1="1156.0" x2="2270.0" y2="1174.0" stroke="#3b5bdb" stroke-width="2.5"/>
+<polygon points="2270.0,1174.0 2264.0,1161.0 2276.0,1161.0" fill="#3b5bdb"/>
+<line x1="326.0" y1="1290.0" x2="326.0" y2="1310.0" stroke="#3b5bdb" stroke-width="2.5"/>
+<polygon points="326.0,1310.0 320.0,1297.0 332.0,1297.0" fill="#3b5bdb"/>
+<line x1="542.0" y1="1360.0" x2="596.0" y2="1360.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="596.0,1360.0 583.0,1366.0 583.0,1354.0" fill="#495057"/>
+<line x1="1028.0" y1="1360.0" x2="1082.0" y2="1360.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1082.0,1360.0 1069.0,1366.0 1069.0,1354.0" fill="#495057"/>
+<line x1="1514.0" y1="1360.0" x2="1568.0" y2="1360.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1568.0,1360.0 1555.0,1366.0 1555.0,1354.0" fill="#495057"/>
+<line x1="2000.0" y1="1360.0" x2="2120.0" y2="1360.0" stroke="#3b5bdb" stroke-width="2.5"/>
+<polygon points="2120.0,1360.0 2107.0,1366.0 2107.0,1354.0" fill="#3b5bdb"/>
+<line x1="2270.0" y1="1410.0" x2="2270.0" y2="1442.0" stroke="#868e96" stroke-width="2.5"/>
+<polygon points="2270.0,1442.0 2264.0,1429.0 2276.0,1429.0" fill="#868e96"/>
+<line x1="542.0" y1="1791.0" x2="1110.0" y2="1791.0" stroke="#1971c2" stroke-width="3"/>
+<polygon points="1110.0,1791.0 1097.0,1797.0 1097.0,1785.0" fill="#1971c2"/>
+<line x1="1542.0" y1="1791.0" x2="2054.0" y2="1791.0" stroke="#6741d9" stroke-width="3"/>
+<polygon points="2054.0,1791.0 2041.0,1797.0 2041.0,1785.0" fill="#6741d9"/>
+<line x1="2270.0" y1="1862.0" x2="2270.0" y2="1850.0" stroke="#0c8599" stroke-width="2.5"/>
+<polygon points="2270.0,1850.0 2276.0,1863.0 2264.0,1863.0" fill="#0c8599"/>
+<line x1="542.0" y1="2009.0" x2="596.0" y2="2009.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="596.0,2009.0 583.0,2015.0 583.0,2003.0" fill="#495057"/>
+<line x1="1028.0" y1="2009.0" x2="1082.0" y2="2009.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1082.0,2009.0 1069.0,2015.0 1069.0,2003.0" fill="#495057"/>
+<line x1="1514.0" y1="2009.0" x2="1568.0" y2="2009.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1568.0,2009.0 1555.0,2015.0 1555.0,2003.0" fill="#495057"/>
+<line x1="2000.0" y1="2009.0" x2="2054.0" y2="2009.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="2054.0,2009.0 2041.0,2015.0 2041.0,2003.0" fill="#495057"/>
+<line x1="326.0" y1="1850.0" x2="326.0" y2="1950.0" stroke="#9c36b5" stroke-width="2.5" stroke-dasharray="8 6"/>
+<polygon points="326.0,1950.0 320.0,1937.0 332.0,1937.0" fill="#9c36b5"/>
+<line x1="2270.0" y1="1950.0" x2="2270.0" y2="1910.0" stroke="#9c36b5" stroke-width="2.5" stroke-dasharray="8 6"/>
+<polygon points="2270.0,1910.0 2276.0,1923.0 2264.0,1923.0" fill="#9c36b5"/>
+<line x1="542.0" y1="2274.0" x2="596.0" y2="2274.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="596.0,2274.0 583.0,2280.0 583.0,2268.0" fill="#495057"/>
+<line x1="1028.0" y1="2274.0" x2="1082.0" y2="2274.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1082.0,2274.0 1069.0,2280.0 1069.0,2268.0" fill="#495057"/>
+<line x1="1514.0" y1="2274.0" x2="1568.0" y2="2274.0" stroke="#495057" stroke-width="2.5"/>
+<polygon points="1568.0,2274.0 1555.0,2280.0 1555.0,2268.0" fill="#495057"/>
+<line x1="1360.0" y1="600.0" x2="1360.0" y2="650.0" stroke="#1971c2" stroke-width="3.5"/>
+<polygon points="1360.0,650.0 1354.0,637.0 1366.0,637.0" fill="#1971c2"/>
+<line x1="1360.0" y1="980.0" x2="1360.0" y2="1010.0" stroke="#2b8a3e" stroke-width="3.5"/>
+<polygon points="1360.0,1010.0 1354.0,997.0 1366.0,997.0" fill="#2b8a3e"/>
+<line x1="1360.0" y1="1630.0" x2="1360.0" y2="1670.0" stroke="#6741d9" stroke-width="3.5"/>
+<polygon points="1360.0,1670.0 1354.0,1657.0 1366.0,1657.0" fill="#6741d9"/>
+<line x1="1360.0" y1="2140.0" x2="1360.0" y2="2180.0" stroke="#0c8599" stroke-width="3.5"/>
+<polygon points="1360.0,2180.0 1354.0,2167.0 1366.0,2167.0" fill="#0c8599"/>
+<text x="56.0" y="60.0" font-size="30" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="56.0" dy="0.0">BNB Regime-Adaptive Trading Agent — full system architecture</tspan>
+</text>
+<text x="56.0" y="89.0" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="56.0" dy="0.0">Five layers · one allocator tick · the agentic economy:  x402 (buy data)  ·  ERC-8004 (on-chain identity)  ·  ERC-8183 (sell analysis)  ·  vlayer Web Proofs (prove the data)</tspan>
+</text>
+<text x="56.0" y="112.0" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="56.0" dy="0.0">Read the bands TOP→DOWN:  ① CMC-native data  →  ② decide (pluggable strategies)  →  ③ execute (TWAK, sole signer)  →  ④ agentic economy (3 protocols + vlayer proof)  →  ⑤ persist &amp; observe.    Every guard fails safe — skip or halt, never crash.</tspan>
+</text>
+<text x="77.0" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="77.0" dy="0.0">process</tspan>
+</text>
+<text x="152.7" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="152.7" dy="0.0">◆ decision</tspan>
+</text>
+<text x="249.7" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="249.7" dy="0.0">CMC data</tspan>
+</text>
+<text x="332.5" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="332.5" dy="0.0">strategy</tspan>
+</text>
+<text x="415.3" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="415.3" dy="0.0">TWAK exec</tspan>
+</text>
+<text x="505.2" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="505.2" dy="0.0">identity / 3 protocols</tspan>
+</text>
+<text x="687.4" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="687.4" dy="0.0">vlayer proof · roadmap</tspan>
+</text>
+<text x="869.6" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="869.6" dy="0.0">observability</tspan>
+</text>
+<text x="987.9" y="148.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="987.9" dy="0.0">skip/halt</tspan>
+</text>
+<text x="56.0" y="173.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="56.0" dy="0.0">return codes:   0 = ok / no-op   ·   1 = drawdown HALT (flattened)   ·   2 = skip this tick (guard tripped)</tspan>
+</text>
+<text x="56.0" y="193.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="56.0" dy="0.0">on-chain anchors:   identity 0xEb7b…9655  ·  agentId 133085  ·  registry 0x8004…a432  ·  trading wallet 0xE8A3…6215  ·  USDC@Base 0x8335…2913</tspan>
+</text>
+<text x="56.0" y="213.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="56.0" dy="0.0">card styles:   solid colour = LIVE on the contest path   ·   grey dashed = ROADMAP (built · human-gated · not yet auto-live)</tspan>
+</text>
+<text x="68.0" y="277.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="68.0" dy="0.0">①  DATA INGEST — CMC-native pipeline    (pillar ①: the eyes · CMC_ONLY firewall → CoinMarketCap-only)</tspan>
+</text>
+<text x="125.0" y="317.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">CMC WebSocket feed</tspan>
+</text>
+<text x="125.0" y="338.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">market@crypto_latest_price (price·mc·cs·vol·pXXd)</tspan>
+</text>
+<text x="125.0" y="353.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">onchain@ token_metric · holders · liquidity · whale</tspan>
+</text>
+<text x="125.0" y="369.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">scripts/cmc_stream.py · auto-reconnect daemon</tspan>
+</text>
+<text x="611.0" y="317.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">stream → bars + snapshots</tspan>
+</text>
+<text x="611.0" y="338.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">BarBuilder → 4h parquet (UTC grid, idempotent)</tspan>
+</text>
+<text x="611.0" y="353.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">QuoteSnapshotWriter · on-chain harvester</tspan>
+</text>
+<text x="611.0" y="369.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">heartbeat ts → watchdog</tspan>
+</text>
+<text x="1097.0" y="317.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">cmc_stream_store.py</tspan>
+</text>
+<text x="1097.0" y="338.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">zero-network · never-raise · staleness-gated</tspan>
+</text>
+<text x="1097.0" y="353.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">quote_snapshot() · onchain_* readers</tspan>
+</text>
+<text x="1583.0" y="317.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">market_signals.py</tspan>
+</text>
+<text x="1583.0" y="338.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">unified per-token buffet:</tspan>
+</text>
+<text x="1583.0" y="353.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">pct_24h/7d/30d · flow_ratio · liquidity_usd</tspan>
+</text>
+<text x="1583.0" y="369.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">whale_net · holders top10/top100</tspan>
+</text>
+<text x="125.0" y="471.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">CMC Agent Hub · MCP</tspan>
+</text>
+<text x="125.0" y="492.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">8 tools → composed market-overview skill</tspan>
+</text>
+<text x="125.0" y="507.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">per-token TA · F&amp;G · BTC-dom · mktcap · derivatives</tspan>
+</text>
+<text x="125.0" y="523.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">macro-event de-risk · news brake → risk budget ∈ [0,1]</tspan>
+</text>
+<text x="611.0" y="471.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">CMC Pro REST + 4h candles</tspan>
+</text>
+<text x="611.0" y="492.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">price_fn · fear_greed · daily backfill</tspan>
+</text>
+<text x="611.0" y="507.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">cold-start seed → cmc_seed_vol_floor</tspan>
+</text>
+<text x="1097.0" y="471.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">x402 — paid data (mechanism)</tspan>
+</text>
+<text x="1097.0" y="492.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">402 challenge → sign EIP-3009 USDC@Base → resend</tspan>
+</text>
+<text x="1097.0" y="507.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">receipts: data/x402/receipts.json</tspan>
+</text>
+<text x="1097.0" y="523.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">caps: $0.01/call · $1/session  (full role → ④)</tspan>
+</text>
+<text x="1581.0" y="475.0" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1581.0" dy="0.0">CMC_ONLY  firewall</tspan>
+</text>
+<text x="1581.0" y="494.0" font-size="10" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1581.0" dy="0.0">CMC_ONLY=true → live ticks use CoinMarketCap only.</tspan>
+<tspan x="1581.0" dy="12.5">any non-CMC candle source is refused (fail-safe),</tspan>
+<tspan x="1581.0" dy="12.5">so the contest arm is CMC-native by construction.</tspan>
+</text>
+<text x="68.0" y="677.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="68.0" dy="0.0">②  DECIDE — regime-adaptive strategy engine    (long-only spot · live arm: mean-reversion · NO leverage)</tspan>
+</text>
+<text x="125.0" y="717.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">resolve strategy</tspan>
+</text>
+<text x="125.0" y="738.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">LIVE = settings pin (.env STRATEGY_NAME)</tspan>
+</text>
+<text x="125.0" y="753.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">registry.get(name) → PortfolioStrategy</tspan>
+</text>
+<text x="611.0" y="717.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">live arm — mean-reversion</tspan>
+</text>
+<text x="611.0" y="738.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">buy oversold (&gt;1σ below mean) · inverse-vol · capped</tspan>
+</text>
+<text x="611.0" y="753.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">survival-passed: 13.2% DD · ~26 trades/wk · DQ-safe</tspan>
+</text>
+<text x="611.0" y="769.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">incumbent/fallback: momentum_adaptive · 20 arms</tspan>
+</text>
+<text x="1097.0" y="717.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">regime score → adaptive cap</tspan>
+</text>
+<text x="1097.0" y="738.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">breadth + trend + vol + F&amp;G + CMC TA/macro</tspan>
+</text>
+<text x="1097.0" y="753.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">cap ∈ [0.40, 0.85] · remainder = USDT</tspan>
+</text>
+<text x="1583.0" y="717.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">target = weights × cap</tspan>
+</text>
+<text x="1583.0" y="738.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">inverse-vol sizing · abs-return filter</tspan>
+</text>
+<text x="1583.0" y="753.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">(flag) CMC 7-day rel-strength tilt</tspan>
+</text>
+<text x="125.0" y="871.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">ROADMAP · auto-selector (forward-gated switching)</tspan>
+</text>
+<text x="125.0" y="892.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">risk-adj forward score · anti-chasing hysteresis (2-eval)</tspan>
+</text>
+<text x="125.0" y="907.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">SIM auto-drives · LIVE recommend-only (auto-apply OFF)</tspan>
+</text>
+<text x="125.0" y="923.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">switching engine built — promotes only on human sign-off</tspan>
+</text>
+<text x="1183.0" y="871.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">ROADMAP · multi-strategy campaign (5-stage gate)</tspan>
+</text>
+<text x="1183.0" y="892.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">registered → backtest-survival → forward-started → eligible</tspan>
+</text>
+<text x="1183.0" y="907.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">→ operator sign-off · strategy_gates.json · risk-first board</tspan>
+</text>
+<text x="1183.0" y="923.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">validation harness — proves a challenger before promotion</tspan>
+</text>
+<text x="68.0" y="1037.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="68.0" dy="0.0">③  EXECUTE — TWAK rebalance, one tick()    (pillar ②: the hands · TWAK = sole signer · gasless)</tspan>
+</text>
+<text x="125.0" y="1079.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">①  run_allocator.py  tick(--mode)</tspan>
+</text>
+<text x="125.0" y="1100.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">sim ↔ live · --dd-watch --resume --dd-cap</tspan>
+</text>
+<text x="125.0" y="1115.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">--ensure-daily-floor · --unlock-profit</tspan>
+</text>
+<text x="611.0" y="1079.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">②  load_state  (atomic)</tspan>
+</text>
+<text x="611.0" y="1100.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">HWM · cumulative_swaps · halted · balances</tspan>
+</text>
+<text x="611.0" y="1115.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">.tmp+os.replace · corrupt → safe defaults</tspan>
+</text>
+<text x="1097.0" y="1079.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">③  FAIL-SAFE GUARDS</tspan>
+</text>
+<text x="1097.0" y="1100.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">lock (flock) · data ≥200 bars/≥3 tok · fresh ≤12h</tspan>
+</text>
+<text x="1097.0" y="1115.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">LIVE preflight (creds·wallet·enable) · px&gt;0 &amp; nav&gt;0</tspan>
+</text>
+<text x="1097.0" y="1131.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">any fail → SKIP (return 2) · never crash</tspan>
+</text>
+<text x="1583.0" y="1079.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">④  NAV · HWM · drawdown</tspan>
+</text>
+<text x="1583.0" y="1100.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">nav = USDT + Σ holdings·px</tspan>
+</text>
+<text x="1583.0" y="1115.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">HWM=max(nav,HWM) · dd=(HWM−nav)/HWM</tspan>
+</text>
+<text x="2270.0" y="1102.9" font-size="13" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">
+<tspan x="2270.0" dy="0.0">dd &gt; cap?</tspan>
+</text>
+<text x="2270.0" y="1121.6" font-size="9.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#c92a2a" text-anchor="middle" xml:space="preserve">
+<tspan x="2270.0" dy="0.0">0.10 campaign · 0.30 DQ</tspan>
+</text>
+<text x="2087.0" y="1209.0" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="2087.0" dy="0.0">EMERGENCY FLATTEN</tspan>
+</text>
+<text x="2087.0" y="1225.0" font-size="9" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="2087.0" dy="0.0">sell→USDT · 3× retry</tspan>
+</text>
+<text x="2127.0" y="1287.0" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="2127.0" dy="0.0">DD_HALT  (return 1)</tspan>
+</text>
+<text x="2127.0" y="1303.0" font-size="9" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="2127.0" dy="0.0">halt=True · book flat</tspan>
+</text>
+<text x="2278.0" y="1174.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="2278.0" dy="0.0">yes</tspan>
+</text>
+<text x="125.0" y="1333.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">⑤  rebalance diff</tspan>
+</text>
+<text x="125.0" y="1354.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">TwakSpotBroker.rebalance(target, prices)</tspan>
+</text>
+<text x="125.0" y="1369.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">skip moves &lt;2% NAV · min-notional $1</tspan>
+</text>
+<text x="611.0" y="1333.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">⑥  SELL overweight → USDT</tspan>
+</text>
+<text x="611.0" y="1354.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">frees quote first · qty=min(bal, −Δ/px)</tspan>
+</text>
+<text x="1097.0" y="1333.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">⑦  BUY underweight ← USDT</tspan>
+</text>
+<text x="1097.0" y="1354.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">spend = min(Δ, USDT balance)</tspan>
+</text>
+<text x="1583.0" y="1333.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">⑧  twak swap  (CLI)</tspan>
+</text>
+<text x="1583.0" y="1354.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">--chain bsc · slippage cap · retry/backoff</tspan>
+</text>
+<text x="1583.0" y="1369.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">GASLESS sponsorship · TWAK = sole signer</tspan>
+</text>
+<text x="2270.0" y="1356.9" font-size="13" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="middle" xml:space="preserve">
+<tspan x="2270.0" dy="0.0">swap ok?</tspan>
+</text>
+<text x="2270.0" y="1375.6" font-size="9.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#3b5bdb" text-anchor="middle" xml:space="preserve">
+<tspan x="2270.0" dy="0.0">amount_out&gt;0 AND tx</tspan>
+</text>
+<text x="2270.0" y="1197.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#3b5bdb" text-anchor="middle" xml:space="preserve">
+<tspan x="2270.0" dy="0.0">Ⓐ</tspan>
+</text>
+<text x="2018.0" y="1193.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="2018.0" dy="0.0">no / within cap   →   continue at Ⓐ</tspan>
+</text>
+<text x="326.0" y="1279.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#3b5bdb" text-anchor="middle" xml:space="preserve">
+<tspan x="326.0" dy="0.0">Ⓐ</tspan>
+</text>
+<text x="2087.0" y="1463.0" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="2087.0" dy="0.0">failed_swaps[]</tspan>
+</text>
+<text x="2087.0" y="1479.0" font-size="9" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="2087.0" dy="0.0">journaled · tick continues</tspan>
+</text>
+<text x="2278.0" y="1428.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#868e96" text-anchor="start" xml:space="preserve">
+<tspan x="2278.0" dy="0.0">no</tspan>
+</text>
+<text x="125.0" y="1503.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">auto_trader.sh — supervised daemon</tspan>
+</text>
+<text x="125.0" y="1524.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">1 fresh run_allocator per cycle (hourly)</tspan>
+</text>
+<text x="125.0" y="1539.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">kill-switch · then publish_snapshot.sh</tspan>
+</text>
+<text x="611.0" y="1503.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">dd-watch — fast loop (~15 min)</tspan>
+</text>
+<text x="611.0" y="1524.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">same flock · read-only HWM · flatten-only</tspan>
+</text>
+<text x="611.0" y="1539.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">intraday DD_HALT + profit-lock · no opens</tspan>
+</text>
+<text x="1097.0" y="1503.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">trade-floor auto-ensure</tspan>
+</text>
+<text x="1097.0" y="1524.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">≥7 trades/wk + ≥1/day (contest window)</tspan>
+</text>
+<text x="1097.0" y="1539.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">rotation round-trips ~0 NAV · FLOOR_NUDGE</tspan>
+</text>
+<text x="1583.0" y="1503.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">profit-lock ratchet (campaign)</tspan>
+</text>
+<text x="1583.0" y="1524.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">arm +5% · trail 3% · bank +10%</tspan>
+</text>
+<text x="1583.0" y="1539.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">profit_locked ≠ halted (--unlock-profit)</tspan>
+</text>
+<text x="68.0" y="1697.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="68.0" dy="0.0">④  AGENTIC ECONOMY — protocols on ONE identity    (x402  +  ERC-8004  +  ERC-8183)   +   vlayer trust layer  (verifiable data-provenance · roadmap)</tspan>
+</text>
+<text x="1125.0" y="1756.0" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1125.0" dy="0.0">ERC-8004  —  on-chain identity</tspan>
+</text>
+<text x="1125.0" y="1776.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="1125.0" dy="0.0">agentId 133085 · registry 0x8004…a432</tspan>
+</text>
+<text x="1125.0" y="1791.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="1125.0" dy="0.0">owner / signer 0xEb7b…9655</tspan>
+</text>
+<text x="1125.0" y="1807.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="1125.0" dy="0.0">per-tick gasless heartbeat: ts + NAV + rationale</tspan>
+</text>
+<text x="1125.0" y="1822.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="1125.0" dy="0.0">(NodeReal MegaFuel paymaster · best-effort)</tspan>
+</text>
+<text x="125.0" y="1755.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">x402  —  CONSUMER (buys data)</tspan>
+</text>
+<text x="125.0" y="1776.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">pays CMC per request · USDC@Base (eip155:8453)</tspan>
+</text>
+<text x="125.0" y="1791.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">receipts: data/x402/receipts.json</tspan>
+</text>
+<text x="125.0" y="1807.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">payTo 0x3C5f…3eeA · 402 → EIP-3009 → resend</tspan>
+</text>
+<text x="125.0" y="1822.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">agent's data COST (excluded from PnL)</tspan>
+</text>
+<text x="2069.0" y="1755.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">ERC-8183  —  PROVIDER (sells analysis)</tspan>
+</text>
+<text x="2069.0" y="1776.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">sells Market Regime Report to other agents</tspan>
+</text>
+<text x="2069.0" y="1791.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">create_job → fund → submit(IPFS) → settle</tspan>
+</text>
+<text x="2069.0" y="1807.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">optimistic 7-day dispute window (NotDecided)</tspan>
+</text>
+<text x="2069.0" y="1822.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">jobs: data/journal/commerce_jobs.jsonl</tspan>
+</text>
+<text x="2109.0" y="1885.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="2109.0" dy="0.0">peer agent — BUYER</tspan>
+</text>
+<text x="2109.0" y="1906.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="2109.0" dy="0.0">0x9e4A…74d6 · distinct wallet (true A2A)</tspan>
+</text>
+<text x="826.0" y="1784.1" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1971c2" text-anchor="middle" xml:space="preserve">
+<tspan x="826.0" dy="0.0">pays from identity wallet</tspan>
+</text>
+<text x="1798.0" y="1784.1" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#6741d9" text-anchor="middle" xml:space="preserve">
+<tspan x="1798.0" dy="0.0">is the provider</tspan>
+</text>
+<text x="2278.0" y="1858.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="2278.0" dy="0.0">create_job + fund</tspan>
+</text>
+<text x="110.0" y="1933.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="110.0" dy="0.0">ROADMAP · vlayer Web Proofs (zkTLS) — prove the sold report's CMC provenance ON-CHAIN, without revealing the API key.  Scaffolded: RegimeProver/Verifier + prove.ts + provenance.py.  First testnet attestation = milestone M1.</tspan>
+</text>
+<text x="125.0" y="1973.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">CMC F&amp;G endpoint  (the proven input)</tspan>
+</text>
+<text x="125.0" y="1994.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">GET /v3/fear-and-greed/latest · data.value 0–100</tspan>
+</text>
+<text x="125.0" y="2009.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">integer payload → robust jsonGetInt (no float parse)</tspan>
+</text>
+<text x="125.0" y="2025.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">API key stays INSIDE the TLS session</tspan>
+</text>
+<text x="611.0" y="1973.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">vlayer Notary → Web Proof (zkTLS)</tspan>
+</text>
+<text x="611.0" y="1994.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">notarized TLS transcript + notary signature</tspan>
+</text>
+<text x="611.0" y="2009.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">proves bytes came from pro-api.coinmarketcap.com</tspan>
+</text>
+<text x="611.0" y="2025.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">vlayer/vlayer/prove.ts (server-side · keyed)</tspan>
+</text>
+<text x="1097.0" y="1973.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">RegimeProver.main  (Prover)</tspan>
+</text>
+<text x="1097.0" y="1994.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">web = webProof.verify(DATA_URL)</tspan>
+</text>
+<text x="1097.0" y="2009.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">fearGreed = web.jsonGetInt("data.value")</tspan>
+</text>
+<text x="1097.0" y="2025.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">commits (agent · fearGreed · reportHash)</tspan>
+</text>
+<text x="1583.0" y="1973.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">RegimeVerifier  (onlyVerified)</tspan>
+</text>
+<text x="1583.0" y="1994.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">attestation tx → Optimism Sepolia  (M1)</tspan>
+</text>
+<text x="1583.0" y="2009.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">latest[agent] · byReport[reportHash]</tspan>
+</text>
+<text x="1583.0" y="2025.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">emit RegimeProven(agent, fg, cls, hash)</tspan>
+</text>
+<text x="2069.0" y="1973.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">provenance_proof on the SOLD report</tspan>
+</text>
+<text x="2069.0" y="1994.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">provenance.py reads latestOf (key-free)</tspan>
+</text>
+<text x="2069.0" y="2009.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">{chain · verifier · tx · fear_greed · proven_at}</tspan>
+</text>
+<text x="2069.0" y="2025.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="2069.0" dy="0.0">"trust me" → "verify it" — buyer-checkable</tspan>
+</text>
+<text x="334.0" y="1902.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="334.0" dy="0.0">the CMC data the agent trusts — now zk-proven</tspan>
+</text>
+<text x="2278.0" y="1932.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#9c36b5" text-anchor="start" xml:space="preserve">
+<tspan x="2278.0" dy="0.0">binds the sold report → buyer verifies on-chain</tspan>
+</text>
+<text x="1360.0" y="2112.5" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#9c36b5" text-anchor="middle" xml:space="preserve">
+<tspan x="1360.0" dy="0.0">one agent, two wallets — BUYS data (x402), SELLS analysis (ERC-8183), anchored by ERC-8004 — and vlayer Web Proofs make the sold report's CMC provenance cryptographically buyer-verifiable.</tspan>
+</text>
+<text x="68.0" y="2207.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="68.0" dy="0.0">⑤  PERSIST &amp; OBSERVE — Mission Control    (zero-secret deploy · two-tier scalability)</tspan>
+</text>
+<text x="125.0" y="2247.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">journal + state  (atomic)</tspan>
+</text>
+<text x="125.0" y="2268.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">REBALANCE · DD_HALT · PROFIT_LOCK · FLOOR_NUDGE</tspan>
+</text>
+<text x="125.0" y="2283.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">.tmp+os.replace · append-only JSONL</tspan>
+</text>
+<text x="611.0" y="2247.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">publish_snapshot.sh → ingest</tspan>
+</text>
+<text x="611.0" y="2268.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">POST /api/ingest/snapshot (token-gated)</tspan>
+</text>
+<text x="611.0" y="2283.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="611.0" dy="0.0">constant-time HMAC · atomic write</tspan>
+</text>
+<text x="1097.0" y="2247.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">Mission Control API (Render)</tspan>
+</text>
+<text x="1097.0" y="2268.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">FastAPI read-only /api/snapshot · /api/agent-hub</tspan>
+</text>
+<text x="1097.0" y="2283.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="1097.0" dy="0.0">ETag/304 · journal→cards · NO signing keys</tspan>
+</text>
+<text x="1583.0" y="2247.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">React SPA (Vercel)</tspan>
+</text>
+<text x="1583.0" y="2268.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">EquityCurve · RegimeDial · WeightsDonut</tspan>
+</text>
+<text x="1583.0" y="2283.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="1583.0" dy="0.0">RebalanceTable · RationaleTicker · CmcAgentHubPanel</tspan>
+</text>
+<text x="125.0" y="2401.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">two-tier scalability</tspan>
+</text>
+<text x="125.0" y="2422.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">READ tier: edge proxy · ETag · micro-cache (horizontal)</tspan>
+</text>
+<text x="125.0" y="2437.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="125.0" dy="0.0">WRITE tier: single-writer · flock/Redis lease (never LB'd)</tspan>
+</text>
+<text x="1183.0" y="2401.0" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1e1e1e" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">honest PnL = trading-only</tspan>
+</text>
+<text x="1183.0" y="2422.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">headline = NAV − anchor (trading only)</tspan>
+</text>
+<text x="1183.0" y="2437.5" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#c92a2a" text-anchor="start" xml:space="preserve">
+<tspan x="1183.0" dy="0.0">commerce (self-funded) + x402 (data cost) excluded, shown separately</tspan>
+</text>
+<text x="68.0" y="2597.0" font-size="16" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="68.0" dy="0.0">⑥  WIRINGS — every connection, in words    (read together with the arrows above)</tspan>
+</text>
+<text x="90.0" y="2628.5" font-size="12.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#495057" text-anchor="start" xml:space="preserve">
+<tspan x="90.0" dy="0.0">ARROW LEGEND</tspan>
+</text>
+<text x="90.0" y="2646.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="90.0" dy="0.0">SOLID arrow  →   primary flow (down the stack · left→right within a plane)</tspan>
+<tspan x="90.0" dy="13.8">DASHED arrow      side feed / governs / risk-budget</tspan>
+<tspan x="90.0" dy="13.8">Ⓐ = off-page 'continue here'    ·    diamond = decision / guard</tspan>
+<tspan x="90.0" dy="13.8">return codes:   0 = ok   ·   1 = drawdown HALT   ·   2 = skip tick</tspan>
+</text>
+<text x="90.0" y="2720.5" font-size="12.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="90.0" dy="0.0">① DATA INGEST   →   ② DECIDE</tspan>
+</text>
+<text x="90.0" y="2738.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="90.0" dy="0.0">W1  CMC WebSocket → cmc_stream.py : live crypto_latest_price + onchain@* (reconnect)</tspan>
+<tspan x="90.0" dy="13.8">W2  cmc_stream.py → disk : 4h parquet bars + atomic snapshots + heartbeat ts</tspan>
+<tspan x="90.0" dy="13.8">W3  cmc_stream_store → market_signals : zero-network reads → one per-token buffet</tspan>
+<tspan x="90.0" dy="13.8">W4  CMC Agent Hub (MCP · 8 tools) → regime : composed skill → risk budget ∈ [0,1]</tspan>
+<tspan x="90.0" dy="13.8">W5  x402 → CMC (pay) : per-request USDC@Base unlocks dex/search + quotes</tspan>
+<tspan x="90.0" dy="13.8">①→②   signals + risk budget feed the regime score</tspan>
+</text>
+<text x="970.0" y="2628.5" font-size="12.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="970.0" dy="0.0">② DECIDE</tspan>
+</text>
+<text x="970.0" y="2646.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="970.0" dy="0.0">W6  resolve strategy → registry.get(name) : LIVE pins mean-reversion (.env STRATEGY_NAME)</tspan>
+<tspan x="970.0" dy="13.8">W7  auto-selector → registry : ROADMAP · recommend-only (LIVE never auto-switches)</tspan>
+<tspan x="970.0" dy="13.8">W8  regime score → adaptive cap [0.40, 0.85] → target = weights × cap</tspan>
+<tspan x="970.0" dy="13.8">②→③   target weights enter the tick</tspan>
+</text>
+<text x="970.0" y="2720.5" font-size="12.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#3b5bdb" text-anchor="start" xml:space="preserve">
+<tspan x="970.0" dy="0.0">③ EXECUTE</tspan>
+</text>
+<text x="970.0" y="2738.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="970.0" dy="0.0">W9   guards (lock·data·fresh·preflight·px/nav) : any fail → SKIP (2)</tspan>
+<tspan x="970.0" dy="13.8">W10  NAV vs HWM → dd&gt;cap? gate : yes → EMERGENCY FLATTEN → DD_HALT (1)</tspan>
+<tspan x="970.0" dy="13.8">W11  target → TwakSpotBroker → SELL overweight → BUY underweight → twak swap (gasless)</tspan>
+<tspan x="970.0" dy="13.8">W12  swap ok? gate : no → failed_swaps[] journaled, tick continues</tspan>
+<tspan x="970.0" dy="13.8">W13  auto_trader.sh → run_allocator (hourly) → publish_snapshot · dd-watch shares the flock</tspan>
+</text>
+<text x="1850.0" y="2628.5" font-size="12.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="1850.0" dy="0.0">④ AGENTIC ECONOMY    (one identity 0xEb7b…9655)</tspan>
+</text>
+<text x="1850.0" y="2646.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="1850.0" dy="0.0">③→④   every tick fires the heartbeat (+ commerce on demand)</tspan>
+<tspan x="1850.0" dy="13.8">W14  x402 CONSUMER → pays CMC from the identity wallet (data cost · excluded from PnL)</tspan>
+<tspan x="1850.0" dy="13.8">W15  ERC-8004 → per-tick gasless heartbeat : ts + NAV + rationale (MegaFuel)</tspan>
+<tspan x="1850.0" dy="13.8">W16  ERC-8183 PROVIDER → identity signs create_job→fund→submit(IPFS)→settle ;</tspan>
+<tspan x="1850.0" dy="13.8">         a distinct peer agent (buyer) funds the job — true agent-to-agent</tspan>
+<tspan x="1850.0" dy="13.8">W16b vlayer (ROADMAP) → Web Proof (zkTLS) → RegimeProver → RegimeVerifier :</tspan>
+<tspan x="1850.0" dy="13.8">         on-chain CMC-provenance attestation (M1 · Optimism Sepolia), API key never revealed</tspan>
+<tspan x="1850.0" dy="13.8">W16c provenance.py reads latestOf(agent) (key-free) → the sold report carries a</tspan>
+<tspan x="1850.0" dy="13.8">         buyer-checkable provenance_proof ("trust me" → "verify it")</tspan>
+</text>
+<text x="1850.0" y="2789.5" font-size="12.5" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="1850.0" dy="0.0">⑤ PERSIST &amp; OBSERVE</tspan>
+</text>
+<text x="1850.0" y="2807.0" font-size="11" font-family="ui-monospace, Menlo, monospace" font-weight="400" fill="#343a40" text-anchor="start" xml:space="preserve">
+<tspan x="1850.0" dy="0.0">W17  tick → journal+state (atomic) → publish_snapshot → POST /api/ingest (HMAC)</tspan>
+<tspan x="1850.0" dy="13.8">W18  API (Render, read-only) → React SPA (Vercel) :</tspan>
+<tspan x="1850.0" dy="13.8">         read tier cached/ETag (horizontal) · write tier single-writer lease</tspan>
+<tspan x="1850.0" dy="13.8">④→⑤   journal + heartbeat outputs flow to persistence / observability</tspan>
+</text>
+<text x="1368.0" y="627.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#1971c2" text-anchor="start" xml:space="preserve">
+<tspan x="1368.0" dy="0.0">①  data  →  ②  decide   (signals + risk budget)</tspan>
+</text>
+<text x="1368.0" y="997.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#2b8a3e" text-anchor="start" xml:space="preserve">
+<tspan x="1368.0" dy="0.0">②  decide  →  ③  execute   (target weights)</tspan>
+</text>
+<text x="1368.0" y="1652.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#6741d9" text-anchor="start" xml:space="preserve">
+<tspan x="1368.0" dy="0.0">③  execute  →  ④  heartbeat + commerce</tspan>
+</text>
+<text x="1368.0" y="2162.0" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#0c8599" text-anchor="start" xml:space="preserve">
+<tspan x="1368.0" dy="0.0">④  →  ⑤  journal · snapshot · observe</tspan>
+</text>
+</svg>

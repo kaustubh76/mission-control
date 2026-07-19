@@ -1,0 +1,68 @@
+name: keepalive
+
+# Pings the Render-hosted /health endpoint so the free-tier Web Service
+# doesn't sleep after 15 min of HTTP idleness.
+#
+# Reliability caveat: GitHub Actions cron is best-effort. GitHub itself
+# says scheduled workflows can be delayed during periods of high load —
+# in practice 10–30 min slips are common. If a slip exceeds Render's
+# 15-min sleep threshold, the bot will silently nap until the next
+# successful ping. For a hard SLA, use UptimeRobot / cron-job.org / a
+# paid Render Background Worker instead.
+
+on:
+  # `*/5` = every 5 minutes. GitHub's documented minimum granularity is
+  # 5 min; finer schedules are silently coalesced.
+  schedule:
+    - cron: '*/5 * * * *'
+  # Manual trigger from the Actions tab for debugging — useful right
+  # after the workflow lands so you can prove it works without waiting
+  # up to 5 min for the first cron fire.
+  workflow_dispatch:
+
+# Newer scheduled runs supersede older ones still queued. Without this,
+# a backlog of delayed runs can stack up and burn free-tier minutes.
+concurrency:
+  group: keepalive
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    name: ping /health
+    runs-on: ubuntu-latest
+    # The whole job rarely takes >10 s; cap at 2 min so a stuck curl
+    # can't eat the free-tier minute budget. (~2000 min/mo for public
+    # repos is plenty, but waste is waste.)
+    timeout-minutes: 2
+
+    steps:
+      - name: GET /health
+        env:
+          # Edit this if the Render service URL ever changes. Keeping
+          # it as a step env var (not a repo secret) so anyone reading
+          # the workflow can see what's being pinged — there's no
+          # secret to leak here.
+          TARGET_URL: https://ictbot-scanner.onrender.com/health
+        run: |
+          set -euo pipefail
+          echo "Pinging $TARGET_URL"
+          # Render free instances cold-start in ~30 s after sleep.
+          # --max-time 60 covers cold-start plus the actual /health
+          # round-trip with headroom. --retry handles transient blips
+          # without failing the run.
+          BODY=$(curl -fsSL --max-time 60 --retry 2 --retry-delay 5 "$TARGET_URL")
+          echo "Response: $BODY"
+          # The /health endpoint returns:
+          #   "ok heartbeat_age_s=…"     → scanner healthy
+          #   "starting (no heartbeat yet)" → just booted, treat as ok
+          #   "stale heartbeat: …"       → 503 status; curl -f exits non-zero
+          # So if we got a 200 with body starting with ok|starting we're done.
+          case "$BODY" in
+            ok*|starting*)
+              echo "Healthy."
+              ;;
+            *)
+              echo "Unexpected response — investigate scanner state." >&2
+              exit 1
+              ;;
+          esac

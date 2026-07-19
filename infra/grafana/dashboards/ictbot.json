@@ -1,0 +1,97 @@
+{
+  "uid": "ictbot",
+  "title": "ictbot — scanner overview",
+  "tags": ["ictbot"],
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "15s",
+  "time": {"from": "now-6h", "to": "now"},
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Signals fired (last 6h)",
+      "gridPos": {"x": 0, "y": 0, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(increase(ictbot_signals_fired_total[6h]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Signals per minute by direction",
+      "gridPos": {"x": 6, "y": 0, "w": 18, "h": 8},
+      "targets": [
+        {
+          "expr": "sum by (direction)(rate(ictbot_signals_fired_total[5m])) * 60",
+          "legendFormat": "{{direction}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Evaluations / sec",
+      "gridPos": {"x": 0, "y": 4, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(rate(ictbot_evaluations_total[5m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Evaluation outcomes",
+      "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "sum by (outcome)(rate(ictbot_evaluations_total[5m]))",
+          "legendFormat": "{{outcome}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Evaluate latency (p50/p95/p99)",
+      "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, sum by (le)(rate(ictbot_evaluate_latency_seconds_bucket[5m])))",
+          "legendFormat": "p50",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum by (le)(rate(ictbot_evaluate_latency_seconds_bucket[5m])))",
+          "legendFormat": "p95",
+          "refId": "B"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum by (le)(rate(ictbot_evaluate_latency_seconds_bucket[5m])))",
+          "legendFormat": "p99",
+          "refId": "C"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "Cap rejections by cap",
+      "gridPos": {"x": 0, "y": 16, "w": 24, "h": 6},
+      "targets": [
+        {
+          "expr": "sum by (cap)(rate(ictbot_cap_rejections_total[5m]))",
+          "legendFormat": "{{cap}}",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

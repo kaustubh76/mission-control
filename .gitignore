@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.env
+.venv/
+venv/
+.DS_Store
+.pytest_cache/
+.streamlit/secrets.toml
+
+# Runtime artefacts — everything under data/ except the dir skeleton.
+data/**
+!data/
+!data/journal/
+!data/runs/
+!data/logs/
+!data/cache/
+!data/**/.gitkeep
+.vercel
+.env*.local
+.env.local
+
+# pytest-cov data file
+.coverage
+htmlcov/
+.agent-data/

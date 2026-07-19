@@ -1,0 +1,162 @@
+# ===========================================================================
+# Render Blueprint — Mission Control API (data backend).
+#
+# Render hosts ONLY the read-only FastAPI. The React UI is already live on
+# Vercel (https://bnb-mission-control-two.vercel.app) and calls this API
+# cross-origin. Lean (no SPA build, no Streamlit); surfaces all three agent
+# pillars live: data/x402 · TWAK · identity/NodeReal.
+#
+#   Architecture:  Vercel (SPA)  ──fetch /api/*──▶  Render (this API)
+#
+# ─────────────────────────────────────────────────────────────────────────
+# 🔒 SECURITY — ZERO SECRETS ARE DEPLOYED (Render free tier has NO account 2FA).
+# This is a READ-ONLY dashboard: it never signs, mints, or trades, so it runs on
+# PUBLIC data alone. Set NOTHING in the Render env — every var below is a committed
+# non-secret. In particular NEVER set on Render:
+#   - AGENT_PRIVATE_KEY / AGENT_WALLET_PASSWORD            (identity/x402 signing)
+#   - TWAK_ACCESS_ID / TWAK_HMAC_SECRET / TWAK_WALLET_PASSWORD (trading wallet)
+#   - NODEREAL_API_KEY                                     (keep LOCAL — see below)
+# The ONLY key intentionally on Render is CMC_API_KEY — a READ-ONLY DATA key (cannot move
+# funds; worst case = API quota) — set via `sync: false` to price the Real-Funds card + F&G.
+# All keys live ONLY on your local machine. The dashboard shows the identity wallet
+# via the PUBLIC AGENT_IDENTITY_ADDRESS and reads balances by address — no key.
+#
+# Optional (accept the no-2FA risk): you MAY add CMC_API_KEY (low risk: rate-limited
+# data key → live Fear&Greed) and/or NODEREAL_API_KEY (bounded: gas-tank spend up to
+# your sponsor-policy cap → the live `sponsorable` check). Default is to deploy NEITHER;
+# the dashboard degrades gracefully (F&G from the snapshot; NodeReal shown key-free,
+# verify `sponsorable` locally via `make verify_nodereal`).
+# ─────────────────────────────────────────────────────────────────────────
+#
+# Deploy:
+#   1. Render Dashboard → New → Blueprint → connect this repo (root has this file).
+#   2. Apply. Set NOTHING in Environment (zero secrets).
+#   3. Confirm the URL matches web/vercel.json's /api rewrite
+#      (https://mission-control-api.onrender.com); edit + redeploy Vercel if not.
+#   4. Free tier sleeps after 15 min idle — point UptimeRobot at /api/health.
+# See docs/deploy_dashboard.md for the full security + 2FA checklist.
+# ===========================================================================
+services:
+  - type: web
+    name: mission-control-api
+    runtime: docker
+    plan: free                          # paid plan needed to attach a persistent disk
+    branch: main                        # deploy from the default branch
+    dockerfilePath: ./infra/Dockerfile.dashboard
+    dockerContext: .
+    healthCheckPath: /api/health        # Render health check + keep-alive ping target
+    autoDeploy: true
+    envVars:
+      # ---- CORS: allow the Vercel SPA to call this API --------------------
+      - key: API_CORS_ORIGINS           # the live SPA origin (comma-sep list, or "*")
+        value: "https://bnb-mission-control-two.vercel.app"
+      # ---- Pillar 1 — CMC (data) -----------------------------------------
+      # CMC_API_KEY prices the Real-Funds card via CMC + powers live Fear&Greed. It is a
+      # READ-ONLY DATA key (cannot move funds; worst case = API quota), so it is set
+      # OUT-OF-BAND on the service via `sync: false` — the VALUE is NEVER committed to git.
+      - key: CMC_API_KEY
+        sync: false
+      # Market-intelligence fetchers ON for the dashboard panel (read-only data; the
+      # credit budget + rate-limiter in cmc_client guard the 300k/mo + 30rpm caps). The
+      # TRADE flags (CMC_REGIME_ENHANCED / ALLOC_UNIVERSE_TILT) stay OFF — SIM-first A/B.
+      - key: CMC_INTEL_ENABLED
+        value: "true"
+      - key: CMC_MCP_ENABLED           # CMC Agent Hub panel: read CMC's MCP (read-only data,
+        value: "true"                  # same key). The API only SERVES reads — no ticks here.
+      - key: CMC_SKILL_REGIME          # mark the composed market-overview skill ON so the Agent
+        value: "true"                  # Hub "skill" pill matches the SIM journal this API serves.
+      - key: X402_ENABLED               # ON for DISPLAY ONLY: no wallet password is deployed,
+        value: "true"                   # so x402_cmc.available()==False -> the API can NEVER pay;
+                                        # this only enables the read-only Base USDC balance read.
+                                        # Real payments settle LOCALLY; receipts ship via infra/seed.
+      - key: X402_BASE_RPC_URL          # public RPC to READ the pay wallet's Base USDC balance
+        value: "https://mainnet.base.org"
+      # ---- Pillar 2 — TWAK (execution); dashboard is READ-ONLY, NO creds --
+      - key: TWAK_MODE                  # sim track for the public dashboard (no real funds)
+        value: "sim"
+      - key: ENABLE_LIVE_TRADING
+        value: "false"
+      - key: DASHBOARD_JOURNAL          # which track the dashboard renders (sim | live)
+        value: "live"                   # LIVE-ONLY product: real on-chain BSC track, no paper/sim framing
+
+      # ---- Pillar 3 — on-chain agent SDK (bnbagent) + NodeReal/MegaFuel -
+      - key: AGENT_NETWORK              # mainnet (chain 56) — matches the live agent
+        value: "bsc"
+      - key: AGENT_IDENTITY_ADDRESS     # PUBLIC identity wallet (display + balance only; NO key).
+        value: "0xEb7bF36aab4912c955474206EF0b835170389655"
+      - key: AGENT_TRADING_ADDRESS      # PUBLIC TWAK trading wallet shown on the identity card
+        value: "0xE8A30d24BbA030D3e8a844bD1c4F6e1374EA6215"
+      # NODEREAL_API_KEY is NOT deployed (no Render 2FA). The dashboard shows the
+      # NodeReal pillar key-free; verify `sponsorable` locally via `make verify_nodereal`.
+      - key: AGENT_USE_PAYMASTER
+        value: "true"
+      - key: AGENT_HEARTBEAT_ENABLED    # MUST stay false here — writing on-chain needs the key
+        value: "false"                  # (which isn't deployed). Heartbeats run locally only.
+      - key: AGENT_ID                   # ERC-8004 token id (public; set after the first mint)
+        value: "0"
+      # ---- SDK prize — ERC-8183 agentic commerce (SELL side) -------------
+      - key: ERC8183_ENABLED            # DISPLAY-ONLY: arms the Agent Commerce panel's "armed"
+        value: "true"                   # pill. No wallet password is deployed, so commerce
+                                        # available()/serve() stay False — the API can NEVER
+                                        # accept/settle a job or spend on-chain; this only flips
+                                        # the dashboard's commerce.enabled flag. (Render reads
+                                        # blueprint envVars on create/sync only, so this value is
+                                        # ALSO set out-of-band via the API to apply on the live svc.)
+      - key: ERC8183_NETWORK            # commerce runs on BNB Smart Chain MAINNET (the testnet "U"
+        value: "bsc-mainnet"            # faucet is dead). DISPLAY-scoped on Render (no signing key);
+                                        # real jobs are served by the LOCAL operator CLI. Also set
+                                        # out-of-band via the API (blueprint envVars sync on create).
+      # ---- Live on-chain "Real Funds" card (keyless) ---------------------
+      # Reads the PUBLIC trading-wallet balance on a PUBLIC BSC RPC (no key) so the
+      # dashboard shows real funds next to the SIM PnL. USD is priced via on-chain
+      # Chainlink here (CMC_API_KEY isn't deployed); add CMC_API_KEY to upgrade pricing
+      # to CMC (pillar 1) — low-risk read-only data key, your call on the no-2FA risk.
+      - key: ONCHAIN_READS_ENABLED
+        value: "true"
+      - key: ONCHAIN_BSC_RPC_URL        # public RPC reachable from Render's datacenter IP
+        value: "https://bsc-rpc.publicnode.com"
+      # ---- Dashboard runtime ---------------------------------------------
+      - key: API_SEED_ON_START          # seed ONE sim tick on boot so NAV/rebalances render
+        value: "1"
+      # ---- Scalability (read tier) ---------------------------------------
+      # All have free-tier-safe defaults baked into settings.py, so the contest deploy needs NONE of
+      # these set. They are the multi-instance levers — see SCALABILITY.md. Uncomment when scaling out:
+      #   - key: EDGE_SMAXAGE_S          # edge cache window (s) on GET /api/* (Cache-Control s-maxage).
+      #     value: "3"                   #   Honored once a Vercel/Cloudflare edge fronts this API.
+      #   - key: SNAPSHOT_CACHE_TTL_S    # in-process micro-cache for the journal-rebuild fallback.
+      #     value: "2"
+      #   - key: SNAPSHOT_STORE          # "redis" shares the pushed snapshot across replicas — REQUIRED
+      #     value: "redis"               #   before numInstances>1 (else each replica serves stale data).
+      #   - key: REDIS_URL               # secret → out-of-band (sync:false); never commit a Redis URL.
+      #     sync: false
+
+# ---------------------------------------------------------------------------
+# Dynamism & persistence
+# - Live pillar status (NodeReal link reachable/chain/sponsorable, x402 pay wallet +
+#   Base balance + receipts) is computed server-side per request (60s TTL cache) —
+#   dynamic on every plan, even free.
+# - Free tier has NO persistent disk and sleeps after 15 min idle, so the journal is
+#   RESEEDED (one sim tick) on each cold start. For a continuously-updating NAV feed,
+#   upgrade to a paid instance, add under this service:
+#       disk:
+#         name: bnb-data
+#         mountPath: /app/data
+#         sizeGB: 1
+#   and run the allocator loop (run_allocator.py --loop) so the persisted journal grows.
+#   See docs/deploy_dashboard.md.
+# ---------------------------------------------------------------------------
+# Horizontal read scale-out (this READ API only — see SCALABILITY.md §7)
+# - This service is STATELESS per request; it can run >1 instance behind Render's
+#   AUTO-PROVISIONED load balancer (you do NOT build an LB). Trigger: CPU >70% sustained
+#   after the edge cache, or any zero-downtime/HA need. To scale out, on a paid plan:
+#       plan: standard
+#       numInstances: 2            # Render attaches a managed LB automatically
+#   PREREQUISITE: SNAPSHOT_STORE=redis + REDIS_URL (above) so all replicas share the pushed
+#   snapshot — otherwise the ingest POST lands on one replica and the others serve stale data.
+#   The cache-first edge strategy defers this for a long time (one small instance + s-maxage=3
+#   serves thousands of viewers); reach for replicas for AVAILABILITY before throughput.
+#
+# Write tier (the allocator) is SINGLE-WRITER and is NEVER added here as a load-balanced web
+# service. If it ever moves to Render it is a SEPARATE cronjob/worker with numInstances: 1 FOREVER
+# (two writers double-trade + desync the ledger) + ALLOCATOR_LOCK=redis as a cross-host backstop.
+# ---------------------------------------------------------------------------

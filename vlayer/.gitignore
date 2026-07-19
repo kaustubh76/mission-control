@@ -1,0 +1,10 @@
+out/
+cache/
+dependencies/
+lib/
+node_modules/
+broadcast/
+.env
+.env.*.local
+!env.testnet.local.example
+testdata/*.json

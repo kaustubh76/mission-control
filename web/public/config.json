@@ -1,0 +1,4 @@
+{
+  "_comment": "Runtime API base for the SPA. Empty = SAME-ORIGIN: the Vercel deploy calls /api/* on its own domain, which Vercel reverse-proxies to the Render API (route baked by scripts/deploy_dashboard.sh; see web/vercel.json). This lets Vercel's edge cache /api/snapshot per its s-maxage so many viewers collapse to ~1 origin hit per window, and it removes CORS. To bypass the edge proxy and hit Render directly again, set apiBase back to https://bnb-mission-control-api.onrender.com and redeploy. See SCALABILITY.md section 4.",
+  "apiBase": ""
+}

@@ -1,0 +1,107 @@
+{
+  "recommended_live_arm": "mean_reversion",
+  "current_live_arm": "mean_reversion",
+  "action": "STAY",
+  "switch": false,
+  "reason": "STAY INCUMBENT \u2014 no challenger has cleared all gates (survival \u2705 + stability ROBUST + forward-eligible on a deployed, non-cash track).",
+  "scores": [
+    {
+      "arm": "momentum_fast",
+      "score": -0.44191866643064814,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "ROBUST",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "rotation",
+      "score": -0.47244600676324444,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "FRAGILE",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "momentum_voltarget",
+      "score": -0.5035821008717493,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "ROBUST",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "momentum_adaptive",
+      "score": -0.5454078065898129,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "FRAGILE",
+      "verdict": "\ud83d\udd12 INCUMBENT"
+    },
+    {
+      "arm": "momentum",
+      "score": -0.5454078065898129,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "FRAGILE",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "momentum_cmc",
+      "score": -0.5454078065898129,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "ROBUST",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "momentum_mafilter",
+      "score": -0.5914664478672277,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "FRAGILE",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "breakout",
+      "score": -0.5926962745501032,
+      "dq_safe": false,
+      "forward_eligible": false,
+      "stability": "UNSTABLE",
+      "verdict": "\u274c NOT READY"
+    },
+    {
+      "arm": "mean_reversion",
+      "score": -0.6378357255415007,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "ROBUST",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "dual_momentum",
+      "score": -0.6752549387689525,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "ROBUST",
+      "verdict": "\u23f3 IN PROGRESS"
+    },
+    {
+      "arm": "grid",
+      "score": -0.812025696519823,
+      "dq_safe": true,
+      "forward_eligible": false,
+      "stability": "FRAGILE",
+      "verdict": "\u23f3 IN PROGRESS"
+    }
+  ],
+  "hysteresis": {
+    "consecutive": 0,
+    "sustain": 2,
+    "margin": 0.02,
+    "incumbent_score": -0.6378357255415007,
+    "champion_score": null
+  },
+  "apply_cmd": null,
+  "auto_apply_live": false,
+  "ts": "2026-06-19T15:18:23+00:00"
+}

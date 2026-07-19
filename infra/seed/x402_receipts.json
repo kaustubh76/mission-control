@@ -1,0 +1,92 @@
+[
+  {
+    "ts": "2026-06-12T06:16:48Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T06:16:51Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T06:16:54Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T06:16:56Z",
+    "endpoint": "/x402/v3/cryptocurrency/quotes/latest",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T06:16:59Z",
+    "endpoint": "/x402/v3/cryptocurrency/quotes/latest",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T07:11:45Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T07:11:55Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T07:13:57Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T07:14:06Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  },
+  {
+    "ts": "2026-06-12T07:20:33Z",
+    "endpoint": "/x402/v1/dex/search",
+    "status": "settled",
+    "payTo": "0x3C5f3a6cE224BB89D72f5EB4232ecC27F67B3eeA",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "value": 10000,
+    "network": "eip155:8453"
+  }
+]

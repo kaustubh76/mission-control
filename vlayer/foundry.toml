@@ -1,0 +1,16 @@
+# Foundry config for the vlayer provenance sub-project.
+# NOTE: reconcile with a fresh `vlayer init --template kraken-web-proof` output — the vlayer
+# libs (`vlayer-0.1.0`, `risc0-ethereum`, etc.) are installed as git submodules under lib/ by
+# `vlayer init`, and remappings.txt points at them. See vlayer/README.md.
+[profile.default]
+src = "src"
+out = "out"
+libs = ["dependencies", "lib"]
+solc = "0.8.21"
+optimizer = true
+optimizer_runs = 200
+auto_detect_solc = false
+fs_permissions = [{ access = "read", path = "./testdata" }]
+
+[profile.default.rpc_endpoints]
+optimismSepolia = "${OPTIMISM_SEPOLIA_RPC_URL}"

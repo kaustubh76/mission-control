@@ -1,0 +1,42 @@
+.git
+.gitignore
+.github
+.venv
+.pytest_cache
+.ruff_cache
+.hypothesis
+.streamlit
+__pycache__
+**/__pycache__
+*.pyc
+*.egg-info
+
+# Web build artefacts — the dashboard image rebuilds these fresh (npm ci +
+# vite build), so never ship the 100MB local node_modules or a stale dist.
+web/node_modules
+web/dist
+
+# Local-only secrets. Provide via the host's secret store (Render env
+# vars), not by baking into the image.
+.env
+
+# Runtime artefacts the container creates inside its mounted volume.
+# Including them would bloat the image and ship stale signal state.
+data/journal/*.json
+data/runs/*.json
+data/logs/*.log
+data/cache/*
+
+# Dev-only files
+PLAN.md
+ROADMAP.md
+docs
+tests
+*.excalidraw
+Makefile
+
+# IDE
+.vscode
+.idea
+*.swp
+.DS_Store

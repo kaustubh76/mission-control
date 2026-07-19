@@ -1,0 +1,36 @@
+# Only the web/ SPA source (+ root package.json/vercel.json) is needed for the
+# Vercel build. Exclude the Python app, the venv, data, and all node_modules.
+# Anchored paths (/src) avoid clobbering web/src.
+.git
+.venv
+venv
+node_modules
+web/dist
+.env
+.env.example
+.pytest_cache
+.ruff_cache
+.hypothesis
+__pycache__
+*.pyc
+*.egg-info
+.DS_Store
+
+# Python app + repo docs (not used by the frontend build)
+/src
+/tests
+/docs
+/infra
+/scripts
+/config
+/data
+/pyproject.toml
+/Dockerfile
+/docker-compose.yml
+/render.yaml
+/Makefile
+/DEPLOY.md
+/PLAN.md
+/ROADMAP.md
+/README.md
+*.excalidraw

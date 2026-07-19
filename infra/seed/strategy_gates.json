@@ -1,0 +1,244 @@
+{
+  "breakout": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.012006824727335176,
+      "median_ret": -0.01623879451190091,
+      "total_return": -0.48539627455010315,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.2654482158398607
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 22.1,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1073
+    }
+  },
+  "dual_momentum": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.012675113933673574,
+      "median_ret": 0.0,
+      "total_return": -0.5293549387689525,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.15839860748476936
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 7.75,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1459
+    }
+  },
+  "grid": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.015497103694034746,
+      "median_ret": -0.015293085881955326,
+      "total_return": -0.6010256965198231,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.31766753698868583
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": false,
+      "trades_per_week": 50.49,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.211
+    }
+  },
+  "mean_reversion": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.012575545640603208,
+      "median_ret": -0.008692149419400108,
+      "total_return": -0.5056357255415007,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.33159268929503916
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 26.25,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1322
+    }
+  },
+  "momentum": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.007617843842112436,
+      "median_ret": -0.018759360108459577,
+      "total_return": -0.39970780658981286,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.26457789382071367
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 10.54,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1457
+    }
+  },
+  "momentum_adaptive": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.007617843842112436,
+      "median_ret": -0.018759360108459577,
+      "total_return": -0.39970780658981286,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.26457789382071367
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 10.54,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1457
+    }
+  },
+  "momentum_cmc": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.007617843842112436,
+      "median_ret": -0.018759360108459577,
+      "total_return": -0.39970780658981286,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.26457789382071367
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 10.54,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1457
+    }
+  },
+  "momentum_fast": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.007011500178882148,
+      "median_ret": -0.015816963859528688,
+      "total_return": -0.29881866643064814,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.3368146214099217
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 13.34,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1431
+    }
+  },
+  "momentum_mafilter": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.007903028362134459,
+      "median_ret": -0.016469733736048098,
+      "total_return": -0.4220664478672277,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.2515230635335074
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": false,
+      "trades_per_week": 8.44,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1694
+    }
+  },
+  "momentum_voltarget": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.006958252864638347,
+      "median_ret": -0.0165401207069652,
+      "total_return": -0.3692821008717493,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.26631853785900783
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 15.73,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1343
+    }
+  },
+  "rotation": {
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "perf": {
+      "mean_ret": -0.006356191938667568,
+      "median_ret": -0.01488797155200583,
+      "total_return": -0.35054600676324443,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "win_rate": 0.34203655352480417
+    },
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 21.39,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1219
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{"ts": "2026-06-17T12:07:59Z", "event": "CREATE", "job_id": 25741, "provider": "0xEb7bF36aab4912c955474206EF0b835170389655", "query": "CMC regime read + momentum ranking for my treasury rebalance", "buyer": "0x9e4AF0547B166efE14b377108d5856FdfB3B74d6"}
+{"ts": "2026-06-17T12:08:08Z", "event": "FUND", "job_id": 25741, "amount": 100000000000000000}
+{"ts": "2026-06-17T12:08:17Z", "event": "SUBMIT", "job_id": 25741, "status": "ok", "regime_score": 0.421, "query": "CMC regime read + momentum ranking for my treasury rebalance"}
+{"ts": "2026-06-17T12:08:27Z", "event": "SUBMITTED_ONCHAIN", "job_id": 25741, "tx": "73546c6dc1b976558a35ee79cb0498d96d2aa77b426165814f3b615702d0f669", "deliverable_hash": "0xf25e578fa251c07105acf928c0d52192b57cacd18c123a4eebfcc3f334bbe423", "deliverable_url": "ipfs://QmTXDHUPYTTFbqptJvjAsNAVPnCfaNVso9CmHpjYBb5cnp"}
+{"ts": "2026-06-17T12:08:27Z", "event": "SETTLE_DEFERRED", "job_id": 25741, "detail": "Transaction would revert: ('0x17be5b7b', '0x17be5b7b')"}
+{"ts": "2026-06-17T12:34:36Z", "event": "CREATE", "job_id": 26506, "provider": "0xEb7bF36aab4912c955474206EF0b835170389655", "query": "CMC regime + momentum ranking \u2014 created from the dashboard UI", "buyer": "0x9e4AF0547B166efE14b377108d5856FdfB3B74d6"}
+{"ts": "2026-06-17T12:34:45Z", "event": "FUND", "job_id": 26506, "amount": 100000000000000000}
+{"ts": "2026-06-17T12:34:53Z", "event": "SUBMIT", "job_id": 26506, "status": "ok", "regime_score": 0.421, "query": "CMC regime + momentum ranking \u2014 created from the dashboard UI"}
+{"ts": "2026-06-17T12:35:02Z", "event": "SUBMITTED_ONCHAIN", "job_id": 26506, "tx": "cc13c3e68ae9044c7cbe5b5c2fd79218d85e36e142243227635fa4d51accd98c", "deliverable_hash": "0xf0399947cd6c34f3e3bae81fcf02a803da06275c10e0c30d364cd17ab4613c28", "deliverable_url": "ipfs://Qmd6hqiF4QRnLEnw282SmACc5RYwbSBBDn4xdHzZojFRoY"}
+{"ts": "2026-06-17T12:35:02Z", "event": "SETTLE_DEFERRED", "job_id": 26506, "detail": "Transaction would revert: ('0x17be5b7b', '0x17be5b7b')"}
+{"ts": "2026-06-18T04:49:37Z", "event": "SETTLE_DEFERRED", "job_id": 25741, "detail": "Transaction would revert: ('0x17be5b7b', '0x17be5b7b')"}
+{"ts": "2026-06-18T04:49:38Z", "event": "SETTLE_DEFERRED", "job_id": 26506, "detail": "Transaction would revert: ('0x17be5b7b', '0x17be5b7b')"}

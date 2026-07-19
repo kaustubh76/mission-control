@@ -1,0 +1,17 @@
+# D2 (ROADMAP §D2): Prometheus scrape config for ictbot.
+# Scrapes the scanner's /metrics endpoint started by start_metrics_server.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "ictbot-scanner"
+    static_configs:
+      - targets: ["scanner:9100"]
+        labels:
+          service: "scanner"
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

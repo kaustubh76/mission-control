@@ -1,0 +1,46 @@
+{
+  "breakout": {
+    "grade": "UNSTABLE",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "dual_momentum": {
+    "grade": "ROBUST",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "grid": {
+    "grade": "FRAGILE",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "mean_reversion": {
+    "grade": "ROBUST",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "momentum": {
+    "grade": "FRAGILE",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "momentum_adaptive": {
+    "grade": "FRAGILE",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "momentum_cmc": {
+    "grade": "ROBUST",
+    "ts": "2026-06-18T05:30:48+00:00"
+  },
+  "momentum_fast": {
+    "grade": "ROBUST",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "momentum_mafilter": {
+    "grade": "FRAGILE",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "momentum_voltarget": {
+    "grade": "ROBUST",
+    "ts": "2026-06-13T21:09:16+00:00"
+  },
+  "rotation": {
+    "grade": "FRAGILE",
+    "ts": "2026-06-13T21:09:16+00:00"
+  }
+}

@@ -1,0 +1,70 @@
+# syntax=docker/dockerfile:1
+# ===========================================================================
+# BNB Hack × CMC — Mission Control API (read-only data backend).
+#
+# Lean & API-ONLY: the React SPA is hosted on Vercel
+# (https://bnb-mission-control-two.vercel.app) and calls this API cross-origin.
+# So this image does NOT build/serve the SPA and does NOT pull the legacy
+# Streamlit/Plotly UI (those moved to the [ui] extra). Just the FastAPI data
+# layer + the allocator (for the seeded sim tick) + bnbagent (live pillar-3 /
+# x402 status).
+#
+# Independent of the legacy ICT scanner image at ./Dockerfile.
+# ===========================================================================
+FROM python:3.12-slim
+
+# build-essential for any wheels that compile (coincurve/pyarrow); dropped after.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends build-essential \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Deps first (cache-friendly).
+#   [api] = fastapi + uvicorn (the `ictbot-api` console script)
+#   [bnb] = bnbagent + web3 — needed so the dashboard computes the LIVE pillar-3
+#           status (NodeReal link, identity wallet) and the x402 pay wallet.
+# Streamlit/Plotly are NOT installed (they're the [ui] extra) → lean image.
+COPY pyproject.toml README.md ./
+COPY src ./src
+COPY scripts ./scripts
+COPY config ./config
+RUN pip install --no-cache-dir -e ".[api,bnb]"
+
+# Runtime artefacts (journal/state/x402 receipts). Ephemeral on Render free tier;
+# mount a Render disk at /app/data on a paid plan for persistence.
+RUN mkdir -p data/journal data/runs data/logs data/cache data/x402 data/reports
+
+# Seed the SIM journal + state so the dashboard shows real NAV/PnL/rebalance data on
+# a cloud instance: Render's IP can't reach Binance to fetch candles, so the allocator
+# can't generate data there. The agent runs LOCALLY (where candles work); refresh the
+# deployed data by re-copying data/journal/* -> infra/seed/ + `make snapshot`, then push.
+COPY infra/seed/allocator_journal.jsonl infra/seed/allocator_state.json ./data/journal/
+# LIVE contest track (real on-chain ticks) so DASHBOARD_JOURNAL=live boots with real data, not an empty
+# dashboard. Optional [e] globs so the build never fails if a seed is absent (mirrors the seeds below).
+COPY infra/seed/allocator_liv[e].jsonl ./data/journal/allocator_live.jsonl
+COPY infra/seed/allocator_live_stat[e].json ./data/journal/allocator_live_state.json
+# ERC-8183 commerce ledger so the live dashboard shows real served jobs + revenue (the [s]
+# glob makes it optional — the build won't fail if the seed file is absent).
+COPY infra/seed/commerce_job[s].jsonl ./data/journal/
+# CMC Agent Hub MCP usage counter so the dashboard shows real MCP call counts (the [e]
+# glob makes it optional — the build won't fail if the seed file is absent).
+COPY infra/seed/cmc_mcp_usag[e].json ./data/journal/
+# x402 receipts (real settled USDC micropayments) so the live dashboard's CMC Agent Hub
+# panel shows the paid-data artifact (settled count + spend). Optional glob like above.
+COPY infra/seed/x402_receipt[s].json ./data/x402/receipts.json
+# Strategy verdicts (survival/forward/perf) + stability grades so the dashboard's Strategy
+# Lab shows real readiness + the backtest scoreboard on the cloud — `make campaign`/`make
+# stability` run LOCALLY (Render can't reach market data) and reseed these via
+# `make refresh_dashboard`. Optional [s]/[y] globs so the build never fails if a seed is absent.
+COPY infra/seed/strategy_gate[s].json ./data/reports/strategy_gates.json
+COPY infra/seed/strategy_stabilit[y].json ./data/reports/strategy_stability.json
+# Forward-gated auto-selector verdict so the dashboard's Auto-selector card shows the recommended
+# LIVE arm + ranked scores on the cloud (else `evaluation_card` finds no file → auto_selector: null).
+# Written LOCALLY by the strategy evaluator + reseeded via `make refresh_dashboard`. Optional [n] glob.
+COPY infra/seed/strategy_evaluatio[n].json ./data/reports/strategy_evaluation.json
+
+ENV PYTHONUNBUFFERED=1
+# `ictbot-api` chdirs to /app and binds $PORT (Render injects it). No web/dist is
+# present, so app.py's _mount_spa() is a no-op → API-only, as intended.
+CMD ["ictbot-api"]

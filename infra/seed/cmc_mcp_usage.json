@@ -1,0 +1,1 @@
+{"calls": 15, "by_tool": {"get_crypto_technical_analysis": 8, "get_global_metrics_latest": 1, "trending_crypto_narratives": 1, "get_crypto_marketcap_technical_analysis": 1, "get_global_crypto_derivatives_metrics": 1, "get_upcoming_macro_events": 1, "get_crypto_quotes_latest": 1, "get_crypto_latest_news": 1}, "last_call_ts": 1781596351, "last_error": null}

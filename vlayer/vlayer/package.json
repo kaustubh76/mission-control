@@ -1,0 +1,19 @@
+{
+  "name": "regime-vlayer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "vlayer Web Proof of alternative.me (free) data provenance for Mission Control",
+  "scripts": {
+    "prove:dev": "bun run prove.ts",
+    "prove:testnet": "VLAYER_ENV=testnet bun run prove.ts"
+  },
+  "dependencies": {
+    "@vlayer/sdk": "latest",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  }
+}

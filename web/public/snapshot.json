@@ -1,0 +1,3620 @@
+{
+  "health": {
+    "ok": true,
+    "heartbeat_age_s": 1211820.8,
+    "last_beat_iso": "2026-06-07T06:30:28.350000+00:00",
+    "mode": "live",
+    "journal_mode": "live",
+    "journal_mismatch": false,
+    "live_trading_enabled": true,
+    "kill_switch_engaged": false
+  },
+  "identity": {
+    "name": "RegimeAdaptiveMomentumAgent",
+    "network": "bsc",
+    "trading_wallet": "0xE8A30d24BbA030D3e8a844bD1c4F6e1374EA6215",
+    "description": "Long-only spot momentum allocator: reads CMC (price, Fear&Greed) to score market regime, scales deployment into the top BSC momentum tokens, and signs + executes spot swaps via TWAK (native gas); mints + heartbeats its ERC-8004 identity gaslessly via MegaFuel. Risk-first, DQ-safe. Trades from wallet 0xE8A30d24BbA030D3e8a844bD1c4F6e1374EA6215 (TWAK-signed).",
+    "endpoints": [
+      {
+        "name": "trading",
+        "endpoint": "https://bscscan.com/address/0xE8A30d24BbA030D3e8a844bD1c4F6e1374EA6215",
+        "version": "0.1.0",
+        "capabilities": [
+          "spot-swap",
+          "momentum-allocator",
+          "regime-adaptive",
+          "cmc-data",
+          "twak-signed"
+        ]
+      }
+    ]
+  },
+  "strategy": {
+    "name": "mean_reversion",
+    "summary": "Mean-reversion: buy 8-token names trading >1.0\u03c3 below their 20-bar mean, inverse-vol, regime-capped. Forward-gated capability arm with an adverse prior (reversal flips to momentum on majors) \u2014 promote with extra skepticism.",
+    "tokens": [
+      "BNB",
+      "ETH",
+      "CAKE",
+      "LINK",
+      "UNI",
+      "AVAX",
+      "DOT",
+      "DOGE"
+    ],
+    "active": [
+      "BNB",
+      "ETH",
+      "CAKE",
+      "LINK",
+      "UNI",
+      "AVAX",
+      "DOT",
+      "DOGE"
+    ],
+    "params": {
+      "top_k": 5,
+      "lookback": 120,
+      "cap_floor": 0.35,
+      "cap_ceiling": 0.8,
+      "rebal_bars": 6
+    }
+  },
+  "strategies": {
+    "items": [
+      {
+        "name": "BNB_STRATEGY_01",
+        "summary": "BNB_STRATEGY_01 (alias of momentum_adaptive) \u2014 Regime-adaptive momentum: hold top-2 of 8 by 120-bar return, inverse-vol; deployment scales with a live risk-on score (breadth + trend + vol + Fear&Greed).",
+        "current": false,
+        "alias_of": "momentum_adaptive",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 10.54,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1457
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007617843842112436,
+          "median_ret": -0.018759360108459577,
+          "total_return": -0.39970780658981286,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.26457789382071367
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_02",
+        "summary": "BNB_STRATEGY_02 (alias of momentum_voltarget) \u2014 Regime-adaptive momentum: hold top-2 of 8 by 120-bar return, inverse-vol; deployment scales with a live risk-on score (breadth + trend + vol + Fear&Greed). | overlay: vol-target 1.2%/bar (de-risk only)",
+        "current": false,
+        "alias_of": "momentum_voltarget",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 15.73,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1343
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.006958252864638347,
+          "median_ret": -0.0165401207069652,
+          "total_return": -0.3692821008717493,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.26631853785900783
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_03",
+        "summary": "BNB_STRATEGY_03 (alias of dual_momentum) \u2014 Dual momentum: hold top-2 of 8 by 120-bar return with a positive-momentum cash filter; rotate FULLY to USDT when the basket itself is down over 120 bars. Long-only risk-off.",
+        "current": false,
+        "alias_of": "dual_momentum",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 7.75,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1459
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.012675113933673574,
+          "median_ret": 0.0,
+          "total_return": -0.5293549387689525,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.15839860748476936
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_04",
+        "summary": "BNB_STRATEGY_04 (alias of rotation) \u2014 Relative-strength rotation: hold top-3 of 8 by a blended 120+60-bar momentum z-score, inverse-vol, regime-capped (no cash filter).",
+        "current": false,
+        "alias_of": "rotation",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 21.39,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1219
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.006356191938667568,
+          "median_ret": -0.01488797155200583,
+          "total_return": -0.35054600676324443,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.34203655352480417
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_05",
+        "summary": "BNB_STRATEGY_05 (alias of breakout) \u2014 Volatility breakout: hold the 8-token names that break their 20-bar high (exit on the 5-bar low), inverse-vol, regime-capped. Asymmetric exit channel replaces the AMM stop.",
+        "current": false,
+        "alias_of": "breakout",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 22.1,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1073
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "UNSTABLE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.012006824727335176,
+          "median_ret": -0.01623879451190091,
+          "total_return": -0.48539627455010315,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.2654482158398607
+        },
+        "readiness": {
+          "state": "not_ready",
+          "note": "stability UNSTABLE"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_06",
+        "summary": "BNB_STRATEGY_06 (alias of momentum_fast) \u2014 Short-horizon momentum: hold top-2 of 8 by 60-bar (~10d) return, rebalanced every 3 bars (12h); regime-adaptive deployment. Faster/reactive variant.",
+        "current": false,
+        "alias_of": "momentum_fast",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 13.34,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1431
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007011500178882148,
+          "median_ret": -0.015816963859528688,
+          "total_return": -0.29881866643064814,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.3368146214099217
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_07",
+        "summary": "BNB_STRATEGY_07 (alias of momentum_mafilter) \u2014 Regime-adaptive momentum: hold top-2 of 8 by 120-bar return, inverse-vol; deployment scales with a live risk-on score (breadth + trend + vol + Fear&Greed). | overlay: MA(50) trend filter",
+        "current": false,
+        "alias_of": "momentum_mafilter",
+        "survival": {
+          "passed": true,
+          "target_dd_met": false,
+          "trades_per_week": 8.44,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1694
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007903028362134459,
+          "median_ret": -0.016469733736048098,
+          "total_return": -0.4220664478672277,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.2515230635335074
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_08",
+        "summary": "BNB_STRATEGY_08 (alias of mean_reversion) \u2014 Mean-reversion: buy 8-token names trading >1.0\u03c3 below their 20-bar mean, inverse-vol, regime-capped. Forward-gated capability arm with an adverse prior (reversal flips to momentum on majors) \u2014 promote with extra skepticism.",
+        "current": false,
+        "alias_of": "mean_reversion",
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 26.25,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1322
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.012575545640603208,
+          "median_ret": -0.008692149419400108,
+          "total_return": -0.5056357255415007,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.33159268929503916
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "BNB_STRATEGY_09",
+        "summary": "BNB_STRATEGY_09 (alias of grid) \u2014 Grid / range: hold MORE of each of the 8 tokens the lower it sits in its 50-bar range (buy dips), less the higher; flatten on a breakdown below the range (hard stop). Inverse-vol, regime-capped. Net-inventory model \u2014 no resting orders.",
+        "current": false,
+        "alias_of": "grid",
+        "survival": {
+          "passed": true,
+          "target_dd_met": false,
+          "trades_per_week": 50.49,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.211
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.015497103694034746,
+          "median_ret": -0.015293085881955326,
+          "total_return": -0.6010256965198231,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.31766753698868583
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "breakout",
+        "summary": "Volatility breakout: hold the 8-token names that break their 20-bar high (exit on the 5-bar low), inverse-vol, regime-capped. Asymmetric exit channel replaces the AMM stop.",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 22.1,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1073
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "UNSTABLE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.012006824727335176,
+          "median_ret": -0.01623879451190091,
+          "total_return": -0.48539627455010315,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.2654482158398607
+        },
+        "readiness": {
+          "state": "not_ready",
+          "note": "stability UNSTABLE"
+        }
+      },
+      {
+        "name": "dual_momentum",
+        "summary": "Dual momentum: hold top-2 of 8 by 120-bar return with a positive-momentum cash filter; rotate FULLY to USDT when the basket itself is down over 120 bars. Long-only risk-off.",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 7.75,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1459
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.012675113933673574,
+          "median_ret": 0.0,
+          "total_return": -0.5293549387689525,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.15839860748476936
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "grid",
+        "summary": "Grid / range: hold MORE of each of the 8 tokens the lower it sits in its 50-bar range (buy dips), less the higher; flatten on a breakdown below the range (hard stop). Inverse-vol, regime-capped. Net-inventory model \u2014 no resting orders.",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": false,
+          "trades_per_week": 50.49,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.211
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.015497103694034746,
+          "median_ret": -0.015293085881955326,
+          "total_return": -0.6010256965198231,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.31766753698868583
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "mean_reversion",
+        "summary": "Mean-reversion: buy 8-token names trading >1.0\u03c3 below their 20-bar mean, inverse-vol, regime-capped. Forward-gated capability arm with an adverse prior (reversal flips to momentum on majors) \u2014 promote with extra skepticism.",
+        "current": true,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 26.25,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1322
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.012575545640603208,
+          "median_ret": -0.008692149419400108,
+          "total_return": -0.5056357255415007,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.33159268929503916
+        },
+        "readiness": {
+          "state": "incumbent",
+          "note": "live contest arm"
+        }
+      },
+      {
+        "name": "momentum",
+        "summary": "Static momentum: hold top-2 of 8 by 120-bar return, inverse-vol, capped at 60%.",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 10.54,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1457
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007617843842112436,
+          "median_ret": -0.018759360108459577,
+          "total_return": -0.39970780658981286,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.26457789382071367
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "momentum_adaptive",
+        "summary": "Regime-adaptive momentum: hold top-2 of 8 by 120-bar return, inverse-vol; deployment scales with a live risk-on score (breadth + trend + vol + Fear&Greed).",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 10.54,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1457
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007617843842112436,
+          "median_ret": -0.018759360108459577,
+          "total_return": -0.39970780658981286,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.26457789382071367
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "momentum_cmc",
+        "summary": "CMC-driven momentum: hold top-2 of 8 by 120-bar (20d) return on CoinMarketCap's own 4h candles (inverse-vol, regime-adaptive cap), confirmed live by CMC technical-analysis + Fear&Greed. The entire decision runs on CMC data.",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 10.54,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1457
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-18T05:30:48+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007617843842112436,
+          "median_ret": -0.018759360108459577,
+          "total_return": -0.39970780658981286,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.26457789382071367
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "momentum_fast",
+        "summary": "Short-horizon momentum: hold top-2 of 8 by 60-bar (~10d) return, rebalanced every 3 bars (12h); regime-adaptive deployment. Faster/reactive variant.",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 13.34,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1431
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007011500178882148,
+          "median_ret": -0.015816963859528688,
+          "total_return": -0.29881866643064814,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.3368146214099217
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "momentum_mafilter",
+        "summary": "Regime-adaptive momentum: hold top-2 of 8 by 120-bar return, inverse-vol; deployment scales with a live risk-on score (breadth + trend + vol + Fear&Greed). | overlay: MA(50) trend filter",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": false,
+          "trades_per_week": 8.44,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1694
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.007903028362134459,
+          "median_ret": -0.016469733736048098,
+          "total_return": -0.4220664478672277,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.2515230635335074
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "momentum_voltarget",
+        "summary": "Regime-adaptive momentum: hold top-2 of 8 by 120-bar return, inverse-vol; deployment scales with a live risk-on score (breadth + trend + vol + Fear&Greed). | overlay: vol-target 1.2%/bar (de-risk only)",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 15.73,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1343
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "ROBUST",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.006958252864638347,
+          "median_ret": -0.0165401207069652,
+          "total_return": -0.3692821008717493,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.26631853785900783
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      },
+      {
+        "name": "rotation",
+        "summary": "Relative-strength rotation: hold top-3 of 8 by a blended 120+60-bar momentum z-score, inverse-vol, regime-capped (no cash filter).",
+        "current": false,
+        "alias_of": null,
+        "survival": {
+          "passed": true,
+          "target_dd_met": true,
+          "trades_per_week": 21.39,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "within_dq_line": true,
+          "worst_week_dd": 0.1219
+        },
+        "forward": {
+          "forward_eligible": false,
+          "status": "insufficient forward data",
+          "ts": "2026-06-16T06:59:03+00:00"
+        },
+        "stability": {
+          "grade": "FRAGILE",
+          "ts": "2026-06-13T21:09:16+00:00"
+        },
+        "scoreboard": {
+          "mean_ret": -0.006356191938667568,
+          "median_ret": -0.01488797155200583,
+          "total_return": -0.35054600676324443,
+          "ts": "2026-06-16T06:59:03+00:00",
+          "win_rate": 0.34203655352480417
+        },
+        "readiness": {
+          "state": "in_progress",
+          "note": "forward accruing"
+        }
+      }
+    ],
+    "current": "mean_reversion"
+  },
+  "live_arm": {
+    "name": "mean_reversion",
+    "source": "live journal",
+    "candle_source": "cmc_4h",
+    "survival": {
+      "passed": true,
+      "target_dd_met": true,
+      "trades_per_week": 26.25,
+      "ts": "2026-06-16T06:59:03+00:00",
+      "within_dq_line": true,
+      "worst_week_dd": 0.1322
+    },
+    "forward": {
+      "forward_eligible": false,
+      "status": "insufficient forward data",
+      "ts": "2026-06-16T06:59:03+00:00"
+    },
+    "switchable": true,
+    "note": "operator-switchable via `live_tick.sh <arm>` (survival-gated); the dashboard can't change it"
+  },
+  "state": {
+    "hwm": 12.470349,
+    "halted": false,
+    "halt_reason": null,
+    "halt_ts": null,
+    "nav": 12.46,
+    "balances": {
+      "BNB": 0.002654952664066235,
+      "USDT": 5.374485959267672,
+      "ETH": 5.70447653e-10,
+      "CAKE": 1.0589969e-11,
+      "LINK": 3.6155978e-11,
+      "UNI": 1.8453481664297826,
+      "AVAX": 6.32581112524e-07,
+      "DOT": 5.37885981222e-07
+    },
+    "weights": {
+      "BNB": 0.1257,
+      "UNI": 0.4429
+    },
+    "cumulative_swaps": 15,
+    "trade_floor": 7,
+    "profit_lock": {
+      "armed": false,
+      "locked": false,
+      "campaign_start_nav": 12.350349,
+      "cum_ret": 0.0089,
+      "peak_since_trigger": null,
+      "lock_floor": null
+    }
+  },
+  "nav": {
+    "curve": [
+      {
+        "ts": "2026-06-08T10:47:59+00:00",
+        "nav": 8.93
+      },
+      {
+        "ts": "2026-06-18T09:50:10+00:00",
+        "nav": 8.04
+      },
+      {
+        "ts": "2026-06-18T12:36:20+00:00",
+        "nav": 8.04
+      },
+      {
+        "ts": "2026-06-18T19:05:13+00:00",
+        "nav": 7.92
+      },
+      {
+        "ts": "2026-06-19T09:41:43+00:00",
+        "nav": 7.93
+      },
+      {
+        "ts": "2026-06-19T19:23:46+00:00",
+        "nav": 7.91
+      },
+      {
+        "ts": "2026-06-20T05:33:21+00:00",
+        "nav": 7.99
+      },
+      {
+        "ts": "2026-06-20T06:37:35+00:00",
+        "nav": 7.99
+      },
+      {
+        "ts": "2026-06-20T07:42:31+00:00",
+        "nav": 8.1
+      },
+      {
+        "ts": "2026-06-20T08:53:13+00:00",
+        "nav": 8.07
+      },
+      {
+        "ts": "2026-06-20T09:58:14+00:00",
+        "nav": 8.11
+      },
+      {
+        "ts": "2026-06-20T19:03:22+00:00",
+        "nav": 12.46
+      },
+      {
+        "ts": "2026-06-20T19:26:24+00:00",
+        "nav": 12.46
+      },
+      {
+        "ts": "2026-06-20T19:39:25+00:00",
+        "nav": 12.43
+      },
+      {
+        "ts": "2026-06-20T20:07:44+00:00",
+        "nav": 12.43
+      },
+      {
+        "ts": "2026-06-20T21:12:06+00:00",
+        "nav": 12.43
+      },
+      {
+        "ts": "2026-06-20T21:33:52+00:00",
+        "nav": 12.43
+      },
+      {
+        "ts": "2026-06-20T22:16:17+00:00",
+        "nav": 12.43
+      },
+      {
+        "ts": "2026-06-20T22:38:26+00:00",
+        "nav": 12.44
+      },
+      {
+        "ts": "2026-06-20T23:20:23+00:00",
+        "nav": 12.44
+      },
+      {
+        "ts": "2026-06-20T23:43:37+00:00",
+        "nav": 12.44
+      },
+      {
+        "ts": "2026-06-21T04:01:46+00:00",
+        "nav": 12.44
+      },
+      {
+        "ts": "2026-06-21T04:59:32+00:00",
+        "nav": 12.39
+      },
+      {
+        "ts": "2026-06-21T05:02:34+00:00",
+        "nav": 12.39
+      },
+      {
+        "ts": "2026-06-21T06:01:34+00:00",
+        "nav": 12.41
+      },
+      {
+        "ts": "2026-06-21T06:03:29+00:00",
+        "nav": 12.42
+      },
+      {
+        "ts": "2026-06-21T07:03:16+00:00",
+        "nav": 12.46
+      },
+      {
+        "ts": "2026-06-21T07:04:30+00:00",
+        "nav": 12.46
+      }
+    ],
+    "current_nav": 12.46,
+    "hwm": 12.470349,
+    "drawdown": {
+      "current": 0.001,
+      "series": [
+        {
+          "ts": "2026-06-08T10:47:59+00:00",
+          "dd": 0.0
+        },
+        {
+          "ts": "2026-06-18T09:50:10+00:00",
+          "dd": 0.0
+        },
+        {
+          "ts": "2026-06-18T12:36:20+00:00",
+          "dd": 0.002
+        },
+        {
+          "ts": "2026-06-18T19:05:13+00:00",
+          "dd": 0.0164
+        },
+        {
+          "ts": "2026-06-19T09:41:43+00:00",
+          "dd": 0.0154
+        },
+        {
+          "ts": "2026-06-19T19:23:46+00:00",
+          "dd": 0.0134
+        },
+        {
+          "ts": "2026-06-20T05:33:21+00:00",
+          "dd": 0.0062
+        },
+        {
+          "ts": "2026-06-20T06:37:35+00:00",
+          "dd": 0.0077
+        },
+        {
+          "ts": "2026-06-20T07:42:31+00:00",
+          "dd": 0.0
+        },
+        {
+          "ts": "2026-06-20T08:53:13+00:00",
+          "dd": 0.004
+        },
+        {
+          "ts": "2026-06-20T09:58:14+00:00",
+          "dd": 0.0001
+        },
+        {
+          "ts": "2026-06-20T19:03:22+00:00",
+          "dd": 0.0005
+        },
+        {
+          "ts": "2026-06-20T19:26:24+00:00",
+          "dd": 0.0007
+        },
+        {
+          "ts": "2026-06-20T19:39:25+00:00",
+          "dd": 0.001
+        },
+        {
+          "ts": "2026-06-20T20:07:44+00:00",
+          "dd": 0.0032
+        },
+        {
+          "ts": "2026-06-20T21:12:06+00:00",
+          "dd": 0.0031
+        },
+        {
+          "ts": "2026-06-20T21:33:52+00:00",
+          "dd": 0.0032
+        },
+        {
+          "ts": "2026-06-20T22:16:17+00:00",
+          "dd": 0.0031
+        },
+        {
+          "ts": "2026-06-20T22:38:26+00:00",
+          "dd": 0.0027
+        },
+        {
+          "ts": "2026-06-20T23:20:23+00:00",
+          "dd": 0.0028
+        },
+        {
+          "ts": "2026-06-20T23:43:37+00:00",
+          "dd": 0.0028
+        },
+        {
+          "ts": "2026-06-21T04:01:46+00:00",
+          "dd": 0.0023
+        },
+        {
+          "ts": "2026-06-21T04:59:32+00:00",
+          "dd": 0.0024
+        },
+        {
+          "ts": "2026-06-21T05:02:34+00:00",
+          "dd": 0.0064
+        },
+        {
+          "ts": "2026-06-21T06:01:34+00:00",
+          "dd": 0.0048
+        },
+        {
+          "ts": "2026-06-21T06:03:29+00:00",
+          "dd": 0.004
+        },
+        {
+          "ts": "2026-06-21T07:03:16+00:00",
+          "dd": 0.0011
+        },
+        {
+          "ts": "2026-06-21T07:04:30+00:00",
+          "dd": 0.001
+        }
+      ]
+    },
+    "caps": {
+      "team": 0.15,
+      "dq": 0.3,
+      "configured": 0.05
+    }
+  },
+  "regime": {
+    "regime_score": 0.205,
+    "fear_greed": 22,
+    "fear_greed_label": "extreme fear",
+    "deploy_cap": 0.442,
+    "stale": false
+  },
+  "rebalances": {
+    "items": [
+      {
+        "ts": "2026-06-21T07:04:30+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 0.547873074713,
+            "pct_7d": -3.493828359534,
+            "pct_30d": -10.013434428953,
+            "volume_24h": 767586542.78,
+            "market_cap": 79452652108.87,
+            "flow_ratio": 0.503278439927324,
+            "unique_traders": 37570.0,
+            "liquidity_usd": 54184321.60967603,
+            "top10_pct": 42.4087,
+            "top100_pct": 56.0529,
+            "net_liquidity_usd": 195567.07491810556,
+            "whale_net_usd": -223925.09
+          },
+          "ETH": {
+            "pct_24h": 0.532829034174,
+            "pct_7d": 3.427949772286,
+            "pct_30d": -18.317118199641,
+            "volume_24h": 8003074834.06,
+            "market_cap": 209118125104.18,
+            "flow_ratio": 0.4986618186555405,
+            "unique_traders": 7789.0,
+            "liquidity_usd": 26012318.017591562,
+            "top10_pct": 52.6196,
+            "top100_pct": 69.5947,
+            "net_liquidity_usd": 1539.3757404523276,
+            "whale_net_usd": -16451.58
+          },
+          "CAKE": {
+            "pct_24h": 0.95586408559,
+            "pct_7d": 0.51245548331,
+            "pct_30d": -3.961918522025,
+            "volume_24h": 20443257.65,
+            "market_cap": 449507010.38,
+            "flow_ratio": 0.5231398068910962,
+            "unique_traders": 1586.0,
+            "liquidity_usd": 11677620.120345155,
+            "top10_pct": 3.9897,
+            "top100_pct": 5.6582,
+            "net_liquidity_usd": 41.367173046792914,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": -0.609213141483,
+            "pct_7d": 0.136338113939,
+            "pct_30d": -18.698429206783,
+            "volume_24h": 156954946.78,
+            "market_cap": 5765360387.38,
+            "flow_ratio": 0.4022733538012054,
+            "unique_traders": 283.0,
+            "liquidity_usd": 1590633.8501645527,
+            "top10_pct": 41.6841,
+            "top100_pct": 58.24,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -1.393728430467,
+            "pct_7d": 18.304719145517,
+            "pct_30d": -16.887712925006,
+            "volume_24h": 141136657.36,
+            "market_cap": 1859550399.44,
+            "flow_ratio": 0.4761961747531947,
+            "unique_traders": 649.0,
+            "liquidity_usd": 475335.9644113935,
+            "top10_pct": 49.1597,
+            "top100_pct": 71.8249,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 4.630662747159,
+            "pct_7d": -6.395135856191,
+            "pct_30d": -34.14705077867,
+            "volume_24h": 358656582.88,
+            "market_cap": 2690159800.37,
+            "flow_ratio": 0.5366442603373218,
+            "unique_traders": 378.0,
+            "liquidity_usd": 306993.50048897974,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.4821,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 0.22858111519,
+            "pct_7d": 0.057456839298,
+            "pct_30d": -26.133658774166,
+            "volume_24h": 54505931.13,
+            "market_cap": 1633178428.58,
+            "flow_ratio": 0.4817589313189665,
+            "unique_traders": 230.0,
+            "liquidity_usd": 508062.3906096191,
+            "top10_pct": 37.2066,
+            "top100_pct": 64.7953,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": -0.93660749077,
+            "pct_7d": -4.71277851893,
+            "pct_30d": -20.610684757191,
+            "volume_24h": 320112748.71,
+            "market_cap": 12891729757.68,
+            "flow_ratio": 0.3362159844234397,
+            "unique_traders": 670.0,
+            "liquidity_usd": 2342637.7838376635,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4112,
+            "net_liquidity_usd": 2.021336100364109,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.46,
+        "nav_after": 12.46,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {
+          "UNI": 0.4423
+        },
+        "weights_after": {
+          "BNB": 0.1257,
+          "UNI": 0.4429
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT.",
+        "x402_dex": {
+          "q": "UNI",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "price_usd": "2.99505429322549983113",
+          "liquidity": 78540338.29900722
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0087,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-21T07:03:16+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 0.490794467865,
+            "pct_7d": -3.469872441631,
+            "pct_30d": -10.04606116145,
+            "volume_24h": 767381500.19,
+            "market_cap": 79472108854.86,
+            "flow_ratio": 0.5030812762573272,
+            "unique_traders": 37545.0,
+            "liquidity_usd": 54203573.16278596,
+            "top10_pct": 42.4099,
+            "top100_pct": 56.0545,
+            "net_liquidity_usd": 182750.78238269617,
+            "whale_net_usd": -209449.47
+          },
+          "ETH": {
+            "pct_24h": 0.509633261189,
+            "pct_7d": 3.461750945779,
+            "pct_30d": -18.321734196776,
+            "volume_24h": 7518800224.84,
+            "market_cap": 209180495894.95,
+            "flow_ratio": 0.49891029328537445,
+            "unique_traders": 7783.0,
+            "liquidity_usd": 26016712.105381135,
+            "top10_pct": 52.6196,
+            "top100_pct": 69.5941,
+            "net_liquidity_usd": 1539.3757404523276,
+            "whale_net_usd": -16451.58
+          },
+          "CAKE": {
+            "pct_24h": 0.912377454945,
+            "pct_7d": 0.419927489531,
+            "pct_30d": -4.108585216887,
+            "volume_24h": 20450152.84,
+            "market_cap": 449656911.07,
+            "flow_ratio": 0.5224120867246853,
+            "unique_traders": 1585.0,
+            "liquidity_usd": 11677700.361209152,
+            "top10_pct": 3.9897,
+            "top100_pct": 5.6582,
+            "net_liquidity_usd": 41.367173046792914,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": -0.630701318085,
+            "pct_7d": 0.18156179221,
+            "pct_30d": -18.811154082077,
+            "volume_24h": 157045933.06,
+            "market_cap": 5767617076.64,
+            "flow_ratio": 0.4022733538012054,
+            "unique_traders": 283.0,
+            "liquidity_usd": 1590633.8501645527,
+            "top10_pct": 41.6841,
+            "top100_pct": 58.24,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -1.619504390862,
+            "pct_7d": 18.228646226597,
+            "pct_30d": -17.105167057644,
+            "volume_24h": 141114205.74,
+            "market_cap": 1858642336.53,
+            "flow_ratio": 0.47520436919353426,
+            "unique_traders": 652.0,
+            "liquidity_usd": 475284.7657753381,
+            "top10_pct": 49.1597,
+            "top100_pct": 71.758,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 4.938941146325,
+            "pct_7d": -6.385830505028,
+            "pct_30d": -34.244639659446,
+            "volume_24h": 361486897.62,
+            "market_cap": 2690986227.15,
+            "flow_ratio": 0.5433967996839191,
+            "unique_traders": 395.0,
+            "liquidity_usd": 306993.50048897974,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.4821,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 0.213424121864,
+            "pct_7d": 0.113513611643,
+            "pct_30d": -26.307908244698,
+            "volume_24h": 54643657.69,
+            "market_cap": 1633949376.67,
+            "flow_ratio": 0.4817589313189665,
+            "unique_traders": 230.0,
+            "liquidity_usd": 508062.3906096191,
+            "top10_pct": 37.2066,
+            "top100_pct": 64.7953,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": -0.918647849871,
+            "pct_7d": -4.720286661459,
+            "pct_30d": -20.743852375482,
+            "volume_24h": 320214079.79,
+            "market_cap": 12895341697.9,
+            "flow_ratio": 0.3362159844234397,
+            "unique_traders": 670.0,
+            "liquidity_usd": 2342637.7838376635,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4112,
+            "net_liquidity_usd": 60.154402249422844,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.46,
+        "nav_after": 12.46,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {
+          "UNI": 0.4421
+        },
+        "weights_after": {
+          "BNB": 0.1257,
+          "UNI": 0.4429
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT.",
+        "x402_dex": {
+          "q": "UNI",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "price_usd": "2.99192057964402571078",
+          "liquidity": 78511668.36356097
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0087,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-21T06:03:29+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.163074913148,
+            "pct_7d": -3.426711781508,
+            "pct_30d": -10.272612390492,
+            "volume_24h": 777193053.15,
+            "market_cap": 79401601937.03,
+            "flow_ratio": 0.5052555004546104,
+            "unique_traders": 37492.0,
+            "liquidity_usd": 54163616.9204979,
+            "top10_pct": 42.4266,
+            "top100_pct": 55.67,
+            "net_liquidity_usd": 129795.57373492299,
+            "whale_net_usd": -47468.76
+          },
+          "ETH": {
+            "pct_24h": 0.403253537459,
+            "pct_7d": 3.09155228452,
+            "pct_30d": -18.636908796545,
+            "volume_24h": 7823259168.58,
+            "market_cap": 208918698873.5,
+            "flow_ratio": 0.4818646416760398,
+            "unique_traders": 7671.0,
+            "liquidity_usd": 26005258.435934536,
+            "top10_pct": 52.6137,
+            "top100_pct": 69.5927,
+            "net_liquidity_usd": 37815.790666706314,
+            "whale_net_usd": -34526.4
+          },
+          "CAKE": {
+            "pct_24h": 1.263110462059,
+            "pct_7d": 1.246339261724,
+            "pct_30d": -4.46922307399,
+            "volume_24h": 20784146.26,
+            "market_cap": 449318861.2742812,
+            "flow_ratio": 0.5223852763404908,
+            "unique_traders": 1572.0,
+            "liquidity_usd": 11678318.687793942,
+            "top10_pct": 3.9897,
+            "top100_pct": 5.6939,
+            "net_liquidity_usd": 371.08078156149475,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": -0.752656817078,
+            "pct_7d": -0.075834559752,
+            "pct_30d": -19.319042469478,
+            "volume_24h": 157086830.73,
+            "market_cap": 5756603824.28,
+            "flow_ratio": 0.37745239172217093,
+            "unique_traders": 296.0,
+            "liquidity_usd": 1587018.2842367413,
+            "top10_pct": 41.6841,
+            "top100_pct": 58.3386,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -2.657031420756,
+            "pct_7d": 17.205002806054,
+            "pct_30d": -18.094172673242,
+            "volume_24h": 138429235.93,
+            "market_cap": 1846305325.260126,
+            "flow_ratio": 0.461344704152318,
+            "unique_traders": 660.0,
+            "liquidity_usd": 473632.9421076958,
+            "top10_pct": 49.1873,
+            "top100_pct": 71.8627,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 3.174708397582,
+            "pct_7d": -6.953104959879,
+            "pct_30d": -34.770509156067,
+            "volume_24h": 394042860.62,
+            "market_cap": 2682428223.692914,
+            "flow_ratio": 0.5190787124611804,
+            "unique_traders": 422.0,
+            "liquidity_usd": 306282.8197418193,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.6002,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": -0.208510809297,
+            "pct_7d": -0.588986040077,
+            "pct_30d": -27.121845200883,
+            "volume_24h": 54938946.49,
+            "market_cap": 1629119216.6739483,
+            "flow_ratio": 0.4583389387398092,
+            "unique_traders": 236.0,
+            "liquidity_usd": 507714.93410575,
+            "top10_pct": 37.2057,
+            "top100_pct": 65.4948,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": -0.890133351886,
+            "pct_7d": -5.119027821915,
+            "pct_30d": -21.210272673872,
+            "volume_24h": 325263484.06,
+            "market_cap": 14171144815.18,
+            "flow_ratio": 0.32251504970822736,
+            "unique_traders": 684.0,
+            "liquidity_usd": 2339375.0356089473,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4454,
+            "net_liquidity_usd": 164.86165701464873,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.42,
+        "nav_after": 12.42,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {
+          "UNI": 0.4423
+        },
+        "weights_after": {
+          "BNB": 0.1259,
+          "UNI": 0.4413
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT.",
+        "x402_dex": {
+          "q": "UNI",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "price_usd": "2.97193181336241074968",
+          "liquidity": 78233409.51979578
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0057,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-21T06:01:34+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.190715690425,
+            "pct_7d": -3.385092212124,
+            "pct_30d": -10.248732977809,
+            "volume_24h": 777204454.36,
+            "market_cap": 79405860918.7484,
+            "flow_ratio": 0.5055945733507684,
+            "unique_traders": 37430.0,
+            "liquidity_usd": 54149423.344462134,
+            "top10_pct": 42.4268,
+            "top100_pct": 54.9458,
+            "net_liquidity_usd": 98574.14831282562,
+            "whale_net_usd": -47468.76
+          },
+          "ETH": {
+            "pct_24h": 0.377245171469,
+            "pct_7d": 3.1819633116,
+            "pct_30d": -18.613620852423,
+            "volume_24h": 7822193343.93,
+            "market_cap": 208890466102.4278,
+            "flow_ratio": 0.479875818406924,
+            "unique_traders": 7663.0,
+            "liquidity_usd": 26002843.43483485,
+            "top10_pct": 52.6137,
+            "top100_pct": 69.338,
+            "net_liquidity_usd": 42280.77751596378,
+            "whale_net_usd": -34526.4
+          },
+          "CAKE": {
+            "pct_24h": 1.268143489015,
+            "pct_7d": 1.321603305093,
+            "pct_30d": -4.476512533909,
+            "volume_24h": 20787174.72,
+            "market_cap": 449319326.57261705,
+            "flow_ratio": 0.5218446362966981,
+            "unique_traders": 1573.0,
+            "liquidity_usd": 11678017.468027962,
+            "top10_pct": 3.9897,
+            "top100_pct": 5.6939,
+            "net_liquidity_usd": 362.84962941987186,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": -0.746345468665,
+            "pct_7d": -0.053245723233,
+            "pct_30d": -19.311074463138,
+            "volume_24h": 157103970.38,
+            "market_cap": 5756759467.57,
+            "flow_ratio": 0.37745239172217093,
+            "unique_traders": 296.0,
+            "liquidity_usd": 1587018.2842367413,
+            "top10_pct": 41.6841,
+            "top100_pct": 58.3415,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -2.624152835245,
+            "pct_7d": 17.244790461562,
+            "pct_30d": -18.080931279631,
+            "volume_24h": 138286132.3,
+            "market_cap": 1846665415.3,
+            "flow_ratio": 0.461344704152318,
+            "unique_traders": 660.0,
+            "liquidity_usd": 473632.9421076958,
+            "top10_pct": 49.1873,
+            "top100_pct": 71.8627,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 3.182419822784,
+            "pct_7d": -6.964429276973,
+            "pct_30d": -34.782365357645,
+            "volume_24h": 393890271.14,
+            "market_cap": 2681772589.8555517,
+            "flow_ratio": 0.5190787124611804,
+            "unique_traders": 422.0,
+            "liquidity_usd": 306282.8197418193,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.6002,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": -0.211326314909,
+            "pct_7d": -0.566014692154,
+            "pct_30d": -27.093580887184,
+            "volume_24h": 54941821.18,
+            "market_cap": 1629198369.5630205,
+            "flow_ratio": 0.4583389387398092,
+            "unique_traders": 236.0,
+            "liquidity_usd": 507714.93410575,
+            "top10_pct": 37.2057,
+            "top100_pct": 65.4948,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": -0.889886089278,
+            "pct_7d": -5.106260922082,
+            "pct_30d": -21.196782686964,
+            "volume_24h": 325310419.46,
+            "market_cap": 14171395530.005882,
+            "flow_ratio": 0.3222767226398132,
+            "unique_traders": 684.0,
+            "liquidity_usd": 2339286.7326055574,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4454,
+            "net_liquidity_usd": 164.86165701464873,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.41,
+        "nav_after": 12.41,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {
+          "UNI": 0.4423
+        },
+        "weights_after": {
+          "BNB": 0.126,
+          "UNI": 0.4409
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT.",
+        "x402_dex": {
+          "q": "UNI",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "price_usd": "2.97193181336241074968",
+          "liquidity": 78233137.07120803
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0049,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-21T05:02:34+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.411196996942,
+            "pct_7d": -3.261364114161,
+            "pct_30d": -10.568184396297,
+            "volume_24h": 805998655.91,
+            "market_cap": 79350239970.667,
+            "flow_ratio": 0.5071380987019869,
+            "unique_traders": 37264.0,
+            "liquidity_usd": 54081484.85848197,
+            "top10_pct": 42.4318,
+            "top100_pct": 56.5018,
+            "net_liquidity_usd": 144653.55676701257,
+            "whale_net_usd": -98601.56
+          },
+          "ETH": {
+            "pct_24h": 1.197664366219,
+            "pct_7d": 3.191635675485,
+            "pct_30d": -18.758984425319,
+            "volume_24h": 8004067953.0,
+            "market_cap": 208959262284.09787,
+            "flow_ratio": 0.4959087824741444,
+            "unique_traders": 7682.0,
+            "liquidity_usd": 25998727.923670553,
+            "top10_pct": 52.6124,
+            "top100_pct": 69.5934,
+            "net_liquidity_usd": 228950.54956408165,
+            "whale_net_usd": null
+          },
+          "CAKE": {
+            "pct_24h": 2.373374392177,
+            "pct_7d": 4.658844643963,
+            "pct_30d": -3.69025569007,
+            "volume_24h": 20096764.41,
+            "market_cap": 454839478.2041645,
+            "flow_ratio": 0.5499841405800225,
+            "unique_traders": 1557.0,
+            "liquidity_usd": 11800054.733686615,
+            "top10_pct": 3.9898,
+            "top100_pct": 5.6915,
+            "net_liquidity_usd": 10.948993904587828,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": 0.162853075873,
+            "pct_7d": 0.250755859556,
+            "pct_30d": -19.048782691513,
+            "volume_24h": 160728306.81,
+            "market_cap": 5769877687.84,
+            "flow_ratio": 0.4358616592792525,
+            "unique_traders": 302.0,
+            "liquidity_usd": 1592708.374134121,
+            "top10_pct": 41.6841,
+            "top100_pct": 57.3177,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -2.488880979168,
+            "pct_7d": 16.694688252868,
+            "pct_30d": -18.355012407319,
+            "volume_24h": 137147664.1,
+            "market_cap": 1836857463.9608967,
+            "flow_ratio": 0.45967482649305363,
+            "unique_traders": 652.0,
+            "liquidity_usd": 472580.6199217081,
+            "top10_pct": 49.1873,
+            "top100_pct": 71.9851,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 4.352249585217,
+            "pct_7d": -6.571359156693,
+            "pct_30d": -34.42408425434,
+            "volume_24h": 401272266.06,
+            "market_cap": 2691424341.911827,
+            "flow_ratio": 0.5240626616376071,
+            "unique_traders": 430.0,
+            "liquidity_usd": 306717.5689094877,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.5111,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 0.447206765782,
+            "pct_7d": -0.418564073523,
+            "pct_30d": -26.775433898814,
+            "volume_24h": 56273930.1,
+            "market_cap": 1631137996.842239,
+            "flow_ratio": 0.4815739573912408,
+            "unique_traders": 247.0,
+            "liquidity_usd": 509185.83448371687,
+            "top10_pct": 37.2058,
+            "top100_pct": 65.493,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": -0.254504621222,
+            "pct_7d": -4.971301875281,
+            "pct_30d": -21.222055255512,
+            "volume_24h": 334548334.74,
+            "market_cap": 12878769001.99825,
+            "flow_ratio": 0.36529279927620295,
+            "unique_traders": 688.0,
+            "liquidity_usd": 2342301.20908908,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4477,
+            "net_liquidity_usd": 367.03160177107156,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.39,
+        "nav_after": 12.39,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {
+          "UNI": 0.4423
+        },
+        "weights_after": {
+          "BNB": 0.1262,
+          "UNI": 0.44
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT.",
+        "x402_dex": {
+          "q": "UNI",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "price_usd": "2.95644926157987062222",
+          "liquidity": 78080484.72818132
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0032,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-21T04:59:32+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.448557044632,
+            "pct_7d": -3.215966728413,
+            "pct_30d": -10.56388118746,
+            "volume_24h": 808675852.33,
+            "market_cap": 79370051655.93,
+            "flow_ratio": 0.5072188310276995,
+            "unique_traders": 38408.0,
+            "liquidity_usd": 54083068.60128511,
+            "top10_pct": 42.3802,
+            "top100_pct": 54.0993,
+            "net_liquidity_usd": 259468.4897301513,
+            "whale_net_usd": -87964.31
+          },
+          "ETH": {
+            "pct_24h": 1.084482557727,
+            "pct_7d": 3.125774357967,
+            "pct_30d": -18.85378046963,
+            "volume_24h": 8031936855.52,
+            "market_cap": 208784236736.69617,
+            "flow_ratio": 0.49427168548595524,
+            "unique_traders": 7673.0,
+            "liquidity_usd": 26012003.81808057,
+            "top10_pct": 52.6116,
+            "top100_pct": 69.7187,
+            "net_liquidity_usd": 50033.97120259383,
+            "whale_net_usd": null
+          },
+          "CAKE": {
+            "pct_24h": 2.332543315599,
+            "pct_7d": 4.551189281058,
+            "pct_30d": -3.739681358959,
+            "volume_24h": 20052808.41,
+            "market_cap": 454466067.43329644,
+            "flow_ratio": 0.5487186934350402,
+            "unique_traders": 1559.0,
+            "liquidity_usd": 11781176.333391553,
+            "top10_pct": 3.9898,
+            "top100_pct": 5.6916,
+            "net_liquidity_usd": 2051.6869512258827,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": 0.316319793366,
+            "pct_7d": 0.345646572515,
+            "pct_30d": -18.965678449194,
+            "volume_24h": 161698850.47,
+            "market_cap": 5774069808.24,
+            "flow_ratio": 0.4358872913190231,
+            "unique_traders": 302.0,
+            "liquidity_usd": 1592787.953271691,
+            "top10_pct": 41.6841,
+            "top100_pct": 57.3177,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -2.478934836198,
+            "pct_7d": 16.666891621783,
+            "pct_30d": -18.346181378489,
+            "volume_24h": 137190840.67,
+            "market_cap": 1836812432.28,
+            "flow_ratio": 0.45994619160985123,
+            "unique_traders": 651.0,
+            "liquidity_usd": 472538.0699134684,
+            "top10_pct": 49.1873,
+            "top100_pct": 71.9847,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 4.537286976214,
+            "pct_7d": -6.46384291352,
+            "pct_30d": -34.345333638003,
+            "volume_24h": 401571860.02,
+            "market_cap": 2693964255.35,
+            "flow_ratio": 0.5240626616376071,
+            "unique_traders": 430.0,
+            "liquidity_usd": 306717.5689094877,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.511,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 0.559598077665,
+            "pct_7d": -0.328780926608,
+            "pct_30d": -26.720372811938,
+            "volume_24h": 56346797.33,
+            "market_cap": 1632254705.05601,
+            "flow_ratio": 0.4815739573912408,
+            "unique_traders": 247.0,
+            "liquidity_usd": 509185.83448371687,
+            "top10_pct": 37.2058,
+            "top100_pct": 65.493,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": -0.151361071761,
+            "pct_7d": -4.918891705826,
+            "pct_30d": -21.19285424075,
+            "volume_24h": 335705343.05,
+            "market_cap": 12885247416.453989,
+            "flow_ratio": 0.3660136102372085,
+            "unique_traders": 686.0,
+            "liquidity_usd": 2342951.577167834,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4477,
+            "net_liquidity_usd": 367.03160177107156,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.44,
+        "nav_after": 12.39,
+        "n_swaps": 1,
+        "n_swaps_total": 1,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0.0,
+        "tx": [
+          {
+            "hash": "0x97cb093d0e6268d6426640c5a99be742d0264ac5e607a3ba164a689c4161c1bd",
+            "url": "https://bscscan.com/tx/0x97cb093d0e6268d6426640c5a99be742d0264ac5e607a3ba164a689c4161c1bd"
+          }
+        ],
+        "target": {
+          "UNI": 0.4423
+        },
+        "weights_after": {
+          "BNB": 0.1262,
+          "UNI": 0.44
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT.",
+        "x402_dex": {
+          "q": "UNI",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "price_usd": "2.96759705661728608152",
+          "liquidity": 78081018.75072229
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0073,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-21T04:01:46+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.641858307315,
+            "pct_7d": -3.304385561714,
+            "pct_30d": -10.541170944547,
+            "volume_24h": 813388734.98,
+            "market_cap": 79476272962.05,
+            "flow_ratio": 0.5087969784550066,
+            "unique_traders": 37060.0,
+            "liquidity_usd": 54132594.15458514,
+            "top10_pct": 42.911,
+            "top100_pct": 55.954,
+            "net_liquidity_usd": 195602.7561188431,
+            "whale_net_usd": -11246.79
+          },
+          "ETH": {
+            "pct_24h": 1.742323095913,
+            "pct_7d": 3.26473624949,
+            "pct_30d": -18.758666943995,
+            "volume_24h": 8068489228.01,
+            "market_cap": 209523336551.56,
+            "flow_ratio": 0.5086143038268114,
+            "unique_traders": 7564.0,
+            "liquidity_usd": 25925092.286726788,
+            "top10_pct": 52.6084,
+            "top100_pct": 69.5853,
+            "net_liquidity_usd": 44917.76497341932,
+            "whale_net_usd": null
+          },
+          "CAKE": {
+            "pct_24h": 2.864736308749,
+            "pct_7d": 4.139654284153,
+            "pct_30d": -3.356895893079,
+            "volume_24h": 18411994.6,
+            "market_cap": 455801676.34,
+            "flow_ratio": 0.5673961492465662,
+            "unique_traders": 1541.0,
+            "liquidity_usd": 11865989.403378034,
+            "top10_pct": 3.9897,
+            "top100_pct": 5.6974,
+            "net_liquidity_usd": 43292.27055906916,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": 0.980622564792,
+            "pct_7d": 0.009030781074,
+            "pct_30d": -18.916875614011,
+            "volume_24h": 163569409.43,
+            "market_cap": 5788865505.44,
+            "flow_ratio": 0.45448771714061387,
+            "unique_traders": 307.0,
+            "liquidity_usd": 1592999.854904544,
+            "top10_pct": 41.6841,
+            "top100_pct": 58.3428,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -1.659319232624,
+            "pct_7d": 16.174432890507,
+            "pct_30d": -18.455712711073,
+            "volume_24h": 135262753.0,
+            "market_cap": 1843297596.12,
+            "flow_ratio": 0.4623057741490794,
+            "unique_traders": 647.0,
+            "liquidity_usd": 473168.66264356725,
+            "top10_pct": 49.1381,
+            "top100_pct": 73.2703,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 5.195984639693,
+            "pct_7d": -6.938775951914,
+            "pct_30d": -34.14934695568,
+            "volume_24h": 403538732.4,
+            "market_cap": 2699775752.43,
+            "flow_ratio": 0.5267409668636566,
+            "unique_traders": 431.0,
+            "liquidity_usd": 306846.1787027256,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.4797,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 1.567444397089,
+            "pct_7d": -0.745616377608,
+            "pct_30d": -26.37197786048,
+            "volume_24h": 56347844.98,
+            "market_cap": 1639707833.9768846,
+            "flow_ratio": null,
+            "unique_traders": null,
+            "liquidity_usd": null,
+            "top10_pct": null,
+            "top100_pct": null,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": 0.497907915485,
+            "pct_7d": -5.069664488815,
+            "pct_30d": -21.018903845755,
+            "volume_24h": 338747548.78,
+            "market_cap": 14248661790.19,
+            "flow_ratio": 0.3805076885416143,
+            "unique_traders": 676.0,
+            "liquidity_usd": 2348166.9710809505,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4178,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.44,
+        "nav_after": 12.44,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {},
+        "weights_after": {
+          "BNB": 0.1258
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting.",
+        "x402_dex": {
+          "q": "BNB",
+          "name": "Wrapped BNB",
+          "symbol": "WBNB",
+          "price_usd": "589.82132071909095654705",
+          "liquidity": 54218428.298450746
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0074,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-20T23:43:37+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.281902457325,
+            "pct_7d": -3.593583918311,
+            "pct_30d": -10.649416183518,
+            "volume_24h": 835471438.52,
+            "market_cap": 79203150967.23,
+            "flow_ratio": 0.5069776487157366,
+            "unique_traders": 37248.0,
+            "liquidity_usd": 54157259.323595054,
+            "top10_pct": 42.9002,
+            "top100_pct": 58.3843,
+            "net_liquidity_usd": 90105.17557483783,
+            "whale_net_usd": -100582.13
+          },
+          "ETH": {
+            "pct_24h": 1.955318361817,
+            "pct_7d": 3.547638788528,
+            "pct_30d": -18.490552133808,
+            "volume_24h": 7749450081.11,
+            "market_cap": 209938022231.82,
+            "flow_ratio": 0.5230752382081093,
+            "unique_traders": 6623.0,
+            "liquidity_usd": 25961362.332280815,
+            "top10_pct": 52.5805,
+            "top100_pct": 69.6522,
+            "net_liquidity_usd": 16133.442396890898,
+            "whale_net_usd": null
+          },
+          "CAKE": {
+            "pct_24h": 0.713352189994,
+            "pct_7d": 2.147455939864,
+            "pct_30d": -5.250238791302,
+            "volume_24h": 17419599.96,
+            "market_cap": 446581740.72792596,
+            "flow_ratio": 0.502931718332783,
+            "unique_traders": 1318.0,
+            "liquidity_usd": 11614356.686717702,
+            "top10_pct": 3.99,
+            "top100_pct": 5.702,
+            "net_liquidity_usd": 2.1121673768751035,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": 0.763669275768,
+            "pct_7d": 0.030908937154,
+            "pct_30d": -17.969339770809,
+            "volume_24h": 177229526.59,
+            "market_cap": 5805564794.18,
+            "flow_ratio": 0.461449990667798,
+            "unique_traders": 312.0,
+            "liquidity_usd": 1591864.634799912,
+            "top10_pct": 41.731,
+            "top100_pct": 58.3661,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -1.970997562361,
+            "pct_7d": 17.786950852362,
+            "pct_30d": -16.461962113164,
+            "volume_24h": 132919652.2,
+            "market_cap": 1873628761.63,
+            "flow_ratio": 0.4671791264482738,
+            "unique_traders": 619.0,
+            "liquidity_usd": 475533.5411011262,
+            "top10_pct": 49.6189,
+            "top100_pct": 71.8301,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 6.01961028333,
+            "pct_7d": -7.013565781774,
+            "pct_30d": -33.880257759527,
+            "volume_24h": 416290791.52,
+            "market_cap": 2697610447.427573,
+            "flow_ratio": 0.5343532270173513,
+            "unique_traders": 446.0,
+            "liquidity_usd": 306040.0384106009,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.5532,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 1.4385256603,
+            "pct_7d": -1.003679042771,
+            "pct_30d": -24.751033347116,
+            "volume_24h": 58039506.82,
+            "market_cap": 1640843716.243361,
+            "flow_ratio": 0.5135604256438944,
+            "unique_traders": 230.0,
+            "liquidity_usd": 508662.57735901844,
+            "top10_pct": 37.1844,
+            "top100_pct": 64.8808,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": 0.50276816962,
+            "pct_7d": -4.82391873635,
+            "pct_30d": -20.624688771497,
+            "volume_24h": 360035028.13,
+            "market_cap": 12951526839.55,
+            "flow_ratio": 0.4410037403821293,
+            "unique_traders": 642.0,
+            "liquidity_usd": 2351697.1855126335,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.448,
+            "net_liquidity_usd": 11.722792171770312,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.44,
+        "nav_after": 12.44,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {},
+        "weights_after": {
+          "BNB": 0.1254
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting.",
+        "x402_dex": {
+          "q": "BNB",
+          "name": "Wrapped BNB",
+          "symbol": "WBNB",
+          "price_usd": "587.67272224608612737938",
+          "liquidity": 54159034.29723752
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0069,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-20T23:20:23+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.307275880872,
+            "pct_7d": -3.564588758566,
+            "pct_30d": -10.521497564818,
+            "volume_24h": 835935445.4,
+            "market_cap": 79177799672.58,
+            "flow_ratio": 0.507092602163115,
+            "unique_traders": 36896.0,
+            "liquidity_usd": 54154345.87738126,
+            "top10_pct": 42.4455,
+            "top100_pct": 56.9244,
+            "net_liquidity_usd": 149437.73668323315,
+            "whale_net_usd": -240172.78
+          },
+          "ETH": {
+            "pct_24h": 2.107406479145,
+            "pct_7d": 3.390163890977,
+            "pct_30d": -18.263524127588,
+            "volume_24h": 7668173769.06,
+            "market_cap": 210042128623.26904,
+            "flow_ratio": 0.5264676805866071,
+            "unique_traders": 6537.0,
+            "liquidity_usd": 25967940.72530628,
+            "top10_pct": 52.5394,
+            "top100_pct": 69.6503,
+            "net_liquidity_usd": 42397.16867833678,
+            "whale_net_usd": 89763.84
+          },
+          "CAKE": {
+            "pct_24h": 0.679583519854,
+            "pct_7d": 2.121600325959,
+            "pct_30d": -4.982132479304,
+            "volume_24h": 17330141.66,
+            "market_cap": 446425824.64816535,
+            "flow_ratio": 0.5030523059165296,
+            "unique_traders": 1306.0,
+            "liquidity_usd": 11622239.63017733,
+            "top10_pct": 3.9668,
+            "top100_pct": 5.5017,
+            "net_liquidity_usd": 12.51338633196971,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": 1.057886079019,
+            "pct_7d": 0.11715077239,
+            "pct_30d": -17.696885927275,
+            "volume_24h": 177240096.37,
+            "market_cap": 5810201684.5,
+            "flow_ratio": 0.4688511362468984,
+            "unique_traders": 313.0,
+            "liquidity_usd": 1594257.3441044244,
+            "top10_pct": 41.731,
+            "top100_pct": 58.1454,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -1.543578186108,
+            "pct_7d": 17.854832639371,
+            "pct_30d": -16.111327709083,
+            "volume_24h": 133049013.8,
+            "market_cap": 1874555618.24,
+            "flow_ratio": 0.4705716703431285,
+            "unique_traders": 619.0,
+            "liquidity_usd": 475584.5598570943,
+            "top10_pct": 49.6648,
+            "top100_pct": 71.8378,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 5.957181499715,
+            "pct_7d": -7.28773122619,
+            "pct_30d": -33.90605103508,
+            "volume_24h": 416883806.49,
+            "market_cap": 2692589375.8,
+            "flow_ratio": 0.5340181134793682,
+            "unique_traders": 448.0,
+            "liquidity_usd": 305539.95878085576,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.6409,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 1.911051042096,
+            "pct_7d": -0.96327158797,
+            "pct_30d": -24.533029088626,
+            "volume_24h": 57801213.71,
+            "market_cap": 1643653222.1508207,
+            "flow_ratio": 0.5160761955321291,
+            "unique_traders": 230.0,
+            "liquidity_usd": 508608.42865309416,
+            "top10_pct": 37.1747,
+            "top100_pct": 64.7959,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": 0.884796363359,
+            "pct_7d": -4.64011943762,
+            "pct_30d": -20.328174414203,
+            "volume_24h": 362132077.96,
+            "market_cap": 14289415491.080307,
+            "flow_ratio": 0.44878278495655005,
+            "unique_traders": 647.0,
+            "liquidity_usd": 2351770.606073337,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4478,
+            "net_liquidity_usd": 14.129258846559368,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.44,
+        "nav_after": 12.44,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {},
+        "weights_after": {
+          "BNB": 0.1254
+        },
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting.",
+        "x402_dex": {
+          "q": "BNB",
+          "name": "Wrapped BNB",
+          "symbol": "WBNB",
+          "price_usd": "587.41406224305967024104",
+          "liquidity": 54151870.0105734
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.0069,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      },
+      {
+        "ts": "2026-06-20T22:38:26+00:00",
+        "event": "REBALANCE",
+        "mode": "live",
+        "strategy": "mean_reversion",
+        "candle_source": "cmc_4h",
+        "quote_source": null,
+        "onchain_signals": {
+          "BNB": {
+            "pct_24h": 1.199841983654,
+            "pct_7d": -3.539303608759,
+            "pct_30d": -10.525230825233,
+            "volume_24h": 836353482.37,
+            "market_cap": 79178582042.52922,
+            "flow_ratio": 0.5065902684259839,
+            "unique_traders": 36970.0,
+            "liquidity_usd": 54151358.432825275,
+            "top10_pct": 42.4468,
+            "top100_pct": 57.1835,
+            "net_liquidity_usd": 156861.8283882274,
+            "whale_net_usd": -210136.96
+          },
+          "ETH": {
+            "pct_24h": 2.059135631197,
+            "pct_7d": 3.399490585034,
+            "pct_30d": -18.319704328297,
+            "volume_24h": 7462097910.83,
+            "market_cap": 209993871579.78165,
+            "flow_ratio": 0.5271796596015625,
+            "unique_traders": 6428.0,
+            "liquidity_usd": 25952324.781424448,
+            "top10_pct": 52.5377,
+            "top100_pct": 69.6989,
+            "net_liquidity_usd": 52147.76641328147,
+            "whale_net_usd": 61500.12
+          },
+          "CAKE": {
+            "pct_24h": 0.435345585772,
+            "pct_7d": 2.092753825672,
+            "pct_30d": -5.133191395196,
+            "volume_24h": 17163177.89,
+            "market_cap": 446277650.8884682,
+            "flow_ratio": 0.5005302697437013,
+            "unique_traders": 1293.0,
+            "liquidity_usd": 11615204.866698442,
+            "top10_pct": 3.99,
+            "top100_pct": 5.6986,
+            "net_liquidity_usd": 49.340057407177305,
+            "whale_net_usd": null
+          },
+          "LINK": {
+            "pct_24h": 1.038981062555,
+            "pct_7d": -0.066053439857,
+            "pct_30d": -18.038582438441,
+            "volume_24h": 177596914.99,
+            "market_cap": 5811121275.042305,
+            "flow_ratio": 0.4756964069954584,
+            "unique_traders": 313.0,
+            "liquidity_usd": 1590346.6093272083,
+            "top10_pct": 41.725,
+            "top100_pct": 58.367,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "UNI": {
+            "pct_24h": -1.157219739906,
+            "pct_7d": 18.265145355087,
+            "pct_30d": -16.004632204201,
+            "volume_24h": 133332768.12,
+            "market_cap": 1880259650.6,
+            "flow_ratio": 0.4771959759511892,
+            "unique_traders": 630.0,
+            "liquidity_usd": 476319.28916087875,
+            "top10_pct": 49.6648,
+            "top100_pct": 71.9031,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "AVAX": {
+            "pct_24h": 4.833200904729,
+            "pct_7d": -7.611953900983,
+            "pct_30d": -34.10270534551,
+            "volume_24h": 422758268.48,
+            "market_cap": 2690831721.5256033,
+            "flow_ratio": 0.5253267018204215,
+            "unique_traders": 456.0,
+            "liquidity_usd": 305801.58167052834,
+            "top10_pct": 30.8637,
+            "top100_pct": 57.6413,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOT": {
+            "pct_24h": 1.807332155761,
+            "pct_7d": -1.099910007721,
+            "pct_30d": -24.988917551488,
+            "volume_24h": 57205271.93,
+            "market_cap": 1641876213.4885223,
+            "flow_ratio": 0.5125259454177284,
+            "unique_traders": 225.0,
+            "liquidity_usd": 507590.1608073733,
+            "top10_pct": 37.2063,
+            "top100_pct": 65.4974,
+            "net_liquidity_usd": null,
+            "whale_net_usd": null
+          },
+          "DOGE": {
+            "pct_24h": 0.962328818167,
+            "pct_7d": -4.647710402147,
+            "pct_30d": -20.380064466268,
+            "volume_24h": 360619497.53,
+            "market_cap": 14293558648.808203,
+            "flow_ratio": 0.43894761017648454,
+            "unique_traders": 646.0,
+            "liquidity_usd": 2352470.974613612,
+            "top10_pct": 55.8136,
+            "top100_pct": 80.4489,
+            "net_liquidity_usd": 143.62568082909053,
+            "whale_net_usd": null
+          }
+        },
+        "nav_before": 12.44,
+        "nav_after": 12.44,
+        "n_swaps": 0,
+        "n_swaps_total": 0,
+        "n_failed": 0,
+        "failed_swaps": [],
+        "fees_usd": 0,
+        "tx": [],
+        "target": {},
+        "weights_after": {
+          "BNB": 0.1254
+        },
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting.",
+        "x402_dex": {
+          "q": "BNB",
+          "name": "Wrapped BNB",
+          "symbol": "WBNB",
+          "price_usd": "587.09609087366448132890",
+          "liquidity": 54059642.25277838
+        },
+        "active_tokens": [
+          "BNB",
+          "ETH",
+          "CAKE",
+          "LINK",
+          "UNI",
+          "AVAX",
+          "DOT",
+          "DOGE"
+        ],
+        "profit_lock": {
+          "enabled": true,
+          "armed": false,
+          "locked": false,
+          "campaign_start_nav": 12.35,
+          "cum_ret": 0.007,
+          "peak_since_trigger": null,
+          "lock_floor": null
+        }
+      }
+    ]
+  },
+  "rationale": {
+    "items": [
+      {
+        "ts": "2026-06-21T07:04:30+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT."
+      },
+      {
+        "ts": "2026-06-21T07:03:16+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT."
+      },
+      {
+        "ts": "2026-06-21T06:03:29+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT."
+      },
+      {
+        "ts": "2026-06-21T06:01:34+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT."
+      },
+      {
+        "ts": "2026-06-21T05:02:34+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT."
+      },
+      {
+        "ts": "2026-06-21T04:59:32+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. I'm deploying 44% of book \u2014 44% UNI (inverse-vol weighted) \u2014 and keeping 56% in USDT."
+      },
+      {
+        "ts": "2026-06-21T04:01:46+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T23:43:37+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T23:20:23+00:00",
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T22:38:26+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T22:16:17+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T21:33:52+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T21:12:06+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.19 (risk-off), so I'm capping deployment at 43% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T20:07:44+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.20 (risk-off), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T19:39:25+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.19 (risk-off), so I'm capping deployment at 43% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T19:26:24+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.19 (risk-off), so I'm capping deployment at 43% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T19:03:22+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.19 (risk-off), so I'm capping deployment at 43% of book. CMC macro: BTC dominance falling (59%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting."
+      },
+      {
+        "ts": "2026-06-20T09:58:14+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.28 (cautious), so I'm capping deployment at 48% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting. Profit lock armed at +2.2%; trailing floor $8.01 protects the campaign gain."
+      },
+      {
+        "ts": "2026-06-20T08:53:13+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.28 (cautious), so I'm capping deployment at 48% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting. Profit lock armed at +1.8%; trailing floor $8.01 protects the campaign gain."
+      },
+      {
+        "ts": "2026-06-20T07:42:31+00:00",
+        "rationale": "CMC Fear & Greed is 21 (extreme fear); my risk-on score is 0.28 (cautious), so I'm capping deployment at 48% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contracting; sentiment cooling vs its 7d avg. Nothing is in an uptrend, so I'm holding 100% USDT and waiting. Profit lock armed at +2.2%; trailing floor $8.01 protects the campaign gain."
+      }
+    ]
+  },
+  "token_rotation": {
+    "tokens": [
+      {
+        "token": "BNB",
+        "touched": true,
+        "source": "held",
+        "count": 22,
+        "last_ts": "2026-06-21T07:04:30+00:00"
+      },
+      {
+        "token": "ETH",
+        "touched": true,
+        "source": "held",
+        "count": 12,
+        "last_ts": "2026-06-20T19:26:24+00:00"
+      },
+      {
+        "token": "CAKE",
+        "touched": true,
+        "source": "held",
+        "count": 4,
+        "last_ts": "2026-06-18T19:05:13+00:00"
+      },
+      {
+        "token": "LINK",
+        "touched": true,
+        "source": "held",
+        "count": 4,
+        "last_ts": "2026-06-19T09:41:43+00:00"
+      },
+      {
+        "token": "UNI",
+        "touched": true,
+        "source": "held",
+        "count": 6,
+        "last_ts": "2026-06-21T07:04:30+00:00"
+      },
+      {
+        "token": "AVAX",
+        "touched": true,
+        "source": "held",
+        "count": 8,
+        "last_ts": "2026-06-20T19:26:24+00:00"
+      },
+      {
+        "token": "DOT",
+        "touched": true,
+        "source": "held",
+        "count": 9,
+        "last_ts": "2026-06-20T19:26:24+00:00"
+      },
+      {
+        "token": "DOGE",
+        "touched": true,
+        "source": "held",
+        "count": 2,
+        "last_ts": "2026-06-19T09:41:43+00:00"
+      }
+    ],
+    "touched_count": 8,
+    "total": 8,
+    "held": [
+      "AVAX",
+      "BNB",
+      "CAKE",
+      "DOGE",
+      "DOT",
+      "ETH",
+      "LINK",
+      "UNI"
+    ],
+    "nudged": []
+  },
+  "pillars": {
+    "cmc": {
+      "x402_enabled": true,
+      "pay_wallet": "0xEb7bF36aab4912c955474206EF0b835170389655",
+      "base_usdc_balance": 0.414218,
+      "receipts": {
+        "total": 49,
+        "settled": 49,
+        "spent_usdc": 0.49,
+        "last_ts": "2026-06-21T07:04:30Z",
+        "last_status": "settled"
+      },
+      "last_dex": {
+        "q": "UNI",
+        "name": "Uniswap",
+        "symbol": "UNI",
+        "price_usd": "2.99505429322549983113",
+        "liquidity": 78540338.29900722
+      }
+    },
+    "twak": {
+      "mode": "live",
+      "gasless": false,
+      "gasless_flag": "--gasless",
+      "cumulative_swaps": 15,
+      "trade_floor": 7
+    },
+    "nodereal": {
+      "api_key_set": true,
+      "network": "bsc",
+      "sdk_installed": true,
+      "use_paymaster": false,
+      "reachable": false,
+      "chain_id": null,
+      "chain_ok": null,
+      "sponsorable": null,
+      "wallet": "0xEb7bF36aab4912c955474206EF0b835170389655",
+      "nonce": null,
+      "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+      "note": null,
+      "agent_id": 133085,
+      "heartbeat_enabled": true,
+      "identity_wallet_bnb": 0.000253599,
+      "last_heartbeat_ok": true,
+      "last_heartbeat_tx": "0xccc8a656be966d35af547d1ea6ac5c9c2a48b61b5f2c1a6395e70332f838777d",
+      "last_heartbeat_ts": "2026-06-21T07:04:30+00:00",
+      "last_heartbeat_error": null
+    },
+    "commerce": {
+      "enabled": true,
+      "network": "bsc-mainnet",
+      "jobs_created": 2,
+      "jobs_funded": 2,
+      "jobs_served": 2,
+      "jobs_settled": 0,
+      "jobs_pending_settle": 2,
+      "last_settle_status": "deferred",
+      "revenue_u": 0.2,
+      "last_ts": "2026-06-18T04:49:38Z",
+      "last_event": "SETTLE_DEFERRED",
+      "last_deliverable_hash": "0xf0399947cd6c34f3e3bae81fcf02a803da06275c10e0c30d364cd17ab4613c28",
+      "last_deliverable_url": "ipfs://Qmd6hqiF4QRnLEnw282SmACc5RYwbSBBDn4xdHzZojFRoY",
+      "last_tx": "cc13c3e68ae9044c7cbe5b5c2fd79218d85e36e142243227635fa4d51accd98c",
+      "service": {
+        "name": "Market Regime Report",
+        "report_schema": "cmc-regime-report/v1",
+        "price": 10000,
+        "storage": "ipfs",
+        "capabilities": [
+          "erc8183",
+          "regime-report",
+          "momentum-ranking",
+          "cmc-intelligence"
+        ],
+        "provider": "0xEb7bF36aab4912c955474206EF0b835170389655",
+        "agent_id": 133085,
+        "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+      },
+      "preview": {
+        "ts": "2026-06-21T07:04:30+00:00",
+        "strategy": "mean_reversion",
+        "regime_score": 0.205,
+        "deploy_cap": 0.442,
+        "fear_greed": 22,
+        "fear_greed_label": "extreme fear",
+        "momentum_ranking": [
+          "UNI"
+        ],
+        "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contr\u2026"
+      },
+      "can_create": false
+    }
+  },
+  "wallet": {
+    "ok": true,
+    "address": "0xE8A30d24BbA030D3e8a844bD1c4F6e1374EA6215",
+    "explorer_url": "https://bscscan.com/address/0xE8A30d24BbA030D3e8a844bD1c4F6e1374EA6215",
+    "block": 105482795,
+    "network": "bsc",
+    "assets": [
+      {
+        "symbol": "BNB",
+        "amount": 0.002654952664066235,
+        "usd": 1.564971985862162,
+        "price": 589.453818534491,
+        "source": "cmc",
+        "is_gas": true
+      },
+      {
+        "symbol": "UNI",
+        "amount": 1.8453481664297826,
+        "usd": 5.519860351767248,
+        "price": 2.9912297593394466,
+        "source": "cmc",
+        "is_gas": false
+      },
+      {
+        "symbol": "USDT",
+        "amount": 5.374485959267672,
+        "usd": 5.374485959267672,
+        "price": 1.0,
+        "source": "stable",
+        "is_gas": false
+      },
+      {
+        "symbol": "AVAX",
+        "amount": 6.32581112524e-07,
+        "usd": 3.940963373350254e-06,
+        "price": 6.229973192885576,
+        "source": "cmc",
+        "is_gas": false
+      },
+      {
+        "symbol": "ETH",
+        "amount": 5.70447653e-10,
+        "usd": 9.881493932859607e-07,
+        "price": 1732.2350054194378,
+        "source": "cmc",
+        "is_gas": false
+      },
+      {
+        "symbol": "DOT",
+        "amount": 5.37885981222e-07,
+        "usd": 5.198110834386074e-07,
+        "price": 0.9663964140832801,
+        "source": "cmc",
+        "is_gas": false
+      },
+      {
+        "symbol": "LINK",
+        "amount": 3.6155978e-11,
+        "usd": 2.8666398891093035e-10,
+        "price": 7.9285364348581675,
+        "source": "cmc",
+        "is_gas": false
+      },
+      {
+        "symbol": "CAKE",
+        "amount": 1.0589969e-11,
+        "usd": 1.4686103784950757e-11,
+        "price": 1.3867938409404934,
+        "source": "cmc",
+        "is_gas": false
+      }
+    ],
+    "total_usd": 12.46,
+    "priced_source": "cmc",
+    "gas_bnb": 0.002654952664066235,
+    "gas_low": true,
+    "x402_budget_usdc": 0.414218,
+    "served_at": "2026-06-21T07:07:39.601729+00:00",
+    "note": null
+  },
+  "market_intel": {
+    "enabled": true,
+    "global_metrics": {
+      "btc_dominance": 58.459214529608,
+      "eth_dominance": 9.50026484343,
+      "stablecoin_market_cap": 286850201666.9195,
+      "total_market_cap": 2200521388487.031,
+      "total_volume_24h": 48376315958.75,
+      "altcoin_market_cap": 914113869221.4846
+    },
+    "fng_trend": [
+      {
+        "ts": 1780790400,
+        "value": 15
+      },
+      {
+        "ts": 1780876800,
+        "value": 15
+      },
+      {
+        "ts": 1780963200,
+        "value": 14
+      },
+      {
+        "ts": 1781049600,
+        "value": 14
+      },
+      {
+        "ts": 1781136000,
+        "value": 16
+      },
+      {
+        "ts": 1781222400,
+        "value": 18
+      },
+      {
+        "ts": 1781308800,
+        "value": 20
+      },
+      {
+        "ts": 1781395200,
+        "value": 23
+      },
+      {
+        "ts": 1781481600,
+        "value": 25
+      },
+      {
+        "ts": 1781568000,
+        "value": 24
+      },
+      {
+        "ts": 1781654400,
+        "value": 22
+      },
+      {
+        "ts": 1781740800,
+        "value": 20
+      },
+      {
+        "ts": 1781827200,
+        "value": 20
+      },
+      {
+        "ts": 1781913600,
+        "value": 22
+      }
+    ],
+    "movers": {
+      "gainers": [
+        {
+          "symbol": "AERO",
+          "name": "Aerodrome Finance",
+          "pct_24h": 13.30390079
+        },
+        {
+          "symbol": "STABLE",
+          "name": "Stable",
+          "pct_24h": 7.30930222
+        },
+        {
+          "symbol": "JUP",
+          "name": "Jupiter",
+          "pct_24h": 7.18565772
+        },
+        {
+          "symbol": "PUMP",
+          "name": "Pump.fun",
+          "pct_24h": 6.60623057
+        },
+        {
+          "symbol": "AVAX",
+          "name": "Avalanche",
+          "pct_24h": 5.73099685
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "BEAT",
+          "name": "Audiera",
+          "pct_24h": -10.16839754
+        },
+        {
+          "symbol": "H",
+          "name": "Humanity",
+          "pct_24h": -10.09005106
+        },
+        {
+          "symbol": "DEXE",
+          "name": "DeXe",
+          "pct_24h": -8.37304736
+        },
+        {
+          "symbol": "TIA",
+          "name": "Celestia",
+          "pct_24h": -4.39590242
+        },
+        {
+          "symbol": "POL",
+          "name": "Polygon (prev. MATIC)",
+          "pct_24h": -4.01890576
+        }
+      ]
+    },
+    "categories": [
+      {
+        "name": "NFTs & Collectibles",
+        "avg_price_change": 8.088683157247482,
+        "market_cap": 6430336544.826488,
+        "market_cap_change": 0.379120911524,
+        "num_tokens": 780
+      },
+      {
+        "name": "Polychain Capital Portfolio",
+        "avg_price_change": 0.8494440012311351,
+        "market_cap": 1509975726792.3735,
+        "market_cap_change": 0.809178509421,
+        "num_tokens": 50
+      },
+      {
+        "name": "Winklevoss Capital Portfolio",
+        "avg_price_change": 0.7844266350312503,
+        "market_cap": 1504639412018.032,
+        "market_cap_change": 0.804179802322,
+        "num_tokens": 6
+      },
+      {
+        "name": "xStocks Ecosystem",
+        "avg_price_change": -0.06873988459937413,
+        "market_cap": 5640445702.634074,
+        "market_cap_change": -0.018466912302,
+        "num_tokens": 84
+      },
+      {
+        "name": "Doggone Doggerel",
+        "avg_price_change": -0.529401892181962,
+        "market_cap": 16946581854.31919,
+        "market_cap_change": -0.748518706814,
+        "num_tokens": 434
+      },
+      {
+        "name": "Filesharing",
+        "avg_price_change": -2.053988652629616,
+        "market_cap": 1438604525.053483,
+        "market_cap_change": -1.563572923965,
+        "num_tokens": 51
+      }
+    ],
+    "regime_terms": {
+      "breadth": 0.375,
+      "trend": 0.0,
+      "vol_factor": 0.6,
+      "fng": 0.22,
+      "dominance": 0.565,
+      "mktcap": 0.196,
+      "fng_mom": 0.494,
+      "score": 0.185
+    }
+  },
+  "cmc_api": {
+    "credits_today": 153,
+    "daily_budget": 9000,
+    "credits_month": 3005,
+    "monthly_budget": 290000,
+    "req_count": 2595,
+    "last_status": 200,
+    "last_credit_count": 1,
+    "rate_wait_total_s": 0.0,
+    "rpm": 30,
+    "near_cap_day": false,
+    "near_cap_month": false,
+    "healthy": true,
+    "key_set": true
+  },
+  "agent_hub": {
+    "mcp_enabled": true,
+    "ta_enabled": true,
+    "skill_enabled": true,
+    "mcp": {
+      "calls": 15,
+      "by_tool": {
+        "get_crypto_technical_analysis": 8,
+        "get_global_metrics_latest": 1,
+        "trending_crypto_narratives": 1,
+        "get_crypto_marketcap_technical_analysis": 1,
+        "get_global_crypto_derivatives_metrics": 1,
+        "get_upcoming_macro_events": 1,
+        "get_crypto_quotes_latest": 1,
+        "get_crypto_latest_news": 1
+      },
+      "tools_available": [
+        "get_crypto_quotes_latest",
+        "get_crypto_info",
+        "search_cryptos",
+        "search_crypto_info",
+        "get_crypto_technical_analysis",
+        "get_crypto_marketcap_technical_analysis",
+        "get_crypto_metrics",
+        "get_global_metrics_latest",
+        "get_global_crypto_derivatives_metrics",
+        "trending_crypto_narratives",
+        "get_upcoming_macro_events",
+        "get_crypto_latest_news"
+      ],
+      "last_call_ts": 1782025455
+    },
+    "ta_health": 0.5428,
+    "ta_source": "cmc+skill",
+    "skill": {
+      "skill_source": "composed",
+      "risk_budget": 0.5231,
+      "regime": "neutral",
+      "fear_greed": 22,
+      "btc_dominance": 58.47,
+      "mktcap_change_24h": 0.533,
+      "ta_breadth": {
+        "tokens": 8,
+        "macd_bull": 7,
+        "above_ema": 2,
+        "overbought": 0
+      },
+      "headline": "CMC composed market-overview: neutral (risk budget 52%). TA breadth 7/8 bullish-MACD, F&G 22",
+      "narratives": [
+        "Layer 1",
+        "Binance Ecosystem",
+        "FTX Bankruptcy Estate "
+      ],
+      "tools_used": [
+        "get_crypto_latest_news",
+        "get_crypto_marketcap_technical_analysis",
+        "get_crypto_quotes_latest",
+        "get_crypto_technical_analysis",
+        "get_global_crypto_derivatives_metrics",
+        "get_global_metrics_latest",
+        "get_upcoming_macro_events",
+        "trending_crypto_narratives"
+      ],
+      "derivatives": {
+        "stress": 0.0075,
+        "oi_change_24h": -1.58,
+        "funding_rate": 0.0012539,
+        "open_interest_usd": 371200000000.0
+      },
+      "mktcap_ta": {
+        "rsi14": 53.28,
+        "macd_histogram": 14640000000.0,
+        "market_cap_usd": 2200000000000.0,
+        "health": 0.5828
+      },
+      "next_macro_event": {
+        "title": "Final EU-wide MiCA Passporting Deadline",
+        "event_date": "1 July 2026",
+        "url": "https://www.bitget.com/news/detail/12560605336491",
+        "hours_to": 232.9,
+        "high_impact": false
+      },
+      "quotes_cross_check": {
+        "BNB": {
+          "price": 589.5954447126777,
+          "pct_24h": 0.50177667,
+          "pct_7d": -3.47557322,
+          "volume_24h": 767350271.1797296,
+          "market_cap": 79467681398.61,
+          "symbol_cmc": "BNB"
+        },
+        "ETH": {
+          "price": 1733.8739591642252,
+          "pct_24h": 0.5433539,
+          "pct_7d": 3.48854061,
+          "volume_24h": 7517160597.90774,
+          "market_cap": 209250675235.73,
+          "symbol_cmc": "ETH"
+        },
+        "CAKE": {
+          "price": 1.387552150007616,
+          "pct_24h": 0.9217585,
+          "pct_7d": 0.43273843,
+          "volume_24h": 20449290.19595332,
+          "market_cap": 449698712.19,
+          "symbol_cmc": "CAKE"
+        },
+        "LINK": {
+          "price": 7.932191429547756,
+          "pct_24h": -0.610141,
+          "pct_7d": 0.17343342,
+          "volume_24h": 157045202.1045017,
+          "market_cap": 5767496153.83,
+          "symbol_cmc": "LINK"
+        },
+        "UNI": {
+          "price": 2.990084794763777,
+          "pct_24h": -1.5386224,
+          "pct_7d": 18.25792042,
+          "volume_24h": 141129697.46501607,
+          "market_cap": 1858814802.52,
+          "symbol_cmc": "UNI"
+        },
+        "AVAX": {
+          "price": 6.23344904810946,
+          "pct_24h": 4.95618902,
+          "pct_7d": -6.37204801,
+          "volume_24h": 361730523.2342913,
+          "market_cap": 2691428520.4,
+          "symbol_cmc": "AVAX"
+        },
+        "DOT": {
+          "price": 0.9670203141611484,
+          "pct_24h": 0.2371203,
+          "pct_7d": 0.10468938,
+          "volume_24h": 54643238.97674887,
+          "market_cap": 1633949377.31,
+          "symbol_cmc": "DOT"
+        },
+        "DOGE": {
+          "price": 0.0833325527931714,
+          "pct_24h": -0.91649227,
+          "pct_7d": -4.71858521,
+          "volume_24h": 320257020.38609505,
+          "market_cap": 12895622244.23,
+          "symbol_cmc": "DOGE"
+        }
+      },
+      "top_news": [
+        {
+          "title": "How high will Bitcoin get in 2026? | Prediction Markets | Coinbase",
+          "url": "https://www.coinbase.com/predictions/event/KXBTCMAXY-26DEC31",
+          "published_at": "31 December 2026 12:00 AM UTC+0"
+        },
+        {
+          "title": "ARMA Act (Bitcoin reserve bill) is suddenly trending\nHere's  | KuCoin",
+          "url": "https://www.kucoin.com/news/insight/BTC/6a2749377fa88d00071d1df0",
+          "published_at": "6 August 2026 12:00 AM UTC+0"
+        },
+        {
+          "title": "Altseason\u2019s Gatekeeper Is Finally Cracking: 5 Crypto Coins Worth Risking In Before BTC Dominance Loses Control",
+          "url": "https://coinmarketcap.com/community/articles/6a378ac7919ef9258431b4cb",
+          "published_at": "21 June 2026 06:50 AM UTC+0"
+        },
+        {
+          "title": "Elon Musk has blunt proposal for U.S. Treasury",
+          "url": "https://finance.yahoo.com/markets/crypto/articles/elon-musk-blunt-proposal-u-061716012.html",
+          "published_at": "21 June 2026 06:17 AM UTC+0"
+        }
+      ]
+    },
+    "x402": {
+      "total": 49,
+      "settled": 49,
+      "spent_usdc": 0.49,
+      "last_ts": "2026-06-21T07:04:30Z",
+      "last_status": "settled"
+    },
+    "x402_enabled": true,
+    "onchain": {
+      "BNB": {
+        "pct_24h": 0.547873074713,
+        "pct_7d": -3.493828359534,
+        "pct_30d": -10.013434428953,
+        "volume_24h": 767586542.78,
+        "market_cap": 79452652108.87,
+        "flow_ratio": 0.503278439927324,
+        "unique_traders": 37570.0,
+        "liquidity_usd": 54184321.60967603,
+        "top10_pct": 42.4087,
+        "top100_pct": 56.0529,
+        "net_liquidity_usd": 195567.07491810556,
+        "whale_net_usd": -223925.09
+      },
+      "ETH": {
+        "pct_24h": 0.532829034174,
+        "pct_7d": 3.427949772286,
+        "pct_30d": -18.317118199641,
+        "volume_24h": 8003074834.06,
+        "market_cap": 209118125104.18,
+        "flow_ratio": 0.4986618186555405,
+        "unique_traders": 7789.0,
+        "liquidity_usd": 26012318.017591562,
+        "top10_pct": 52.6196,
+        "top100_pct": 69.5947,
+        "net_liquidity_usd": 1539.3757404523276,
+        "whale_net_usd": -16451.58
+      },
+      "CAKE": {
+        "pct_24h": 0.95586408559,
+        "pct_7d": 0.51245548331,
+        "pct_30d": -3.961918522025,
+        "volume_24h": 20443257.65,
+        "market_cap": 449507010.38,
+        "flow_ratio": 0.5231398068910962,
+        "unique_traders": 1586.0,
+        "liquidity_usd": 11677620.120345155,
+        "top10_pct": 3.9897,
+        "top100_pct": 5.6582,
+        "net_liquidity_usd": 41.367173046792914,
+        "whale_net_usd": null
+      },
+      "LINK": {
+        "pct_24h": -0.609213141483,
+        "pct_7d": 0.136338113939,
+        "pct_30d": -18.698429206783,
+        "volume_24h": 156954946.78,
+        "market_cap": 5765360387.38,
+        "flow_ratio": 0.4022733538012054,
+        "unique_traders": 283.0,
+        "liquidity_usd": 1590633.8501645527,
+        "top10_pct": 41.6841,
+        "top100_pct": 58.24,
+        "net_liquidity_usd": null,
+        "whale_net_usd": null
+      },
+      "UNI": {
+        "pct_24h": -1.393728430467,
+        "pct_7d": 18.304719145517,
+        "pct_30d": -16.887712925006,
+        "volume_24h": 141136657.36,
+        "market_cap": 1859550399.44,
+        "flow_ratio": 0.4761961747531947,
+        "unique_traders": 649.0,
+        "liquidity_usd": 475335.9644113935,
+        "top10_pct": 49.1597,
+        "top100_pct": 71.8249,
+        "net_liquidity_usd": null,
+        "whale_net_usd": null
+      },
+      "AVAX": {
+        "pct_24h": 4.630662747159,
+        "pct_7d": -6.395135856191,
+        "pct_30d": -34.14705077867,
+        "volume_24h": 358656582.88,
+        "market_cap": 2690159800.37,
+        "flow_ratio": 0.5366442603373218,
+        "unique_traders": 378.0,
+        "liquidity_usd": 306993.50048897974,
+        "top10_pct": 30.8637,
+        "top100_pct": 57.4821,
+        "net_liquidity_usd": null,
+        "whale_net_usd": null
+      },
+      "DOT": {
+        "pct_24h": 0.22858111519,
+        "pct_7d": 0.057456839298,
+        "pct_30d": -26.133658774166,
+        "volume_24h": 54505931.13,
+        "market_cap": 1633178428.58,
+        "flow_ratio": 0.4817589313189665,
+        "unique_traders": 230.0,
+        "liquidity_usd": 508062.3906096191,
+        "top10_pct": 37.2066,
+        "top100_pct": 64.7953,
+        "net_liquidity_usd": null,
+        "whale_net_usd": null
+      },
+      "DOGE": {
+        "pct_24h": -0.93660749077,
+        "pct_7d": -4.71277851893,
+        "pct_30d": -20.610684757191,
+        "volume_24h": 320112748.71,
+        "market_cap": 12891729757.68,
+        "flow_ratio": 0.3362159844234397,
+        "unique_traders": 670.0,
+        "liquidity_usd": 2342637.7838376635,
+        "top10_pct": 55.8136,
+        "top100_pct": 80.4112,
+        "net_liquidity_usd": 2.021336100364109,
+        "whale_net_usd": null
+      }
+    },
+    "onchain_enabled": true,
+    "rotation": {
+      "mom": {
+        "UNI": 3.0925
+      },
+      "trending": [
+        "Layer 1",
+        "Binance Ecosystem",
+        "FTX Bankruptcy Estate "
+      ],
+      "sector_hits": []
+    },
+    "rotation_enabled": true
+  },
+  "economy": {
+    "trading_pnl_usd": 0.11,
+    "trading_nav_usd": 12.46,
+    "anchor_usd": 12.35,
+    "commerce_revenue_u": 0.2,
+    "commerce_revenue_usd": 0.2,
+    "commerce_self_funded": true,
+    "x402_spent_usd": 0.49,
+    "net_economic_usd": 0.11,
+    "u_valuation_note": "U valued at $1 (stablecoin-like; price oracle pending)",
+    "gas_note": "net-of-gas: swap gas already in trading NAV (BNB); ERC-8004 heartbeat paymaster-sponsored",
+    "commerce_note": "self-funded \u2014 buyer + provider are both operator wallets; an on-chain ERC-8183 integration proof that nets to ~\u2212gas, NOT external revenue (excluded from PnL)",
+    "x402_note": "CMC data cost (USDC on Base) \u2014 an operating expense from the identity wallet, not a trading result (excluded from PnL)"
+  },
+  "auto_selector": {
+    "recommended": "mean_reversion",
+    "current": "mean_reversion",
+    "action": "STAY",
+    "switch": false,
+    "reason": "STAY INCUMBENT \u2014 no challenger has cleared all gates (survival \u2705 + stability ROBUST + forward-eligible on a deployed, non-cash track).",
+    "apply_cmd": null,
+    "auto_apply_live": false,
+    "hysteresis": {
+      "consecutive": 0,
+      "sustain": 2,
+      "margin": 0.02,
+      "incumbent_score": -0.6378357255415007,
+      "champion_score": null
+    },
+    "scores": [
+      {
+        "arm": "momentum_fast",
+        "score": -0.44191866643064814,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "ROBUST",
+        "verdict": "\u23f3 IN PROGRESS"
+      },
+      {
+        "arm": "rotation",
+        "score": -0.47244600676324444,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "FRAGILE",
+        "verdict": "\u23f3 IN PROGRESS"
+      },
+      {
+        "arm": "momentum_voltarget",
+        "score": -0.5035821008717493,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "ROBUST",
+        "verdict": "\u23f3 IN PROGRESS"
+      },
+      {
+        "arm": "momentum_adaptive",
+        "score": -0.5454078065898129,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "FRAGILE",
+        "verdict": "\ud83d\udd12 INCUMBENT"
+      },
+      {
+        "arm": "momentum",
+        "score": -0.5454078065898129,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "FRAGILE",
+        "verdict": "\u23f3 IN PROGRESS"
+      },
+      {
+        "arm": "momentum_cmc",
+        "score": -0.5454078065898129,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "ROBUST",
+        "verdict": "\u23f3 IN PROGRESS"
+      },
+      {
+        "arm": "momentum_mafilter",
+        "score": -0.5914664478672277,
+        "dq_safe": true,
+        "forward_eligible": false,
+        "stability": "FRAGILE",
+        "verdict": "\u23f3 IN PROGRESS"
+      },
+      {
+        "arm": "breakout",
+        "score": -0.5926962745501032,
+        "dq_safe": false,
+        "forward_eligible": false,
+        "stability": "UNSTABLE",
+        "verdict": "\u274c NOT READY"
+      }
+    ],
+    "ts": "2026-06-19T15:18:23+00:00"
+  },
+  "scheduler": {
+    "ok": false,
+    "live_tick_age_h": 0.1,
+    "live_tick_stale": false,
+    "dd_watch_age_m": 2738.5,
+    "dd_watch_stale": true,
+    "note": "STALE \u2014 a cron job may have stopped (grant Full Disk Access to /usr/sbin/cron)"
+  },
+  "served_at": "2026-06-21T07:07:39.958078+00:00"
+}

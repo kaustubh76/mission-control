@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme tokens (dark default; flip document.documentElement.dataset.theme = "light") ── */
+:root {
+  color-scheme: dark;
+  --canvas: #0b0c10; /* flat ink canvas — replaces the old radial gradient */
+  --thick-line: #e8e8e3; /* the 3px signature card border */
+  --brut-shadow: rgba(232, 232, 227, 0.16); /* hard offset shadow reads as a light lift on dark */
+  --grid-dot: rgba(232, 232, 227, 0.07); /* page-wide dot-grid texture (light dots on ink) */
+  /* Card fill — subtle lit-from-above gradient instead of a flat panel. */
+  --card-fill: linear-gradient(180deg, #1a1d27 0%, #15171e 100%);
+  --card-ambient: 0 10px 30px -16px rgba(0, 0, 0, 0.7); /* soft depth under the hard offset shadow */
+  --card-ambient-hover: 0 16px 38px -16px rgba(0, 0, 0, 0.82);
+  /* Animated aurora blobs (low alpha so they tint, never wash out the ink). */
+  --aurora-1: rgba(124, 92, 255, 0.16); /* vlayer purple */
+  --aurora-2: rgba(56, 97, 251, 0.16); /* cool blue */
+  --aurora-3: rgba(22, 199, 132, 0.13); /* up green */
+  /* Neutral palette as space-separated RGB triples (Tailwind rgb(var()/<alpha>)). */
+  --c-panel: 22 24 31; /* #16181f */
+  --c-panel2: 31 34 43; /* #1f222b */
+  --c-edge: 44 47 58; /* #2c2f3a */
+  --c-muted: 138 143 156; /* #8a8f9c */
+  --c-sub: 197 200 208; /* #c5c8d0 */
+  --c-ink: 237 237 234; /* #ededea — primary text */
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --canvas: #f3f3ee;
+  --thick-line: #111111;
+  --brut-shadow: #111111; /* classic dark hard shadow on paper */
+  --grid-dot: rgba(17, 17, 17, 0.05); /* dark dots on paper */
+  --card-fill: linear-gradient(180deg, #ffffff 0%, #f6f6f1 100%);
+  --card-ambient: 0 8px 22px -16px rgba(17, 17, 17, 0.35);
+  --card-ambient-hover: 0 14px 30px -16px rgba(17, 17, 17, 0.45);
+  /* paper stays clean — aurora barely there */
+  --aurora-1: rgba(124, 92, 255, 0.05);
+  --aurora-2: rgba(56, 97, 251, 0.05);
+  --aurora-3: rgba(22, 199, 132, 0.04);
+  /* Paper-friendly neutrals (dark ink on light card). */
+  --c-panel: 255 255 255;
+  --c-panel2: 241 241 236;
+  --c-edge: 214 214 206;
+  --c-muted: 91 99 112; /* readable medium-gray on white */
+  --c-sub: 51 58 70;
+  --c-ink: 21 22 26;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: rgb(var(--c-ink)); /* theme-aware primary text */
+  font-family: theme("fontFamily.sans");
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ambient AURORA: three soft colour blobs that drift slowly behind everything, so
+   the canvas feels alive instead of flat. Transform-only animation on plain radial
+   gradients (no blur filter) → cheap on the GPU. inset:-20% gives the drift room so
+   the scaled/translated layer never reveals an edge. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 40% at 18% 22%, var(--aurora-1), transparent 70%),
+    radial-gradient(44% 46% at 82% 28%, var(--aurora-2), transparent 72%),
+    radial-gradient(42% 44% at 62% 82%, var(--aurora-3), transparent 72%);
+  animation: aurora-drift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2.5%, -2%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-2%, 1.5%, 0) scale(1.05);
+  }
+}
+
+/* Page-wide dot-grid texture with a radial vignette: densest mid-viewport, fading
+   softly to all edges. Painted ABOVE the aurora, below content; pointer-events none. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 0%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 0%, #000 30%, transparent 80%);
+}
+
+/* Lift app content above the aurora + grid layers (cards, shadows, tooltips render over them). */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+@layer components {
+  /* The signature Mission Control panel: thick light border + hard offset shadow.
+     Refined-hybrid: subtle lit-from-above gradient fill, a soft ambient shadow under
+     the brutalist offset shadow for depth, and a gentle hover lift. */
+  .glow-card {
+    @apply border-3 rounded-sm;
+    border-color: var(--thick-line);
+    background: var(--card-fill);
+    box-shadow: 4px 4px 0 0 var(--brut-shadow), var(--card-ambient);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .glow-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 6px 0 0 var(--brut-shadow), var(--card-ambient-hover);
+  }
+  .card-label {
+    @apply font-display text-[11px] font-bold uppercase tracking-[0.14em] text-muted;
+  }
+}
+
+/* Color-matched glow for the few biggest live numbers (NAV, deploy cap, net, win rate).
+   Uses currentColor so each metric glows in its own colour. */
+.metric-glow {
+  text-shadow: 0 0 18px color-mix(in srgb, currentColor 45%, transparent);
+}
+
+/* Keycap used in the keyboard leader-hint + the ? cheatsheet. Theme-aware. */
+.mc-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  padding: 0 0.35rem;
+  border: 1px solid rgb(var(--c-edge));
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  background: rgb(var(--c-panel2));
+  color: rgb(var(--c-sub));
+  font-family: theme("fontFamily.mono");
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* One-shot pulse the heartbeat ring fires the instant fresh poll data lands. */
+.mc-heartbeat-ping {
+  animation: heartbeat-ping 0.6s ease-out 1;
+}
+@keyframes heartbeat-ping {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Brief highlight ring when the command palette jumps to a panel. */
+.nav-flash {
+  animation: nav-flash 1.2s ease-out;
+}
+@keyframes nav-flash {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--thick-line) 70%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+/* Skeleton shimmer for the first-load / cold-start placeholder. Reduced-motion
+   neutralises the sweep (global block below) → it degrades to a static block. */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--c-panel2) / 0.5) 25%,
+    rgb(var(--c-edge) / 0.8) 37%,
+    rgb(var(--c-panel2) / 0.5) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 2px;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Subtle dotted texture, opt-in (hero band flavour). */
+.brut-grid {
+  background-image: radial-gradient(rgba(232, 232, 227, 0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Square scrollbars to match the brutalist edges */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2c2f3a;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #3a3d46;
+}
+
+/* Respect reduced-motion: neutralise the framer/CSS animations globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
