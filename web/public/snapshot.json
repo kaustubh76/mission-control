@@ -2927,7 +2927,10 @@
         ],
         "rationale": "CMC Fear & Greed is 22 (extreme fear); my risk-on score is 0.21 (cautious), so I'm capping deployment at 44% of book. CMC macro: BTC dominance falling (60%\u219258%); total mktcap contr\u2026"
       },
-      "can_create": false
+      "can_create": false,
+      "provenance": {
+        "enabled": true
+      }
     }
   },
   "wallet": {

@@ -105,6 +105,11 @@ export default function StatusBar({
           width={1000}
           height={200}
         />
+        {/* vlayer-forward tagline — frames the product as verifiable data provenance, not just a trading agent. */}
+        <span className="hidden border-l border-edge pl-2.5 text-[11px] leading-tight text-muted lg:inline">
+          Verifiable data provenance ·{" "}
+          <span className="font-semibold" style={{ color: "#7C5CFF" }}>vlayer</span> zkTLS Web Proofs
+        </span>
       </div>
 
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">

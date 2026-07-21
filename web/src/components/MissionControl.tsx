@@ -156,6 +156,16 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
             <AgentCommercePanel commerce={data.pillars?.commerce} live={live} />
           </Panel>
         </div>
+
+        {/* Verified by vlayer — the proof layer that attests the SOLD report's data provenance.
+            Elevated out of the collapsible detail band into the main grid (above the fold) so
+            verifiable provenance reads as the headline, not a footnote. Shows the honest
+            "attestation pending" state until the first on-chain proof (M1) lands. */}
+        <div className="lg:col-span-12">
+          <Panel label="Verified by vlayer">
+            <VlayerProvenancePanel provenance={data.pillars?.commerce?.provenance} live={live} />
+          </Panel>
+        </div>
       </div>
 
       {/* ── TIER C — collapsible detail & on-chain proof ── */}
@@ -214,12 +224,6 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
           <div className="lg:col-span-12">
             <Panel label="Tech stack & proof">
               <StackStrip pillars={data.pillars} hub={data.agent_hub} identity={data.identity} live={live} />
-            </Panel>
-          </div>
-
-          <div className="lg:col-span-12">
-            <Panel label="Verified by vlayer">
-              <VlayerProvenancePanel provenance={data.pillars?.commerce?.provenance} live={live} />
             </Panel>
           </div>
 

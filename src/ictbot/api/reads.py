@@ -605,7 +605,11 @@ def _provenance_card() -> dict | None:
         from ictbot.agent import provenance
 
         att = provenance.latest_attestation()  # None when disabled/unproven (best-effort)
-        return {"enabled": provenance.available(), **(att or {})}
+        # `enabled` tracks the vlayer FLAG alone (not `available()`, which also needs a deployed
+        # verifier address) so the dashboard shows the honest "on · attestation pending" state as
+        # soon as the integration is switched on — the proof fields still appear only once a real
+        # on-chain attestation exists (`att`). Never fabricates a proof.
+        return {"enabled": bool(settings.vlayer_enabled), **(att or {})}
     except Exception:
         return None
 

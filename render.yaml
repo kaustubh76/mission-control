@@ -106,6 +106,14 @@ services:
         value: "bsc-mainnet"            # faucet is dead). DISPLAY-scoped on Render (no signing key);
                                         # real jobs are served by the LOCAL operator CLI. Also set
                                         # out-of-band via the API (blueprint envVars sync on create).
+      # ---- vlayer — verifiable data provenance (Web Proofs / zkTLS) ------
+      - key: VLAYER_ENABLED             # DISPLAY-ONLY & KEY-FREE: flips the "Verified by vlayer" panel
+        value: "true"                   # to its honest "attestation pending" state on the public deploy.
+                                        # Reading an on-chain attestation needs NO key; set
+                                        # VLAYER_VERIFIER_ADDRESS after the verifier is deployed (M1) to
+                                        # upgrade the panel to "Proven on-chain" with live explorer links.
+      - key: VLAYER_CHAIN               # attestation chain label shown on the panel + explorer links
+        value: "optimism-sepolia"
       # ---- Live on-chain "Real Funds" card (keyless) ---------------------
       # Reads the PUBLIC trading-wallet balance on a PUBLIC BSC RPC (no key) so the
       # dashboard shows real funds next to the SIM PnL. USD is priced via on-chain
