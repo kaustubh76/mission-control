@@ -9,6 +9,8 @@ import type { ReactNode } from "react";
 import HeaderBar from "./HeaderBar";
 import StatusTicker from "./StatusTicker";
 import ProvenanceHero from "./ProvenanceHero";
+import VlayerHowItWorks from "./VlayerHowItWorks";
+import VlayerMilestones from "./VlayerMilestones";
 import AgentCommercePanel from "./AgentCommercePanel";
 import Cheatsheet from "./Cheatsheet";
 import CommandPalette from "./CommandPalette";
@@ -154,6 +156,11 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
         </div>
       </ErrorBoundary>
 
+      {/* ── How the vlayer Web Proof works — reviewer-facing pipeline ── */}
+      <Panel label="How the Web Proof works">
+        <VlayerHowItWorks provenance={prov} />
+      </Panel>
+
       {/* ── KPI row — the headline numbers ── */}
       <ErrorBoundary label="Key metrics">
         <KpiRow data={data} />
@@ -208,6 +215,11 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
           </Panel>
         </div>
       </div>
+
+      {/* ── vlayer grant roadmap (M0–M4) ── */}
+      <Panel label="Grant roadmap">
+        <VlayerMilestones provenance={prov} />
+      </Panel>
 
       {/* ── Detail & on-chain proof (collapsible) ── */}
       <Collapsible title="Detail & Proof" id="detail-band" defaultOpen>

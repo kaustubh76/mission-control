@@ -31,6 +31,8 @@ export const GLOSSARY = {
   skills: { term: "Composed market-overview", plain: "A regime read the agent builds by fusing several free market-data sources (Fear & Greed, breadth, DEX signals, macro globals) into one risk-budget signal." },
   erc8004: { term: "ERC-8004", plain: "An on-chain agent-identity standard. Proves this exact agent acted, verifiable on-chain." },
   webproof: { term: "Web Proof (zkTLS)", plain: "A vlayer cryptographic proof that a specific HTTPS response really came from a given server (here alternative.me's Fear & Greed endpoint) — verifiable on-chain, without revealing anything else. Turns the sold report's data provenance from a claim into proof." },
+  notarize: { term: "Notarize (zkTLS)", plain: "A vlayer notary records the exact HTTPS/TLS session with alternative.me — the response bytes plus the server's TLS signature — so the data can later be proven genuine on-chain without trusting any middleman." },
+  reportHash: { term: "Report Hash", plain: "keccak256 of the canonical (sorted, minified) Market Regime Report JSON — the fingerprint that binds one specific sold report to its on-chain Web Proof, so a buyer can match the proof to the exact deliverable." },
   gasless: { term: "Gasless", plain: "Identity + heartbeat transactions are sponsored (MegaFuel), so the agent pays no gas for them." },
   ta: { term: "Technical Analysis (TA)", plain: "Momentum / breadth signals the agent layers on top of regime to tune position sizing." },
   rebalance: { term: "Rebalance", plain: "A daily reshuffle — sell some, buy others — to track the shifting momentum leaders." },
