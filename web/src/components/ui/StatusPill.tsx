@@ -3,12 +3,12 @@ import type { ReactNode } from "react";
 export type Tone = "up" | "down" | "warn" | "armed" | "info" | "neutral" | "brand" | "violet" | "vlayer";
 
 const TONE_COLOR: Record<Tone, string> = {
-  up: "#16c784",
-  down: "#ea3943",
-  warn: "#f0b90b", // caution / risk only
-  armed: "#f0b90b", // operational "live-armed" — same hex, distinct meaning from warn
+  up: "#16b981",
+  down: "#ef4444",
+  warn: "#f59e0b", // caution / risk only
+  armed: "#f59e0b", // operational "live-armed" — same hex, distinct meaning from warn
   info: "#3861fb",
-  neutral: "#8a8f9c",
+  neutral: "#6b7280",
   brand: "#7C5CFF", // vlayer purple — primary brand accent
   violet: "#8b9dff", // on-chain identity
   vlayer: "#7C5CFF", // vlayer brand — verifiable-data proof
@@ -34,8 +34,8 @@ export default function StatusPill({ tone = "neutral", dot, pulse, srText, class
   const color = TONE_COLOR[tone];
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-sm border px-2 py-0.5 font-display text-[10px] font-bold uppercase tracking-wider ${className}`}
-      style={{ color, borderColor: `${color}66`, background: `${color}14` }}
+      className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider ${className}`}
+      style={{ color, borderColor: `${color}55`, background: `${color}12` }}
     >
       {dot && (
         <span

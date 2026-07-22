@@ -2,49 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Theme tokens (dark default; flip document.documentElement.dataset.theme = "light") ── */
+/* ============================================================================
+   Mission Control — clean fintech / provenance-first, with quant-terminal accents.
+   LIGHT is the default (bright, airy, trust-forward). Dark is a premium slate,
+   applied via document.documentElement.dataset.theme = "dark". All theme values
+   are CSS vars so every component (which references the same var/token names)
+   inherits the new look with zero per-component changes.
+   ========================================================================== */
+
+/* ── LIGHT (default) ── */
 :root {
-  color-scheme: dark;
-  --canvas: #0b0c10; /* flat ink canvas — replaces the old radial gradient */
-  --thick-line: #e8e8e3; /* the 3px signature card border */
-  --brut-shadow: rgba(232, 232, 227, 0.16); /* hard offset shadow reads as a light lift on dark */
-  --grid-dot: rgba(232, 232, 227, 0.07); /* page-wide dot-grid texture (light dots on ink) */
-  /* Card fill — subtle lit-from-above gradient instead of a flat panel. */
-  --card-fill: linear-gradient(180deg, #1a1d27 0%, #15171e 100%);
-  --card-ambient: 0 10px 30px -16px rgba(0, 0, 0, 0.7); /* soft depth under the hard offset shadow */
-  --card-ambient-hover: 0 16px 38px -16px rgba(0, 0, 0, 0.82);
-  /* Animated aurora blobs (low alpha so they tint, never wash out the ink). */
-  --aurora-1: rgba(124, 92, 255, 0.16); /* vlayer purple */
-  --aurora-2: rgba(56, 97, 251, 0.16); /* cool blue */
-  --aurora-3: rgba(22, 199, 132, 0.13); /* up green */
-  /* Neutral palette as space-separated RGB triples (Tailwind rgb(var()/<alpha>)). */
-  --c-panel: 22 24 31; /* #16181f */
-  --c-panel2: 31 34 43; /* #1f222b */
-  --c-edge: 44 47 58; /* #2c2f3a */
-  --c-muted: 138 143 156; /* #8a8f9c */
-  --c-sub: 197 200 208; /* #c5c8d0 */
-  --c-ink: 237 237 234; /* #ededea — primary text */
+  color-scheme: light;
+  --canvas: #f6f7f9; /* soft off-white page */
+  --canvas-2: #eef1f5;
+  --thick-line: #e3e7ee; /* card hairline border (var name kept for compatibility) */
+  --brut-shadow: rgba(17, 24, 39, 0.05);
+  --grid-dot: rgba(17, 24, 39, 0.05); /* faint terminal grid */
+  --card-fill: #ffffff;
+  /* Soft layered shadows */
+  --card-shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --card-shadow: 0 1px 2px rgba(17, 24, 39, 0.06), 0 6px 16px -8px rgba(17, 24, 39, 0.12);
+  --card-shadow-lg: 0 2px 4px rgba(17, 24, 39, 0.06), 0 18px 40px -14px rgba(17, 24, 39, 0.18);
+  --card-ambient: 0 6px 16px -8px rgba(17, 24, 39, 0.12);
+  --card-ambient-hover: 0 12px 28px -10px rgba(17, 24, 39, 0.18);
+  --aurora-1: rgba(124, 92, 255, 0.05);
+  --aurora-2: rgba(56, 97, 251, 0.04);
+  --aurora-3: rgba(22, 185, 129, 0.04);
+  /* Neutral palette (space-separated RGB triples for rgb(var()/<alpha>)). */
+  --c-panel: 255 255 255;
+  --c-panel2: 244 246 249; /* subtle inset / tiles */
+  --c-edge: 226 230 236; /* hairline */
+  --c-muted: 107 114 128; /* muted labels */
+  --c-sub: 71 84 103;
+  --c-ink: 15 23 42; /* near-slate-900 primary text */
 }
+
+/* ── DARK (premium slate) ── */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #0a0d14;
+  --canvas-2: #0f131c;
+  --thick-line: #232a37;
+  --brut-shadow: rgba(0, 0, 0, 0.5);
+  --grid-dot: rgba(226, 232, 240, 0.045);
+  --card-fill: #12161f;
+  --card-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 22px -10px rgba(0, 0, 0, 0.6);
+  --card-shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.5), 0 22px 46px -16px rgba(0, 0, 0, 0.7);
+  --card-ambient: 0 8px 22px -12px rgba(0, 0, 0, 0.6);
+  --card-ambient-hover: 0 16px 34px -14px rgba(0, 0, 0, 0.72);
+  --aurora-1: rgba(124, 92, 255, 0.14);
+  --aurora-2: rgba(56, 97, 251, 0.1);
+  --aurora-3: rgba(22, 185, 129, 0.08);
+  --c-panel: 18 22 31; /* #12161f */
+  --c-panel2: 26 31 43;
+  --c-edge: 38 45 59;
+  --c-muted: 141 151 167;
+  --c-sub: 190 199 213;
+  --c-ink: 233 238 246;
+}
+
+/* Explicit light selector kept so an OS-dark user who toggles to light still resolves. */
 :root[data-theme="light"] {
   color-scheme: light;
-  --canvas: #f3f3ee;
-  --thick-line: #111111;
-  --brut-shadow: #111111; /* classic dark hard shadow on paper */
-  --grid-dot: rgba(17, 17, 17, 0.05); /* dark dots on paper */
-  --card-fill: linear-gradient(180deg, #ffffff 0%, #f6f6f1 100%);
-  --card-ambient: 0 8px 22px -16px rgba(17, 17, 17, 0.35);
-  --card-ambient-hover: 0 14px 30px -16px rgba(17, 17, 17, 0.45);
-  /* paper stays clean — aurora barely there */
-  --aurora-1: rgba(124, 92, 255, 0.05);
-  --aurora-2: rgba(56, 97, 251, 0.05);
-  --aurora-3: rgba(22, 199, 132, 0.04);
-  /* Paper-friendly neutrals (dark ink on light card). */
+  --canvas: #f6f7f9;
+  --thick-line: #e3e7ee;
+  --card-fill: #ffffff;
+  --grid-dot: rgba(17, 24, 39, 0.05);
   --c-panel: 255 255 255;
-  --c-panel2: 241 241 236;
-  --c-edge: 214 214 206;
-  --c-muted: 91 99 112; /* readable medium-gray on white */
-  --c-sub: 51 58 70;
-  --c-ink: 21 22 26;
+  --c-panel2: 244 246 249;
+  --c-edge: 226 230 236;
+  --c-muted: 107 114 128;
+  --c-sub: 71 84 103;
+  --c-ink: 15 23 42;
 }
 
 html,
@@ -56,89 +86,77 @@ body,
 body {
   margin: 0;
   background: var(--canvas);
-  color: rgb(var(--c-ink)); /* theme-aware primary text */
+  color: rgb(var(--c-ink));
   font-family: theme("fontFamily.sans");
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Ambient AURORA: three soft colour blobs that drift slowly behind everything, so
-   the canvas feels alive instead of flat. Transform-only animation on plain radial
-   gradients (no blur filter) → cheap on the GPU. inset:-20% gives the drift room so
-   the scaled/translated layer never reveals an edge. */
+/* Faint terminal dot-grid — quant motif, kept very subtle so the page stays airy. */
 body::before {
-  content: "";
-  position: fixed;
-  inset: -20%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(38% 40% at 18% 22%, var(--aurora-1), transparent 70%),
-    radial-gradient(44% 46% at 82% 28%, var(--aurora-2), transparent 72%),
-    radial-gradient(42% 44% at 62% 82%, var(--aurora-3), transparent 72%);
-  animation: aurora-drift 28s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-@keyframes aurora-drift {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(2.5%, -2%, 0) scale(1.08);
-  }
-  100% {
-    transform: translate3d(-2%, 1.5%, 0) scale(1.05);
-  }
-}
-
-/* Page-wide dot-grid texture with a radial vignette: densest mid-viewport, fading
-   softly to all edges. Painted ABOVE the aurora, below content; pointer-events none. */
-body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
-  background-size: 22px 22px;
-  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 0%, #000 30%, transparent 80%);
-  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 0%, #000 30%, transparent 80%);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 0%, #000 45%, transparent 92%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 0%, #000 45%, transparent 92%);
 }
 
-/* Lift app content above the aurora + grid layers (cards, shadows, tooltips render over them). */
+/* One soft brand wash in the top-left so the hero has a hint of colour. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(46% 40% at 12% 0%, var(--aurora-1), transparent 70%),
+    radial-gradient(40% 36% at 90% 4%, var(--aurora-2), transparent 72%);
+}
+
 #root {
   position: relative;
   z-index: 1;
 }
 
 @layer components {
-  /* The signature Mission Control panel: thick light border + hard offset shadow.
-     Refined-hybrid: subtle lit-from-above gradient fill, a soft ambient shadow under
-     the brutalist offset shadow for depth, and a gentle hover lift. */
+  /* The signature panel — now a soft fintech card: white/slate fill, hairline border,
+     soft layered shadow, gentle hover lift. (Class name kept so every panel inherits it.) */
   .glow-card {
-    @apply border-3 rounded-sm;
-    border-color: var(--thick-line);
+    @apply rounded-xl border;
+    border-color: rgb(var(--c-edge));
     background: var(--card-fill);
-    box-shadow: 4px 4px 0 0 var(--brut-shadow), var(--card-ambient);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
   }
   .glow-card:hover {
     transform: translateY(-2px);
-    box-shadow: 4px 6px 0 0 var(--brut-shadow), var(--card-ambient-hover);
+    box-shadow: var(--card-shadow-lg);
+    border-color: rgb(124 92 255 / 0.35);
   }
+  /* Section eyebrow — mono, tracked, terminal-flavoured. */
   .card-label {
-    @apply font-display text-[11px] font-bold uppercase tracking-[0.14em] text-muted;
+    @apply font-mono text-[10.5px] font-bold uppercase tracking-[0.16em] text-muted;
+  }
+  /* Terminal cursor block (live indicator). */
+  .term-cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    transform: translateY(0.12em);
+    background: currentColor;
+    animation: blink 1.05s step-end infinite;
   }
 }
 
-/* Color-matched glow for the few biggest live numbers (NAV, deploy cap, net, win rate).
-   Uses currentColor so each metric glows in its own colour. */
+/* Soft color-matched glow for the biggest live numbers. */
 .metric-glow {
-  text-shadow: 0 0 18px color-mix(in srgb, currentColor 45%, transparent);
+  text-shadow: 0 0 22px color-mix(in srgb, currentColor 26%, transparent);
 }
 
-/* Keycap used in the keyboard leader-hint + the ? cheatsheet. Theme-aware. */
 .mc-kbd {
   display: inline-flex;
   align-items: center;
@@ -148,7 +166,7 @@ body::after {
   padding: 0 0.35rem;
   border: 1px solid rgb(var(--c-edge));
   border-bottom-width: 2px;
-  border-radius: 3px;
+  border-radius: 6px;
   background: rgb(var(--c-panel2));
   color: rgb(var(--c-sub));
   font-family: theme("fontFamily.mono");
@@ -157,7 +175,6 @@ body::after {
   line-height: 1;
 }
 
-/* One-shot pulse the heartbeat ring fires the instant fresh poll data lands. */
 .mc-heartbeat-ping {
   animation: heartbeat-ping 0.6s ease-out 1;
 }
@@ -172,31 +189,28 @@ body::after {
   }
 }
 
-/* Brief highlight ring when the command palette jumps to a panel. */
 .nav-flash {
   animation: nav-flash 1.2s ease-out;
 }
 @keyframes nav-flash {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--thick-line) 70%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, #7c5cff 55%, transparent);
   }
   100% {
     box-shadow: 0 0 0 6px transparent;
   }
 }
 
-/* Skeleton shimmer for the first-load / cold-start placeholder. Reduced-motion
-   neutralises the sweep (global block below) → it degrades to a static block. */
 .skeleton {
   background: linear-gradient(
     90deg,
-    rgb(var(--c-panel2) / 0.5) 25%,
-    rgb(var(--c-edge) / 0.8) 37%,
-    rgb(var(--c-panel2) / 0.5) 63%
+    rgb(var(--c-panel2) / 0.7) 25%,
+    rgb(var(--c-edge) / 0.9) 37%,
+    rgb(var(--c-panel2) / 0.7) 63%
   );
   background-size: 400% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 @keyframes shimmer {
   0% {
@@ -207,25 +221,23 @@ body::after {
   }
 }
 
-/* Subtle dotted texture, opt-in (hero band flavour). */
 .brut-grid {
-  background-image: radial-gradient(rgba(232, 232, 227, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
   background-size: 18px 18px;
 }
 
-/* Square scrollbars to match the brutalist edges */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 *::-webkit-scrollbar-thumb {
-  background: #2c2f3a;
+  background: rgb(var(--c-edge));
+  border-radius: 9999px;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: #3a3d46;
+  background: rgb(var(--c-muted) / 0.6);
 }
 
-/* Respect reduced-motion: neutralise the framer/CSS animations globally */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

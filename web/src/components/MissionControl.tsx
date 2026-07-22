@@ -1,5 +1,14 @@
 import type { UseAllocator } from "../hooks/useAllocator";
+import type { Snapshot } from "../api/types";
 import { sectionId } from "../lib/sections";
+import { fmtUsd, fmtSignedPct, fgColor } from "../lib/format";
+import { pnlSummary } from "../lib/pnl";
+import { rotationFromSnapshot } from "../lib/rotation";
+import type { ReactNode } from "react";
+
+import HeaderBar from "./HeaderBar";
+import StatusTicker from "./StatusTicker";
+import ProvenanceHero from "./ProvenanceHero";
 import AgentCommercePanel from "./AgentCommercePanel";
 import Cheatsheet from "./Cheatsheet";
 import CommandPalette from "./CommandPalette";
@@ -10,7 +19,6 @@ import EconomyPnLCard from "./EconomyPnLCard";
 import AutoSelectorCard from "./AutoSelectorCard";
 import SchedulerCard from "./SchedulerCard";
 import EquityCurve from "./EquityCurve";
-import HeroRow from "./HeroRow";
 import IdentityCard from "./IdentityCard";
 import LiveArmCard from "./LiveArmCard";
 import LiveWalletCard from "./LiveWalletCard";
@@ -20,17 +28,17 @@ import PnLCard from "./PnLCard";
 import RationaleTicker from "./RationaleTicker";
 import RebalanceTable from "./RebalanceTable";
 import StackStrip from "./StackStrip";
-import VlayerProvenancePanel from "./VlayerProvenancePanel";
-import StatusBar from "./StatusBar";
 import SystemDiagnostics from "./SystemDiagnostics";
 import StrategySelectPanel from "./StrategySelectPanel";
 import Tour from "./Tour";
 import TokenUniversePanel from "./TokenUniversePanel";
+import Card from "./ui/Card";
+import Stat from "./ui/Stat";
 import Collapsible from "./ui/Collapsible";
 import ErrorBoundary from "./ui/ErrorBoundary";
 import DashboardSkeleton from "./ui/Skeleton";
-import { rotationFromSnapshot } from "../lib/rotation";
-import type { ReactNode } from "react";
+
+const VLAYER = "#7C5CFF";
 
 /** Wrap a panel so a single render failure degrades to a notice, never a blank app.
  * Also stamps a scroll-target id + label so the command palette can jump to it. */
@@ -44,12 +52,53 @@ function Panel({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
+/** The four headline metrics, monospace figures — NAV · PnL · Regime · Agent. */
+function KpiRow({ data }: { data: Snapshot }) {
+  const navVal = data.nav?.current_nav ?? data.state?.nav ?? 0;
+  let netPct = 0;
+  try {
+    netPct = pnlSummary(data.nav, undefined, data.economy?.anchor_usd ?? null).netPct;
+  } catch {
+    /* keep 0 */
+  }
+  const health = data.health;
+  const agentLabel = health?.kill_switch_engaged ? "halted" : health?.ok ? "live" : "down";
+  const agentColor = health?.kill_switch_engaged ? "#ef4444" : health?.ok ? "#16b981" : "#f59e0b";
+  const fg = data.regime?.fear_greed;
+
+  return (
+    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <Card>
+        <Stat label="Net Asset Value" value={fmtUsd(navVal)} color={VLAYER} glow plain="live book value" />
+      </Card>
+      <Card>
+        <Stat
+          label="P&L · net"
+          value={fmtSignedPct(netPct)}
+          color={netPct >= 0 ? "#16b981" : "#ef4444"}
+          plain="since campaign start"
+        />
+      </Card>
+      <Card>
+        <Stat
+          label="Regime"
+          value={fg != null ? String(fg) : "—"}
+          color={fg != null ? fgColor(fg) : undefined}
+          plain={data.regime?.fear_greed_label ?? "fear & greed"}
+        />
+      </Card>
+      <Card>
+        <Stat label="Agent" value={agentLabel} color={agentColor} plain={`mode ${health?.mode ?? "—"}`} />
+      </Card>
+    </div>
+  );
+}
+
 export default function MissionControl({ allocator }: { allocator: UseAllocator }) {
-  const { data, error, stale, lastUpdated, live } = allocator;
+  const { data, error, stale, live } = allocator;
 
   if (!data) {
     // First load / Render cold-start: shimmer skeleton instead of a blank screen.
-    // If the API is unreachable AND we have no data at all, offer a retry inline.
     return (
       <>
         <DashboardSkeleton message={error ? "can't reach the agent — retrying…" : "connecting to agent…"} />
@@ -57,7 +106,7 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
           <div className="fixed inset-x-0 bottom-4 flex justify-center">
             <button
               onClick={() => void allocator.refresh()}
-              className="rounded-sm border-3 border-cool/50 bg-cool/10 px-4 py-2 font-display text-sm font-bold text-cyan shadow-brut-sm transition hover:bg-cool/20"
+              className="rounded-lg border border-brand/40 bg-brand/10 px-4 py-2 font-mono text-sm font-bold text-brand shadow-brut transition hover:bg-brand/20"
             >
               ↻ Retry connection
             </button>
@@ -72,38 +121,44 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
     servedAt: data.served_at ?? null,
     live,
   };
+  const prov = data.pillars?.commerce?.provenance;
+  const vlayerState: "proven" | "pending" | "off" =
+    prov?.attestation === "onchain" ? "proven" : prov?.enabled ? "pending" : "off";
 
   return (
-    <div className="mx-auto max-w-[1500px] space-y-6 overflow-x-clip p-4 md:p-6">
+    <div className="mx-auto max-w-[1400px] space-y-5 overflow-x-clip p-4 md:p-6">
       <CommandPalette allocator={allocator} />
       <KeyboardLayer allocator={allocator} />
       <Cheatsheet />
       <Tour />
-      {/* ── Utility strip: disambiguate connection / data / mode ── */}
-      <ErrorBoundary label="Status bar" fallback={null}>
-        <StatusBar
-          connection={{ stale, error, lastUpdated }}
-          freshness={freshness}
+
+      {/* ── Header + quant-terminal status ticker ── */}
+      <ErrorBoundary label="Header" fallback={null}>
+        <HeaderBar
+          live={live}
+          lastTickTs={freshness.lastTxTs}
+          error={stale ? error : undefined}
           onRetry={() => void allocator.refresh()}
+          vlayerState={vlayerState}
         />
       </ErrorBoundary>
-
-      {/* ── TIER A — the three numbers that matter ── */}
-      <ErrorBoundary label="Hero">
-        <HeroRow
-          nav={data.nav}
-          regime={data.regime}
-          state={data.state}
-          health={data.health}
-          freshness={freshness}
-          identity={data.identity}
-          agentId={data.pillars?.nodereal?.agent_id ?? null}
-          strategy={data.strategy}
-          anchorUsd={data.economy?.anchor_usd ?? null}
-        />
+      <ErrorBoundary label="Status ticker" fallback={null}>
+        <StatusTicker data={data} live={live} />
       </ErrorBoundary>
 
-      {/* ── TIER B — supporting performance, funds & market context ── */}
+      {/* ── Provenance hero — verifiable data provenance leads the page ── */}
+      <ErrorBoundary label="Verified by vlayer">
+        <div id={sectionId("Verified by vlayer")} data-section-label="Verified by vlayer" className="scroll-mt-20">
+          <ProvenanceHero provenance={prov} regime={data.regime} live={live} />
+        </div>
+      </ErrorBoundary>
+
+      {/* ── KPI row — the headline numbers ── */}
+      <ErrorBoundary label="Key metrics">
+        <KpiRow data={data} />
+      </ErrorBoundary>
+
+      {/* ── Performance, funds & market context ── */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <Panel label="Equity curve">
@@ -127,7 +182,6 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
           </Panel>
         </div>
 
-        {/* Consolidated agent-economy P&L — the single "true position" across trading + commerce − x402. */}
         <div className="lg:col-span-12">
           <Panel label="Agent economy">
             <EconomyPnLCard economy={data.economy} commerce={data.pillars?.commerce} />
@@ -140,35 +194,21 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
           </Panel>
         </div>
 
-        {/* Market Data Hub — the live FREE-data-stack exhibit: composed market-overview (regime,
-            Fear & Greed, BTC dominance, mktcap 24h) + per-token DexScreener signals. Replaces the
-            legacy CMC Agent Hub (CmcAgentHubPanel.tsx kept in-repo, unused, as a historical exhibit). */}
         <div className="lg:col-span-12">
           <Panel label="Market Data Hub">
             <MarketDataHubPanel hub={data.market_data_hub} live={live} />
           </Panel>
         </div>
 
-        {/* Agent Commerce — the SELL side (ERC-8183): the agent monetizes its market analysis.
-            With the Market Data Hub above (the free-data inputs) this is the agent-economy exhibit. */}
+        {/* Agent Commerce — the SELL side (ERC-8183) whose report provenance the hero attests. */}
         <div className="lg:col-span-12">
           <Panel label="Agent Commerce">
             <AgentCommercePanel commerce={data.pillars?.commerce} live={live} />
           </Panel>
         </div>
-
-        {/* Verified by vlayer — the proof layer that attests the SOLD report's data provenance.
-            Elevated out of the collapsible detail band into the main grid (above the fold) so
-            verifiable provenance reads as the headline, not a footnote. Shows the honest
-            "attestation pending" state until the first on-chain proof (M1) lands. */}
-        <div className="lg:col-span-12">
-          <Panel label="Verified by vlayer">
-            <VlayerProvenancePanel provenance={data.pillars?.commerce?.provenance} live={live} />
-          </Panel>
-        </div>
       </div>
 
-      {/* ── TIER C — collapsible detail & on-chain proof ── */}
+      {/* ── Detail & on-chain proof (collapsible) ── */}
       <Collapsible title="Detail & Proof" id="detail-band" defaultOpen>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -194,15 +234,12 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
             </Panel>
           </div>
 
-          {/* Scheduler health — catches a silently-dead cron (live tick / drawdown-watch age). */}
           <div className="lg:col-span-12">
             <Panel label="Scheduler">
               <SchedulerCard sched={data.scheduler} />
             </Panel>
           </div>
 
-          {/* Forward-gated auto-selector — ranks DQ-safe arms by risk-adjusted forward score + recommends
-              the live arm (recommend-only; anti-chasing hysteresis). */}
           <div className="lg:col-span-12">
             <Panel label="Auto-selector">
               <AutoSelectorCard sel={data.auto_selector} />
@@ -245,7 +282,7 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
       </Collapsible>
 
       <footer className="pb-2 pt-1 text-center font-mono text-[11px] text-muted">
-        Live on-chain deployment · free data: Binance · alternative.me · DexScreener · CoinGecko · polling every 4s
+        vlayer-verified data provenance · free data: Binance · alternative.me · DexScreener · CoinGecko · polling every 4s
       </footer>
     </div>
   );

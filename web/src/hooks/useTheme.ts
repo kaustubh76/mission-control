@@ -3,8 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 export type Theme = "dark" | "light";
 const KEY = "mc.theme";
 
-/** Resolve the boot theme: stored choice → system preference → dark default.
- * Mirrors the inline <head> script in index.html (which sets it before paint). */
+/** Resolve the boot theme: query override → stored choice → light default.
+ * Mirrors the inline <head> script in index.html (which sets it before paint).
+ * Light is the default (clean fintech look); users can toggle to dark. */
 export function initialTheme(): Theme {
   try {
     // ?theme=light|dark deep-link override (one-shot for this load; persisted only on toggle).
@@ -15,10 +16,7 @@ export function initialTheme(): Theme {
   } catch {
     /* storage blocked — fall through */
   }
-  if (typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: light)").matches) {
-    return "light";
-  }
-  return "dark";
+  return "light";
 }
 
 function apply(theme: Theme) {

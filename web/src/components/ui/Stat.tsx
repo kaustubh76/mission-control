@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { GlossaryKey } from "../../lib/glossary";
 import InfoTip from "./Tooltip";
 
-const DIR_COLOR = { up: "#16c784", down: "#ea3943", flat: "#8a8f9c" } as const;
+const DIR_COLOR = { up: "#16b981", down: "#ef4444", flat: "#6b7280" } as const;
 const DIR_ARROW = { up: "▲", down: "▼", flat: "→" } as const;
 const DIR_WORD = { up: "up", down: "down", flat: "flat" } as const;
 
@@ -46,13 +46,13 @@ export default function Stat({ label, value, plain, delta, term, size = "md", co
       </div>
       <div className="mt-1 flex items-baseline gap-2">
         <span
-          className={`font-display font-bold leading-none tabular-nums ${SIZE[size]} ${glow ? "metric-glow" : ""}`}
+          className={`font-mono font-bold leading-none tabular-nums tracking-tight ${SIZE[size]} ${glow ? "metric-glow" : ""}`}
           style={color ? { color } : undefined}
         >
           {value}
         </span>
         {delta && (
-          <span className="inline-flex items-center gap-1 text-sm font-bold" style={{ color: DIR_COLOR[delta.dir] }}>
+          <span className="inline-flex items-center gap-1 font-mono text-sm font-bold" style={{ color: DIR_COLOR[delta.dir] }}>
             <span aria-hidden>{DIR_ARROW[delta.dir]}</span>
             {delta.text}
             <span className="sr-only">{DIR_WORD[delta.dir]}</span>

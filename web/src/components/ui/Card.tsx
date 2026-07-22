@@ -55,10 +55,12 @@ export default function Card({
     });
 
   const pad = tier === "hero" ? "p-5 md:p-6" : "p-4";
-  // Hero cards get a bold COLOURED hard shadow in their accent, layered over the soft
-  // ambient depth shadow; the rest use the neutral token shadow from .glow-card.
+  // Hero cards get a soft accent-tinted glow + accent border, layered over the token
+  // shadow; the rest use the neutral soft shadow from .glow-card.
   const heroShadow =
-    tier === "hero" && accent ? { boxShadow: `6px 6px 0 0 ${accent}, var(--card-ambient)` } : undefined;
+    tier === "hero" && accent
+      ? { boxShadow: `0 14px 36px -14px ${accent}66, var(--card-shadow-lg)`, borderColor: `${accent}55` }
+      : undefined;
 
   return (
     <motion.section
@@ -69,7 +71,7 @@ export default function Card({
       style={heroShadow}
       className={`glow-card relative ${pad} ${className}`}
     >
-      {accent && <span className="absolute inset-y-0 left-0 w-[6px]" style={{ background: accent }} />}
+      {accent && <span className="absolute inset-y-0 left-0 w-[4px] rounded-l-xl" style={{ background: accent }} />}
       {(label || right || collapsible) && (
         <header className="mb-3 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center sm:gap-3">
           {collapsible ? (
