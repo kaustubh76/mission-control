@@ -12,9 +12,9 @@ on-chain. The analysis is built from **free, keyless public data** (Binance · a
 DexScreener · CoinGecko); vlayer proves those inputs are genuine.
 
 **Links**
-- Repo: `<repo URL>`
-- Live dashboard: https://bnb-mission-control-two.vercel.app
-- Read-only API: https://bnb-mission-control-api.onrender.com
+- Repo: https://github.com/kaustubh76/mission-control
+- Live dashboard: https://mission-control-vlayer.onrender.com
+- Read-only API: https://mission-control-api-iez5.onrender.com
 - ERC-8004 identity: agentId 133085 (BSC)
 - ERC-8183 jobs (mainnet): 25741, 26506
 - Architecture diagram (vlayer trust layer = band ④, row 2): [`docs/architecture.svg`](../architecture.svg)
