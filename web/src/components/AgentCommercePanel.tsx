@@ -6,6 +6,7 @@ import { shortHash, shortAddr, cmcLabel, clockHM, fmtPctRounded, regimeColor, fg
 import Card from "./ui/Card";
 import Collapsible from "./ui/Collapsible";
 import StatusPill from "./ui/StatusPill";
+import VlayerBadge from "./VlayerBadge";
 import InfoTip from "./ui/Tooltip";
 
 // The SELL side of the agent economy (ERC-8183). Violet to distinguish from the blue Market-Hub
@@ -151,12 +152,8 @@ export default function AgentCommercePanel({
       right={
         <span className="flex items-center gap-1.5">
           {caption}
-          {commerce.provenance?.attestation === "onchain" && (
-            // The sold report's data provenance is proven on-chain (vlayer Web Proof) — mark it.
-            <StatusPill tone="vlayer" dot srText="data provenance proven on-chain via vlayer">
-              vlayer ✓
-            </StatusPill>
-          )}
+          {/* The sold report's data provenance — always advertise it (honest pending/proven state). */}
+          <VlayerBadge provenance={commerce.provenance} compact withTip={false} />
           <StatusPill tone={armed ? "up" : "neutral"} dot pulse={live && armed && !idle}>
             {armed ? `armed · ${networkLabel(commerce.network)}` : "config off"}
           </StatusPill>

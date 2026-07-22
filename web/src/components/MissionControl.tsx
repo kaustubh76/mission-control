@@ -34,6 +34,7 @@ import Tour from "./Tour";
 import TokenUniversePanel from "./TokenUniversePanel";
 import Card from "./ui/Card";
 import Stat from "./ui/Stat";
+import VlayerBadge from "./VlayerBadge";
 import Collapsible from "./ui/Collapsible";
 import ErrorBoundary from "./ui/ErrorBoundary";
 import DashboardSkeleton from "./ui/Skeleton";
@@ -79,7 +80,7 @@ function KpiRow({ data }: { data: Snapshot }) {
           plain="since campaign start"
         />
       </Card>
-      <Card>
+      <Card right={<VlayerBadge provenance={data.pillars?.commerce?.provenance} compact withTip={false} />}>
         <Stat
           label="Regime"
           value={fg != null ? String(fg) : "—"}
@@ -190,13 +191,13 @@ export default function MissionControl({ allocator }: { allocator: UseAllocator 
 
         <div className="lg:col-span-12">
           <Panel label="Market intelligence">
-            <MarketIntelPanel intel={data.market_intel} live={live} />
+            <MarketIntelPanel intel={data.market_intel} live={live} provenance={prov} />
           </Panel>
         </div>
 
         <div className="lg:col-span-12">
           <Panel label="Market Data Hub">
-            <MarketDataHubPanel hub={data.market_data_hub} live={live} />
+            <MarketDataHubPanel hub={data.market_data_hub} live={live} provenance={prov} />
           </Panel>
         </div>
 

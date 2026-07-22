@@ -1,12 +1,13 @@
 import { Line, LineChart, ResponsiveContainer, YAxis } from "recharts";
 
 import { getMarketIntel } from "../api/client";
-import type { MarketIntel, RegimeTerms } from "../api/types";
+import type { MarketIntel, RegimeTerms, VlayerProvenance } from "../api/types";
 import { fgColor } from "../lib/format";
 import type { GlossaryKey } from "../lib/glossary";
 import Card from "./ui/Card";
 import CheckButton from "./ui/CheckButton";
 import DataSourcesBadge from "./DataSourcesBadge";
+import VlayerBadge, { VlayerSealMark } from "./VlayerBadge";
 import StatusPill from "./ui/StatusPill";
 import InfoTip from "./ui/Tooltip";
 
@@ -115,9 +116,11 @@ function RegimeBars({ terms }: { terms: RegimeTerms }) {
 export default function MarketIntelPanel({
   intel,
   live = true,
+  provenance,
 }: {
   intel: MarketIntel | null | undefined;
   live?: boolean;
+  provenance?: VlayerProvenance | null;
 }) {
   // CMC-1: green "live" only when the regime is enabled AND the API is fresh — on the
   // static snapshot fallback (!live) show a muted "snapshot" badge, not green "live".
@@ -136,6 +139,7 @@ export default function MarketIntelPanel({
       accent={CMC_BLUE}
       right={
         <span className="flex items-center gap-2">
+          <VlayerBadge provenance={provenance} compact withTip={false} />
           <CheckButton label="refresh intel" run={intelCheck} />
           <StatusPill tone={intelFresh ? "up" : "neutral"} srText={intelFresh ? "live market data" : "snapshot"}>
             {intelFresh ? "LIVE" : intel?.enabled ? "SNAPSHOT" : "OFF"}
@@ -179,7 +183,7 @@ export default function MarketIntelPanel({
             <div>
               <div className="flex items-baseline justify-between">
                 <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-muted">
-                  fear &amp; greed (14d) <InfoTip term="fearGreed" />
+                  fear &amp; greed (14d) <InfoTip term="fearGreed" /> <VlayerSealMark provenance={provenance} size={11} />
                 </span>
                 {latestFng != null && (
                   <span className="font-mono text-lg font-semibold" style={{ color: fgColor(latestFng) }}>

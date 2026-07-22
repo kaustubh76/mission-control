@@ -1,20 +1,23 @@
+import type { ReactNode } from "react";
 import type { GlossaryKey } from "../lib/glossary";
-import type { MarketDataHub } from "../api/types";
+import type { MarketDataHub, VlayerProvenance } from "../api/types";
 import { fgColor, regimeColor, cmcLabel } from "../lib/format";
 import Card from "./ui/Card";
 import DataSourcesBadge from "./DataSourcesBadge";
+import VlayerBadge, { VlayerSealMark } from "./VlayerBadge";
 import StatusPill from "./ui/StatusPill";
 import InfoTip from "./ui/Tooltip";
 
 // Market-data cyan — distinguishes the free data feed from the violet on-chain/identity panels.
 const DATA_CYAN = "#3861fb";
 
-function Tile({ label, value, color, tip }: { label: string; value: string; color?: string; tip?: GlossaryKey }) {
+function Tile({ label, value, color, tip, mark }: { label: string; value: string; color?: string; tip?: GlossaryKey; mark?: ReactNode }) {
   return (
     <div className="rounded-sm border border-edge bg-panel2 px-2.5 py-1.5">
       <div className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-muted">
         {label}
         {tip && <InfoTip term={tip} />}
+        {mark}
       </div>
       <div className="font-mono text-sm font-semibold leading-tight break-words" style={{ color: color ?? "rgb(var(--c-ink))" }}>
         {value}
@@ -35,9 +38,11 @@ const changeColor = (n: number | null | undefined) => (n == null ? undefined : n
 export default function MarketDataHubPanel({
   hub,
   live = true,
+  provenance,
 }: {
   hub?: MarketDataHub | null;
   live?: boolean;
+  provenance?: VlayerProvenance | null;
 }) {
   const enabled = !!hub?.enabled;
   const ov = hub?.overview ?? null;
@@ -46,6 +51,7 @@ export default function MarketDataHubPanel({
 
   const header = (
     <span className="flex items-center gap-1.5">
+      <VlayerBadge provenance={provenance} compact withTip={false} />
       <DataSourcesBadge compact />
       <StatusPill tone={enabled ? "up" : "neutral"} dot pulse={live && enabled}>
         {enabled ? "live · free" : "off"}
@@ -87,6 +93,7 @@ export default function MarketDataHubPanel({
             label="Fear & Greed"
             value={ov?.fear_greed != null ? String(ov.fear_greed) : "—"}
             color={fgColor(ov?.fear_greed)}
+            mark={<VlayerSealMark provenance={provenance} size={11} />}
           />
           <Tile label="BTC dom" value={ov?.btc_dominance != null ? `${ov.btc_dominance.toFixed(1)}%` : "—"} />
           <Tile label="Mktcap 24h" value={pct(ov?.mktcap_change_24h)} color={changeColor(ov?.mktcap_change_24h)} />

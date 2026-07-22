@@ -2,6 +2,7 @@ import type { CommerceBlock, EconomyPnL } from "../api/types";
 import { fmtUsd } from "../lib/format";
 import Card from "./ui/Card";
 import StatusPill, { type Tone } from "./ui/StatusPill";
+import VlayerBadge from "./VlayerBadge";
 
 const UP = "#16c784";
 const DOWN = "#ea3943";
@@ -39,9 +40,12 @@ export default function EconomyPnLCard({
       label="Agent economy"
       accent="#7C5CFF"
       right={
-        <StatusPill tone={pnlTone} dot srText={`trading PnL ${signedUsd(pnl)}`}>
-          PnL {signedUsd(pnl)}
-        </StatusPill>
+        <span className="flex items-center gap-1.5">
+          <VlayerBadge provenance={commerce?.provenance} compact withTip={false} />
+          <StatusPill tone={pnlTone} dot srText={`trading PnL ${signedUsd(pnl)}`}>
+            PnL {signedUsd(pnl)}
+          </StatusPill>
+        </span>
       }
     >
       <div className="space-y-3">

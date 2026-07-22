@@ -45,6 +45,13 @@ export default function StackStrip({
   const explorer = wallet
     ? `https://${identity?.network === "bsc-testnet" ? "testnet." : ""}bscscan.com/address/${wallet}`
     : null;
+  const prov = pillars?.commerce?.provenance;
+  const provDetail =
+    prov?.attestation === "onchain"
+      ? "verified on-chain · zkTLS Web Proof"
+      : prov?.enabled
+        ? "provable · zkTLS Web Proof (pending)"
+        : "verifiable data · zkTLS Web Proof";
 
   return (
     <Card
@@ -71,7 +78,7 @@ export default function StackStrip({
               : "identity configured"
           }
         />
-        <Chip tone="vlayer" label="vlayer" detail="verifiable data · zkTLS Web Proof" />
+        <Chip tone="vlayer" label="vlayer" detail={provDetail} />
         {mcpCalls > 0 && (
           <Chip tone="info" label="MCP" detail={`${mcpCalls} agent-hub calls`} />
         )}
