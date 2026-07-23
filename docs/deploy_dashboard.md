@@ -1,4 +1,10 @@
-# Deploy the BNB "Mission Control" dashboard
+# Deploy the Mission Control dashboard
+
+> **Current deployment (2026-07):** API = Render web service **`mission-control-api`** →
+> <https://mission-control-api-iez5.onrender.com> (created via the Render API from the public repo
+> **github.com/kaustubh76/mission-control**); UI = Render **static site** `mission-control-vlayer` →
+> <https://mission-control-vlayer.onrender.com>. The Vercel + Render Blueprint flow below is the
+> original approach, kept for reference.
 
 Two pieces, already split:
 

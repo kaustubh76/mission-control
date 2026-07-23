@@ -98,7 +98,7 @@ summary the dashboard renders; regenerate it from the file rather than editing b
 - **Live dashboard** — the CMC Agent Hub panel
   ([CmcAgentHubPanel.tsx](../web/src/components/CmcAgentHubPanel.tsx)) shows the settled
   count + USDC spent; the API surfaces it at
-  [`/api/pillars`](https://bnb-mission-control-api.onrender.com/api/pillars) (`cmc.receipts`)
+  [`/api/pillars`](https://mission-control-api-iez5.onrender.com/api/pillars) (`cmc.receipts`)
   and `/api/snapshot` (`agent_hub.x402`).
 - **On-chain** — the payer is the identity wallet
   [`0xEb7b…9655`](https://basescan.org/address/0xEb7bF36aab4912c955474206EF0b835170389655);

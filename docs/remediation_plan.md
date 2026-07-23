@@ -4,7 +4,7 @@
 **Hard dates:** submission lock Jun 21 (treat as **12:00 UTC** until verified — Step 0.1), trading window **Jun 22 00:00 UTC → Jun 28**.
 **Claimed done (must re-verify in Phase 0 — see 0.2):** ERC-8004 mint (agentId 1313) + contest registration (participant `0xE8A3…6215`) on 2026-06-08 per [bnb_strategy_decision.md](bnb_strategy_decision.md). ⚠ `AGENT_ID` is **absent from `.env`**, so the mint result was never persisted — treat registration status as *unverified* until the Phase 0 check.
 **Missing runtime artifacts:** zero x402 receipts (`data/x402/` doesn't exist), no live swap tx hash (`allocator_live.jsonl`: 1 row, `tx: []`), no registration proof pack, no LICENSE file.
-**Live deploys:** dashboard `https://bnb-mission-control-two.vercel.app` · API `https://bnb-mission-control-api.onrender.com`.
+**Live deploys:** dashboard `https://mission-control-vlayer.onrender.com` · API `https://mission-control-api-iez5.onrender.com`.
 
 Each step has commands and an **Accept** check. Phases are sequential except where marked parallel-safe.
 
