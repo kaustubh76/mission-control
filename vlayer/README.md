@@ -8,6 +8,35 @@ agent *sells* over ERC-8183 from "trust me" into "verify it."
 See [`../docs/vlayer/INTEGRATION_PLAN.md`](../docs/vlayer/INTEGRATION_PLAN.md) for the full plan and
 [`../docs/vlayer/GRANT_APPLICATION.md`](../docs/vlayer/GRANT_APPLICATION.md) for the grant draft.
 
+## M1 runbook — first on-chain attestation (verified against vlayer 1.5.1, 2026-07)
+
+> Status: contracts (`RegimeProver`/`RegimeVerifier`) already match the current vlayer API (the v1.5.1
+> `kraken-web-proof` template still imports `vlayer-0.1.0/…`, so those imports are correct). `prove.ts` is
+> ported to the current pattern (`web-proof-fetch` → `deployVlayerContracts` → `prove` → `verify`). The
+> only steps left are toolchain + deps + the two secrets.
+
+1. **Install the CLI.** The old `curl -SL https://install.vlayer.xyz | bash` is **dead** (that host is
+   NXDOMAIN). Get `vlayer` from GitHub Releases instead: download `binaries-<platform>.tar.gz` from
+   <https://github.com/vlayer-xyz/vlayer/releases> (currently `v1.5.1`), extract, and put `bin/vlayer` on
+   your `PATH` (or check <https://book.vlayer.xyz> for the current installer). Verify `vlayer --version`
+   and that `forge`, `cast`, `bun` are present.
+2. **Secrets** → `cp env.testnet.local.example vlayer/.env.testnet.local` and fill:
+   - `VLAYER_API_TOKEN=` a JWT from <https://dashboard.vlayer.xyz> (required by the hosted prover).
+   - `EXAMPLES_TEST_PRIVATE_KEY=0x…` a **funded** Optimism-Sepolia key (the repo `.env` has it as
+     `private_key`; add the `0x` prefix). Fund it at an OP-Sepolia faucet.
+   - `OPTIMISM_SEPOLIA_RPC_URL=https://sepolia.optimism.io`.
+3. **Install deps + build.** From `vlayer/`: `vlayer init --template kraken-web-proof --existing` installs
+   the vlayer Solidity lib (`dependencies/vlayer-0.1.0`) + risc0/openzeppelin/forge-std, then
+   `forge build` → `out/RegimeProver.sol/RegimeProver.json` + `…/RegimeVerifier.json`.
+   (If `vlayer init`'s example fetch 403s on your network, retry — its assets are on S3.)
+4. **Deploy + prove + attest in one command.** `cd vlayer/vlayer && bun install && bun run prove:testnet`.
+   `prove.ts` deploys the pair via the SDK, notarizes alternative.me, proves `RegimeProver.main`, and
+   submits `RegimeVerifier.verify` → prints the **attestation tx** and the **verifier address**.
+5. **Flip the dashboard.** Set `VLAYER_VERIFIER_ADDRESS=0x<verifier>` on the Render API service
+   `srv-d9e9q6taeets73ao06v0` (`VLAYER_ENABLED=true` + `VLAYER_CHAIN` are already set) and redeploy →
+   every "Verified by vlayer" surface flips from *pending* to *verified* live. Ensure the on-chain
+   `agent` == `AGENT_IDENTITY_ADDRESS` so `latestOf(agent)` resolves.
+
 ## Contracts
 
 | File | Role |
