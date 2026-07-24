@@ -19,7 +19,7 @@ contract RegimeTest is VTest {
         // testdata/fng_webproof.json is produced by the `vlayer` CLI (free, keyless — no header):
         //   vlayer web-proof-fetch --url "https://api.alternative.me/fng/?limit=1" > testdata/fng_webproof.json
         string memory json = vm.readFile("testdata/fng_webproof.json");
-        return WebProofLib.fromJson(json); // reconcile helper name with template
+        return WebProof(json); // vlayer 1.5.1: WebProof is { string webProofJson; }
     }
 
     function testProvesAndAttestsFearGreed() public {

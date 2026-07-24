@@ -1,12 +1,13 @@
 # Foundry config for the vlayer provenance sub-project.
-# NOTE: reconcile with a fresh `vlayer init --template kraken-web-proof` output — the vlayer
-# libs (`vlayer-0.1.0`, `risc0-ethereum`, etc.) are installed as git submodules under lib/ by
-# `vlayer init`, and remappings.txt points at them. See vlayer/README.md.
+# All deps install from the network via `forge soldeer install` (no `vlayer init`, no dead install
+# domain, no S3): the vlayer Solidity lib comes from the v1.5.1 release `vlayer.zip`, risc0-ethereum
+# from its release zip, openzeppelin/forge-std from the soldeer registry. solc 0.8.28 matches the
+# vlayer contracts. Reproduce with:  forge soldeer install && forge build
 [profile.default]
 src = "src"
 out = "out"
-libs = ["dependencies", "lib"]
-solc = "0.8.21"
+libs = ["dependencies"]
+solc = "0.8.28"
 optimizer = true
 optimizer_runs = 200
 auto_detect_solc = false
@@ -14,3 +15,14 @@ fs_permissions = [{ access = "read", path = "./testdata" }]
 
 [profile.default.rpc_endpoints]
 optimismSepolia = "${OPTIMISM_SEPOLIA_RPC_URL}"
+
+[dependencies]
+forge-std = "1.9.4"
+"@openzeppelin-contracts" = "5.1.0"
+risc0-ethereum = { version = "3.0.0", url = "https://github.com/vlayer-xyz/risc0-ethereum/releases/download/v3.0.0-soldeer/contracts.zip" }
+vlayer = { version = "0.1.0", url = "https://github.com/vlayer-xyz/vlayer/releases/download/v1.5.1/vlayer.zip" }
+
+[soldeer]
+# Keep our hand-written remappings.txt (don't let soldeer regenerate it).
+remappings_generate = false
+remappings_regenerate = false

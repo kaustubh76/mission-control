@@ -25,10 +25,11 @@ See [`../docs/vlayer/INTEGRATION_PLAN.md`](../docs/vlayer/INTEGRATION_PLAN.md) f
    - `EXAMPLES_TEST_PRIVATE_KEY=0x…` a **funded** Optimism-Sepolia key (the repo `.env` has it as
      `private_key`; add the `0x` prefix). Fund it at an OP-Sepolia faucet.
    - `OPTIMISM_SEPOLIA_RPC_URL=https://sepolia.optimism.io`.
-3. **Install deps + build.** From `vlayer/`: `vlayer init --template kraken-web-proof --existing` installs
-   the vlayer Solidity lib (`dependencies/vlayer-0.1.0`) + risc0/openzeppelin/forge-std, then
-   `forge build` → `out/RegimeProver.sol/RegimeProver.json` + `…/RegimeVerifier.json`.
-   (If `vlayer init`'s example fetch 403s on your network, retry — its assets are on S3.)
+3. **Install deps + build.** From `vlayer/`: **`./setup.sh`** — installs all deps from the soldeer
+   registry + the vlayer/risc0 GitHub release zips (`foundry.toml [dependencies]`) and runs `forge build`
+   → `out/RegimeProver.sol/RegimeProver.json` + `…/RegimeVerifier.json`. **No `vlayer init` needed**
+   (that path relies on vlayer's S3 example archive, which is auth-gated). Verified GREEN against
+   vlayer 1.5.1. `dependencies/` is git-ignored + reproduced by the script; `soldeer.lock` pins versions.
 4. **Deploy + prove + attest in one command.** `cd vlayer/vlayer && bun install && bun run prove:testnet`.
    `prove.ts` deploys the pair via the SDK, notarizes alternative.me, proves `RegimeProver.main`, and
    submits `RegimeVerifier.verify` → prints the **attestation tx** and the **verifier address**.

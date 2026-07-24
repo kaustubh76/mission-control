@@ -1,6 +1,7 @@
-# Placeholder remappings — OVERWRITE with the versions that `vlayer init --template kraken-web-proof`
-# generates (the exact `vlayer-x.y.z` version string and lib paths change between SDK releases).
 vlayer-0.1.0/=dependencies/vlayer-0.1.0/src/
-@openzeppelin/contracts/=dependencies/@openzeppelin-contracts/
-forge-std/=dependencies/forge-std/src/
-risc0-ethereum/=dependencies/risc0-ethereum/
+@openzeppelin-contracts-5.0.1/=dependencies/@openzeppelin-contracts-5.1.0/
+@openzeppelin/contracts/=dependencies/@openzeppelin-contracts-5.1.0/
+risc0-ethereum-3.0.0/=dependencies/risc0-ethereum-3.0.0/
+forge-std/=dependencies/forge-std-1.9.4/src/
+forge-std-1.9.4/=dependencies/forge-std-1.9.4/
+risc0-ethereum-3.0.0/:openzeppelin-contracts/=dependencies/@openzeppelin-contracts-5.1.0/
