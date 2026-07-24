@@ -38,6 +38,18 @@ See [`../docs/vlayer/INTEGRATION_PLAN.md`](../docs/vlayer/INTEGRATION_PLAN.md) f
    every "Verified by vlayer" surface flips from *pending* to *verified* live. Ensure the on-chain
    `agent` == `AGENT_IDENTITY_ADDRESS` so `latestOf(agent)` resolves.
 
+## Validation status (2026-07)
+
+- ✅ **Build green** — `./setup.sh` compiles `RegimeProver`/`RegimeVerifier` against vlayer 1.5.1 (72 files).
+- ✅ **Unit tests green** — `forge test` runs `test/RegimeUnit.t.sol` (7 pass): Fear & Greed parsing bounds
+  (`_parseUint`) + verifier storage/views.
+- ✅ **Notarization validated** — `vlayer web-proof-fetch --url "https://api.alternative.me/fng/?limit=1"`
+  produces a real MPC-TLS Web Proof of the endpoint (the notary pipeline works end-to-end).
+- ✅ **Wallet funded** — the M1 deployer `0x5a64…E90c` holds **2.0 OP-Sepolia ETH**.
+- ⏳ **Full prove→verify** (`test/vlayer/Regime.t.sol`) runs under `vlayer test` and needs a *dev-notary*
+  web-proof fixture (the shipped examples use pre-signed dev fixtures); a `test-notary` proof is rejected by
+  the local dev env. The on-chain attestation (M1) needs only the dashboard `VLAYER_API_TOKEN`.
+
 ## Contracts
 
 | File | Role |

@@ -5,8 +5,8 @@ import {Test} from "forge-std/Test.sol";
 import {VTest} from "vlayer-0.1.0/testing/VTest.sol";
 import {Proof} from "vlayer-0.1.0/Proof.sol";
 import {WebProof, WebProofLib} from "vlayer-0.1.0/WebProof.sol";
-import {RegimeProver} from "../src/RegimeProver.sol";
-import {RegimeVerifier} from "../src/RegimeVerifier.sol";
+import {RegimeProver} from "../../src/RegimeProver.sol";
+import {RegimeVerifier} from "../../src/RegimeVerifier.sol";
 
 /// @notice vlayer web-proof tests run under `VTest` (it wires the off-chain prover). This mirrors the
 ///         `kraken-web-proof` test: load a fixture Web Proof from testdata/, call the prover, then

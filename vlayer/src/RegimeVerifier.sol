@@ -19,10 +19,10 @@ contract RegimeVerifier is Verifier {
     address public immutable prover;
 
     struct Attestation {
-        uint256 fearGreed;      // Fear & Greed index (0..100), proven authentic (alternative.me)
-        string classification;  // textual classification (alternative.me)
-        uint64 provenAt;        // block timestamp when the proof was verified
-        address agent;          // the selling agent's identity address
+        uint256 fearGreed; // Fear & Greed index (0..100), proven authentic (alternative.me)
+        string classification; // textual classification (alternative.me)
+        uint64 provenAt; // block timestamp when the proof was verified
+        address agent; // the selling agent's identity address
         bool exists;
     }
 
@@ -32,11 +32,7 @@ contract RegimeVerifier is Verifier {
     mapping(bytes32 => Attestation) public byReport;
 
     event RegimeProven(
-        address indexed agent,
-        uint256 fearGreed,
-        string classification,
-        bytes32 indexed reportHash,
-        uint64 provenAt
+        address indexed agent, uint256 fearGreed, string classification, bytes32 indexed reportHash, uint64 provenAt
     );
 
     constructor(address _prover) {
