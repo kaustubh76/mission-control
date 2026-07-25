@@ -5,6 +5,7 @@
   "type": "module",
   "description": "vlayer Web Proof of alternative.me (free) data provenance for Mission Control",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "prove:dev": "bun run prove.ts",
     "prove:testnet": "VLAYER_ENV=testnet bun run prove.ts"
   },

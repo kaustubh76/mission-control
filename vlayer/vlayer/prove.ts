@@ -1,4 +1,3 @@
-/// <reference types="bun" />
 /**
  * End-to-end data-provenance attestation (free, keyless), on Optimism Sepolia:
  *   1. Notarize a real alternative.me Fear & Greed HTTPS response  (vlayer web-proof-fetch, zkTLS — no API key)
@@ -87,8 +86,10 @@ const proveArgs = {
   vgasLimit: config.vgasLimit,
 } as ProveArgs<typeof proverSpec.abi, "main">;
 const hash = await vlayer.prove(proveArgs);
+// waitForProvingResult returns the prover's public outputs as a tuple, in RegimeProver.main's return
+// order: (Proof, agent, fearGreed, classification, reportHash).
 const [proof, provenAgent, fearGreed, classification, provenReportHash] =
-  await vlayer.waitForProvingResult({ hash });
+  (await vlayer.waitForProvingResult({ hash })) as [unknown, `0x${string}`, bigint, string, `0x${string}`];
 console.log(`proven: agent=${provenAgent} fearGreed=${fearGreed} (${classification})`);
 
 // 4. Submit on-chain → RegimeVerifier.verify (onlyVerified reverts unless the proof verifies).
